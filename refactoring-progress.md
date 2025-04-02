@@ -462,7 +462,7 @@ And continue updating additional pages to use these shared components.
 - [x] Create `CategoryBenefits` component
   - [x] Implement as reusable benefits grid for all product categories
   - [x] Create data file structure for benefits data
-  - [x] Ensure consistent styling with theme-specific colors/gradients
+  - [x] Ensure consistent styling with theme-specific colors and gradients
   - [x] Add standard features like satisfaction ratings and effect times
 - [x] Create `CategoryFeaturedProducts` component
   - [x] Implement as a reusable product grid for all categories
@@ -639,3 +639,133 @@ And continue updating additional pages to use these shared components.
 5. ✅ Supported custom section titles and descriptions
 
 #### Category Cta Component
+
+## 2. PAGE STRUCTURE STANDARDIZATION
+**STATUS: IN PROGRESS**
+
+### 2.1 Category Pages
+- [x] Analyze existing page structure across all category pages
+  - [x] Find common sections and layouts
+  - [x] Document theme colors and styling patterns
+  - [x] Identify differences and unique sections
+- [x] Standardize Sport & Recovery page
+  - [x] Update to use shared CategoryHero component with SportTheme
+  - [x] Update to use shared CategoryBenefits component
+  - [x] Update to use shared CategoryFeaturedProducts component
+  - [x] Update to use shared CategoryTestimonials component
+  - [x] Update to use shared CategoryFaq component
+  - [x] Update to use shared CategoryCta component
+  - [x] Keep page-specific ResearchSection and CbdIngredientsSection components
+  - [x] Fix IconName compatibility in benefits data file
+- [x] Standardize Hybrid & Mushrooms page
+  - [x] Update to use shared CategoryHero component with HybridTheme
+  - [x] Update to use shared CategoryBenefits component
+  - [x] Update to use shared CategoryFeaturedProducts component
+  - [x] Update to use shared CategoryTestimonials component
+  - [x] Update to use shared CategoryFaq component
+  - [x] Update to use shared CategoryCta component
+  - [x] Keep page-specific MushroomTableSection and ResearchSection components
+  - [x] Fix IconName compatibility in benefits data file
+- [x] Standardize Beauty & Cosmetics page
+  - [x] Update to use shared CategoryHero component with BeautyTheme
+  - [x] Update to use shared CategoryBenefits component
+  - [x] Update to use shared CategoryFeaturedProducts component
+  - [x] Update to use shared CategoryTestimonials component
+  - [x] Update to use shared CategoryFaq component
+  - [x] Update to use shared CategoryCta component
+  - [x] Keep page-specific QualityPromiseSection and CbdIngredientsSection components
+  - [x] Fix benefits data file to use Lucide icons instead of react-icons/fi
+  - [x] Update BenefitsGrid component to include Beauty icon set (Sun, Feather, Droplet, TrendingUp)
+
+### 2.2 Responsive Design Implementation
+- [x] Analyze existing responsive implementation
+  - Reviewed all shared category components and found solid mobile-first implementations
+  - Confirmed that Tailwind's responsive utility classes are used consistently (sm:, md:, lg:, etc.)
+  - Found the Navbar has comprehensive responsive implementation with mobile menu
+  - Identified the cart-drawer component is already responsive but could be optimized for smaller screens
+- [x] Evaluate mobile navigation
+  - Confirmed mobile navigation uses a slide-out Sheet component with proper touch interaction
+  - Mobile menu includes all category links and account options
+  - Search functionality is accessible on mobile via dedicated button
+- [x] Assess shopping cart UI
+  - Examined the cart-drawer implementation for different screen sizes
+  - Found the cart context implementation is robust with proper state management
+  - Identified that the checkout page is responsive but could be improved for mobile
+  - Confirmed that the cart subtotal calculations work properly across all devices
+
+### 2.3 E-commerce Features Implementation
+- [x] Standardize product detail pages
+  - Created reusable ProductDetail component with responsive design
+  - Implemented image gallery with thumbnail navigation
+  - Added product variant display (size, concentration, etc.)
+  - Included quantity selector and add-to-cart functionality
+  - Added product details, usage, and ingredients in tabbed interface
+  - Created dynamic product page with SEO metadata
+  - Implemented related products based on category
+- [x] Enhance checkout experience
+  - Optimized checkout form for mobile devices
+  - Improved layout with better visual hierarchy
+  - Added scrollable order summary for better mobile experience
+  - Enhanced form accessibility with proper labels and focus states
+  - Implemented responsive grid layouts for form fields
+  - Added aria labels to buttons for better accessibility
+- [x] Improve cart functionality
+  - Created QuickViewModal component for viewing product details directly from list pages
+  - Implemented "Save for Later" functionality to let users save items for future purchase
+  - Added visual animations for cart interactions
+  - Enhanced empty cart experience with product recommendations
+  - Improved cart drawer layout with separate sections for cart items and saved items
+  - Added free shipping threshold indicator
+  - Made responsiveness improvements to enhance mobile experience
+
+### Next Steps:
+We will proceed with:
+
+1. Testing and polishing
+   - [x] Implement accessibility improvements
+     - Created accessibility utilities library with helper functions
+     - Added SkipToContent component for keyboard navigation
+     - Implemented accessible labels and descriptions
+     - Enhanced ProductDetail with proper ARIA attributes
+     - Improved cart drawer with screen reader support
+     - Added keyboard navigation support
+     - Created focus management utilities for modal dialogs
+     - Implemented ContrastingText and ContrastBadge components for color contrast
+     - Added ARIA live regions for dynamic content updates
+     - Improved semantic HTML structure throughout the application
+   - [ ] Test responsive behavior across different device sizes
+   - [ ] Ensure consistent styling across all pages
+   - [ ] Fix any remaining accessibility issues
+   - [ ] Optimize performance for mobile devices
+   - [ ] Conduct user testing to uncover usability improvements
+
+2. Documentation and code cleanup
+   - [ ] Update component documentation
+   - [ ] Ensure consistent code patterns
+   - [ ] Remove any remaining unused code
+   - [ ] Optimize bundle size with code splitting
+
+## Bug Fixes
+
+- Fixed TypeError in CategoryFeaturedProducts component on Beauty and Cosmetics page
+  - Updated beauty-and-cosmetics/data/products.ts to match the expected ProductItem interface
+  - Changed property names: imageSrc → image, ratingCount → reviews
+  - Added missing properties: strength, benefits array
+  - Converted price from number to string format with $ prefix
+
+- Fixed hydration mismatch error with ThemeProvider
+  - Modified ThemeProvider in src/components/providers.tsx
+    - Set forcedTheme="light" to ensure server and client render the same HTML
+    - Disabled system theme preference to prevent client-side theme changes during hydration
+  - Updated RootLayout in src/app/layout.tsx
+    - Added 'light' class and colorScheme style explicitly to match client-side rendering
+    - Ensures consistent HTML between server and client to prevent hydration errors
+
+- Fixed "Cannot read properties of undefined (reading 'charAt')" error in CategoryTestimonials
+  - Updated CategoryTestimonials component to handle different data structures from various pages
+  - Added support for testimonials with different property names:
+    - name/author for the person's name
+    - text/quote/content for the testimonial content
+    - avatar/image/avatarSrc for the person's image
+  - Implemented fallbacks to prevent undefined property errors
+  - Fixed errors appearing on Sport & Recovery, Beauty & Cosmetics, and Hybrid & Mushrooms pages

@@ -1,65 +1,55 @@
-import "./globals.css";
-import { Inter } from "next/font/google";
-import { Navbar } from "@/components/common/layout/navbar";
-import { Footer } from "@/components/common/layout/footer";
-import { Providers } from "@/components/providers";
-import { CartProvider } from "@/context/cart-context";
+import './globals.css'
+import type { Metadata } from 'next'
+import { Footer } from "@/components/common/layout/footer"
+import { Navbar } from '@/components/common/layout/navbar'
+import { Providers } from "@/components/providers"
+import { CartProvider } from '@/context/cart-context'
+import { Toaster } from '@/components/ui/toaster'
+import { SkipToContent, MainContentArea } from '@/components/ui/skip-to-content'
+import { SkipLinkTargets } from '@/lib/accessibility'
+import { Inter } from 'next/font/google'
 
 // Define the Inter font
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sans',
+})
 
-export const metadata = {
-  title: "Twistly CBD | Premium CBD Products for Health & Wellness",
-  description: "Discover premium CBD products designed to enhance your wellness journey. From oils to topicals, we offer lab-tested, ethically sourced CBD for better health and wellness.",
-  keywords: "CBD, wellness, health, hemp, organic CBD, CBD oil, topicals, edibles, premium CBD, natural remedies",
-  authors: [{ name: "Twistly CBD" }],
-  openGraph: {
-    title: "Twistly CBD | Premium CBD Products for Health & Wellness",
-    description: "Discover premium CBD products designed to enhance your wellness journey. Lab-tested, ethically sourced.",
-    type: "website",
-    url: "https://twistlycbd.com",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Twistly CBD products",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Twistly CBD | Premium CBD Products",
-    description: "Discover premium CBD products designed to enhance your wellness journey.",
-    images: ["/images/og-image.jpg"],
-  },
-};
+export const metadata: Metadata = {
+  title: 'Twistly CBD',
+  description: 'Premium CBD products for wellness, beauty, and pet health.',
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable} suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth light" style={{ colorScheme: "light" }}>
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#22c55e" />
-        <link rel="canonical" href="https://twistlycbd.com" />
+        {/* Add any head elements here */}
       </head>
-      <body className="font-sans antialiased min-h-screen bg-background">
+      <body className={`font-sans antialiased min-h-screen bg-background ${inter.variable}`}>
         <Providers>
           <CartProvider>
             <div className="flex min-h-screen flex-col">
-              <Navbar />
-              <main className="flex-1">
+              <SkipToContent />
+              <header>
+                <div id={SkipLinkTargets.NAVIGATION}>
+                  <Navbar />
+                </div>
+              </header>
+              <MainContentArea className="flex-1">
                 {children}
-              </main>
+              </MainContentArea>
               <Footer />
             </div>
+            <Toaster />
           </CartProvider>
         </Providers>
       </body>
     </html>
-  );
+  )
 }

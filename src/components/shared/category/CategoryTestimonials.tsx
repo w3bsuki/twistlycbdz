@@ -222,13 +222,13 @@ export function CategoryTestimonials({
                   <CardContent className="p-4 h-full flex flex-col">
                     <div className="flex items-start mb-3">
                       <Avatar className={classes.avatar}>
-                        <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                        <AvatarImage src={testimonial.avatar || testimonial.image || testimonial.avatarSrc || ''} alt={testimonial.name || testimonial.author || ''} />
                         <AvatarFallback className={classes.avatarFallback}>
-                          {testimonial.name.charAt(0)}
+                          {(testimonial.name || testimonial.author || '?').charAt(0)}
                         </AvatarFallback>
                       </Avatar>
                       <div className="ml-3 flex-1">
-                        <p className="font-medium text-gray-900 text-sm">{testimonial.name}</p>
+                        <p className="font-medium text-gray-900 text-sm">{testimonial.name || testimonial.author || ''}</p>
                         {testimonial.location && (
                           <p className="text-gray-500 text-xs">{testimonial.location}</p>
                         )}
@@ -258,7 +258,7 @@ export function CategoryTestimonials({
                     </div>
                     
                     <p className="text-gray-600 text-sm flex-1">
-                      &ldquo;{testimonial.text}&rdquo;
+                      &ldquo;{testimonial.text || testimonial.quote || testimonial.content || ''}&rdquo;
                     </p>
                   </CardContent>
                 </Card>
@@ -293,19 +293,19 @@ export function CategoryTestimonials({
                       />
                     ))}
                   </div>
-                  <p className="text-xs text-gray-700 italic mb-3 flex-grow">&ldquo;{testimonial.text}&rdquo;</p>
+                  <p className="text-xs text-gray-700 italic mb-3 flex-grow">&ldquo;{testimonial.text || testimonial.quote || testimonial.content || ''}&rdquo;</p>
                   <div className={`flex items-center mt-auto pt-2 ${classes.dividerBorder}`}>
                     <div className="h-8 w-8 rounded-full overflow-hidden bg-gray-100 mr-2 flex items-center justify-center">
                       <Image
-                        src={testimonial.avatar}
-                        alt={testimonial.name}
+                        src={testimonial.avatar || testimonial.image || testimonial.avatarSrc || ''}
+                        alt={testimonial.name || testimonial.author || ''}
                         width={32}
                         height={32}
                         className="object-cover"
                       />
                     </div>
                     <div>
-                      <p className="font-semibold text-xs text-gray-900">{testimonial.name}</p>
+                      <p className="font-semibold text-xs text-gray-900">{testimonial.name || testimonial.author || ''}</p>
                       {testimonial.role && (
                         <p className="text-[11px] text-gray-500">{testimonial.role}</p>
                       )}
