@@ -504,10 +504,15 @@ And continue updating additional pages to use these shared components.
   - [x] Replace page-specific components with shared `CategoryFaq`
   - [x] Replace page-specific components with shared `CategoryCta`
   - Kept page-specific components for unique sections (Ingredients)
-- [ ] Beauty & Cosmetics Page
-  - [ ] Create data files for benefits, products, testimonials and FAQs
-  - [ ] Replace page-specific components with shared category components
-  - [ ] Keep page-specific components for unique sections
+- [x] Beauty & Cosmetics Page
+  - [x] Created data files for benefits, products, testimonials and FAQs
+  - [x] Replaced page-specific components with shared `CategoryHero`
+  - [x] Replaced page-specific components with shared `CategoryBenefits`
+  - [x] Replaced page-specific components with shared `CategoryFeaturedProducts`
+  - [x] Replaced page-specific components with shared `CategoryTestimonials`
+  - [x] Replaced page-specific components with shared `CategoryFaq`
+  - [x] Replaced page-specific components with shared `CategoryCta`
+  - Kept page-specific components for unique sections (QualityPromise, Ingredients)
 
 ### Completed Tasks:
 #### Category Pages Refactoring
@@ -529,8 +534,13 @@ And continue updating additional pages to use these shared components.
    - Kept page-specific components for unique sections (Ingredients)
 3. ✅ Beauty & Cosmetics Page
    - Created data files for benefits, products, testimonials and FAQs
-   - Replaced page-specific components with shared category components
-   - Kept page-specific components for unique sections
+   - Replaced page-specific components with shared `CategoryHero`
+   - Replaced page-specific components with shared `CategoryBenefits`
+   - Replaced page-specific components with shared `CategoryFeaturedProducts`
+   - Replaced page-specific components with shared `CategoryTestimonials`
+   - Replaced page-specific components with shared `CategoryFaq`
+   - Replaced page-specific components with shared `CategoryCta`
+   - Kept page-specific components for unique sections (QualityPromise, Ingredients)
 
 #### Category Hero Component
 1. ✅ Implemented with theme props for styling
@@ -589,8 +599,13 @@ And continue updating additional pages to use these shared components.
    - Kept page-specific components for unique sections (Ingredients)
 3. ✅ Beauty & Cosmetics Page
    - Created data files for benefits, products, testimonials and FAQs
-   - Replaced page-specific components with shared category components
-   - Kept page-specific components for unique sections
+   - Replaced page-specific components with shared `CategoryHero`
+   - Replaced page-specific components with shared `CategoryBenefits`
+   - Replaced page-specific components with shared `CategoryFeaturedProducts`
+   - Replaced page-specific components with shared `CategoryTestimonials`
+   - Replaced page-specific components with shared `CategoryFaq`
+   - Replaced page-specific components with shared `CategoryCta`
+   - Kept page-specific components for unique sections (QualityPromise, Ingredients)
 
 #### Category Hero Component
 1. ✅ Implemented with theme props for styling
