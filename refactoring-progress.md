@@ -409,25 +409,30 @@ Although not explicitly in the original plan, we should add standardization for 
 - [x] Move unused feature components to archive
   - Moved AiChatHero.tsx to archived directory
 
+### 2.4 Create Shared, Themeable Components
+- [x] Create directory structure for shared category components
+  - Created src/components/shared/category directory for shared components
+  - Established a pattern for component theming and reuse
+- [x] Create shared CategoryHero component
+  - Implemented a flexible hero section that works across all category pages
+  - Used proper TypeScript typing with strongly-typed theme interface
+  - Created optimized Tailwind classes with proper JIT compiler support
+- [x] Create category theme definitions
+  - Defined consistent theme objects for each product category
+  - Created Health, Beauty, Sport, Pet, and Hybrid themes with appropriate colors
+  - Standardized color naming and usage patterns
+- [x] Update category pages to use shared components
+  - Updated Pet CBD page to use the shared CategoryHero component
+  - Updated Health & Wellness page to use the shared CategoryHero component
+  - Preserved all page-specific content while standardizing structure
+  - Removed redundant page-specific components
+
 ### Next Steps:
-We will now proceed with the next phase of our refactoring plan:
+Continue implementing shared components for other section types:
+1. Create CategoryBenefits component for benefits sections
+2. Create CategoryFeaturedProducts component for product showcases
+3. Create CategoryTestimonials component for testimonials
+4. Create CategoryFaq component for FAQ sections
+5. Create CategoryCta component for call-to-action sections
 
-1. Create shared, themeable components for product category pages
-   - Start with the most duplicated components across category pages
-   - Implement proper theming support with consistent color schemes
-   - Update category pages to use these shared components
-
-2. Optimize the shop implementation
-   - Extract filter functionality into a separate component
-   - Extract product grid into a separate component
-   - Improve state management for better performance
-
-3. Organize image assets
-   - Create a more logical directory structure in public/images
-   - Move images to appropriate subdirectories
-   - Update image paths throughout the codebase
-
-Immediate next tasks:
-- Identify the most duplicated components across category pages
-- Create a shared component template with theming support
-- Begin updating category pages to use the shared components 
+And continue updating additional pages to use these shared components. 

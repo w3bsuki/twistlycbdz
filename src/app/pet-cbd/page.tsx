@@ -1,6 +1,6 @@
 import React from 'react'
 import { Metadata } from 'next'
-import { HeroSection } from './components/HeroSection'
+import { CategoryHero, PetTheme } from '@/components/shared/category'
 import { BenefitsSection } from './components/BenefitsSection'
 import { FeaturedProducts } from './components/FeaturedProducts'
 import { ResearchSection } from './components/ResearchSection'
@@ -34,7 +34,22 @@ const pageTheme = {
 export default function PetCBDPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-amber-50 to-white">
-      <HeroSection pageTheme={pageTheme} />
+      <CategoryHero 
+        theme={PetTheme}
+        title="Premium CBD"
+        highlightedText="For Your Beloved Pets"
+        description="Help your pets live their best life with our premium THC-free CBD products designed specifically for their unique needs. Safe and effective for dogs, cats and more."
+        primaryCta={{
+          text: "Shop Pet Products",
+          href: "/shop/category/pet"
+        }}
+        secondaryCta={{
+          text: "Learn About CBD For Pets",
+          href: "/blog/cbd-for-pets"
+        }}
+        imageSrc="/images/tincture2.png"
+        imageAlt="CBD Products for Pets"
+      />
       <BenefitsSection pageTheme={pageTheme} />
       <FeaturedProducts pageTheme={pageTheme} />
       <ResearchSection pageTheme={pageTheme} />

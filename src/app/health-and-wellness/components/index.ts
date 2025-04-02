@@ -1,4 +1,3 @@
-export * from './HeroSection';
 export * from './BenefitsSection';
 export * from './FeaturedProducts';
 export * from './ConditionsTabs';

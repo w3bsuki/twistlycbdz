@@ -1,9 +1,9 @@
 'use client'
 
 import React from 'react'
+import { CategoryHero, HealthTheme } from '@/components/shared/category'
 // Adjust imports to use a central index file
 import {
-  HeroSection,
   BenefitsSection,
   FeaturedProducts,
   ConditionsTabs,
@@ -32,7 +32,22 @@ const pageTheme = {
 export default function HealthAndWellnessPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-green-50 to-white">
-      <HeroSection pageTheme={pageTheme} />
+      <CategoryHero 
+        theme={HealthTheme}
+        title="Find Your"
+        highlightedText="Natural Balance"
+        description="Discover our premium CBD wellness products designed to help you manage stress, improve sleep, and enhance your overall well-being."
+        primaryCta={{
+          text: "Shop Wellness Products",
+          href: "/shop/category/health"
+        }}
+        secondaryCta={{
+          text: "Learn About CBD Benefits",
+          href: "/blog/cbd-for-wellness"
+        }}
+        imageSrc="/images/tincture2.png"
+        imageAlt="CBD Health and Wellness Products"
+      />
       <BenefitsSection pageTheme={pageTheme} />
       <FeaturedProducts pageTheme={pageTheme} />
       <ConditionsTabs pageTheme={pageTheme} />
