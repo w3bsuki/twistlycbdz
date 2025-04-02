@@ -1,10 +1,12 @@
+import { ProductItem } from '@/components/shared/category/CategoryFeaturedProducts';
+
 // Health products data
-export const healthProducts = [
+export const healthProducts: ProductItem[] = [
   {
     id: 'full-spectrum-oil',
     name: "Full Spectrum CBD Oil",
     strength: "1000mg CBD",
-    image: "/images/tincture2.png",
+    image: "/images/logos/1.png",
     price: "$49.99",
     rating: 4.8,
     reviews: 124,
@@ -17,7 +19,7 @@ export const healthProducts = [
     id: 'broad-spectrum-oil',
     name: "Broad Spectrum CBD Oil",
     strength: "750mg CBD",
-    image: "/images/tincture2.png",
+    image: "/images/logos/1.png",
     price: "$39.99",
     rating: 4.7,
     reviews: 98,
@@ -30,7 +32,7 @@ export const healthProducts = [
     id: 'sleep-formula',
     name: "Sleep CBD Formula",
     strength: "1500mg CBD",
-    image: "/images/tincture2.png",
+    image: "/images/logos/1.png",
     price: "$59.99",
     rating: 4.9,
     reviews: 156,
@@ -43,7 +45,7 @@ export const healthProducts = [
     id: 'wellness-plus',
     name: "Wellness Plus CBD",
     strength: "2000mg CBD",
-    image: "/images/tincture2.png",
+    image: "/images/logos/1.png",
     price: "$79.99",
     rating: 4.8,
     reviews: 87,
@@ -56,7 +58,7 @@ export const healthProducts = [
     id: 'daily-wellness',
     name: "Daily Wellness CBD",
     strength: "500mg CBD",
-    image: "/images/tincture2.png",
+    image: "/images/logos/1.png",
     price: "$29.99",
     rating: 4.6,
     reviews: 112,
