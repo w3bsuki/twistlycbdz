@@ -5,16 +5,17 @@ import {
   CategoryBenefits, 
   CategoryFeaturedProducts, 
   CategoryTestimonials,
+  CategoryFaq,
+  CategoryCta,
   PetTheme 
 } from '@/components/shared/category'
 import { ResearchSection } from './components/ResearchSection'
-import { CtaSection } from './components/CtaSection'
-import { FaqSection } from './components/FaqSection'
 import { CbdIngredientsSection } from './components/CbdIngredientsSection'
 import { Newsletter } from '@/components/Newsletter'
 import { petBenefits } from './data/benefits'
 import { petProducts } from './data/products'
 import { petTestimonials } from './data/testimonials'
+import { petFaqs } from './data/faqs'
 
 export const metadata: Metadata = {
   title: 'Pet CBD - Twistly CBD',
@@ -81,8 +82,32 @@ export default function PetCBDPage() {
         testimonials={petTestimonials}
         displayType="carousel"
       />
-      <CtaSection pageTheme={pageTheme} />
-      <FaqSection pageTheme={pageTheme} />
+      <CategoryFaq
+        theme={PetTheme}
+        sectionTitle="Frequently Asked Questions"
+        sectionDescription="Everything you need to know about CBD for your pets"
+        faqs={petFaqs}
+        accordionType="single"
+        showAiChat={false}
+      />
+      <CategoryCta 
+        theme={PetTheme}
+        sectionTitle="Support Your Pet's Wellness Today"
+        sectionDescription="Discover premium CBD products specially formulated for pets to improve their quality of life"
+        ctaTitle="Ready to Help Your Pet Feel Better?"
+        ctaDescription="Browse our pet collection or get personalized recommendations from our pet wellness experts"
+        primaryCta={{
+          text: "Shop Pet CBD Products",
+          href: "/shop/category/pet"
+        }}
+        secondaryCta={{
+          text: "Read Pet Wellness Guide",
+          href: "/blog/pet-wellness"
+        }}
+        imageSrc="/images/pet-tincture.png"
+        imageAlt="Happy pets with CBD products"
+        badgeText="Pet Wellness"
+      />
       <Newsletter 
         title="Join Our Pet Wellness Newsletter"
         description="Get the latest tips, research, and exclusive offers for your pet's CBD journey."

@@ -1,86 +1,103 @@
-'use client'
-
 import React from 'react'
+import { Metadata } from 'next'
 import { 
   CategoryHero, 
   CategoryBenefits, 
-  CategoryFeaturedProducts,
+  CategoryFeaturedProducts, 
   CategoryTestimonials,
+  CategoryFaq,
+  CategoryCta,
   HealthTheme 
 } from '@/components/shared/category'
-// Adjust imports to use a central index file
-import {
-  ConditionsTabs,
-  CbdIngredientsSection,
-  FaqSection,
-  CtaSection
-} from './components' // Assuming ./components/index.ts or similar exists
+import { AiChatSection } from './components/AiChatSection'
+import { Newsletter } from '@/components/Newsletter'
 import { cbdBenefits } from './data/benefits'
 import { healthProducts } from './data/products'
 import { healthTestimonials } from './data/testimonials'
+import { healthFaqs } from './data/faqs'
 
-// Theme configuration for health & wellness page (using green shades)
-const pageTheme = {
-  colors: {
-    primary: 'green-600',
-    secondary: 'emerald-500',
-    accent: 'teal-400',
-    border: 'border-green-200',
-    borderHover: 'hover:border-green-300',
-    background: 'from-green-50 to-white',
-  },
-  gradients: {
-    section: 'bg-gradient-to-b from-green-50 to-white',
-    button: 'bg-gradient-to-r from-green-600 to-emerald-500',
-  }
+export const metadata: Metadata = {
+  title: 'Health & Wellness CBD - Twistly CBD',
+  description: 'Premium CBD products for your health and wellness journey',
 }
 
 export default function HealthAndWellnessPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-green-50 to-white">
+    <main className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
       <CategoryHero 
         theme={HealthTheme}
-        title="Find Your"
-        highlightedText="Natural Balance"
-        description="Discover our premium CBD wellness products designed to help you manage stress, improve sleep, and enhance your overall well-being."
+        title="CBD For"
+        highlightedText="Health & Wellness"
+        description="Enhance your daily wellness routine with our premium CBD products specially formulated to support your health goals naturally."
         primaryCta={{
-          text: "Shop Wellness Products",
+          text: "Shop Health Products",
           href: "/shop/category/health"
         }}
         secondaryCta={{
           text: "Learn About CBD Benefits",
-          href: "/blog/cbd-for-wellness"
+          href: "/blog/cbd-health-benefits"
         }}
-        imageSrc="/images/tincture2.png"
-        imageAlt="CBD Health and Wellness Products"
+        imageSrc="/images/tincture-transparent.png"
+        imageAlt="CBD Health Products"
       />
       <CategoryBenefits
         theme={HealthTheme}
-        sectionTitle="Support Your Natural Balance"
-        sectionDescription="Explore how high-quality CBD can contribute to your daily wellness routine and overall health"
+        sectionTitle="CBD for Wellness"
+        sectionDescription="CBD offers natural support for various aspects of your health without the side effects of many traditional options"
         benefits={cbdBenefits}
-        ctaText="Learn more about CBD science"
-        ctaLink="/learn/cbd-science"
+        ctaText="Browse All Wellness Products"
+        ctaLink="/shop/category/health"
       />
       <CategoryFeaturedProducts
         theme={HealthTheme}
-        sectionTitle="Wellness CBD Products"
-        sectionDescription="Our health collection features CBD formulations designed specifically for wellness and natural health support"
+        sectionTitle="Premium Health Products"
+        sectionDescription="Specially formulated CBD for your health and wellness journey"
         products={healthProducts}
         viewAllText="View All Health Products"
-        viewAllLink="/shop?category=health"
+        viewAllLink="/shop/category/health"
       />
-      <ConditionsTabs pageTheme={pageTheme} />
-      <CbdIngredientsSection pageTheme={pageTheme} />
       <CategoryTestimonials
         theme={HealthTheme}
-        sectionTitle="Customer Testimonials"
-        sectionDescription="Read what our customers are saying about how our CBD products have improved their well-being"
+        sectionTitle="Real People, Real Results"
+        sectionDescription="See how our CBD products have helped customers on their wellness journey"
         testimonials={healthTestimonials}
-        displayType="slider"
+        displayType="grid"
       />
-      <CtaSection pageTheme={pageTheme} />
-      <FaqSection pageTheme={pageTheme} />
+      <CategoryFaq
+        theme={HealthTheme}
+        sectionTitle="Your Health Questions Answered"
+        sectionDescription="Learn more about how CBD can support your wellness journey"
+        faqs={healthFaqs}
+        accordionType="multiple"
+        showAiChat={true}
+        aiChatTitle="Ask Our Health AI Assistant"
+        aiChatDescription="Have questions about CBD and your wellness? Our AI assistant is here to help!"
+      />
+      <CategoryCta 
+        theme={HealthTheme}
+        sectionTitle="Begin Your Wellness Journey Today"
+        sectionDescription="Discover premium CBD products designed to help you achieve natural balance and improve your overall well-being."
+        ctaTitle="Ready to Experience the Benefits?"
+        ctaDescription="Browse our wellness collection or get personalized recommendations from our AI expert."
+        primaryCta={{
+          text: "Shop Wellness Collection",
+          href: "/shop/category/wellness"
+        }}
+        secondaryCta={{
+          text: "Ask AI Expert",
+          href: "/ai-chat"
+        }}
+        imageSrc="/images/tincture2.png"
+        imageAlt="CBD Wellness Products"
+        badgeText="Take Action"
+      />
+      <Newsletter 
+        title="Join Our Wellness Newsletter"
+        description="Get the latest health tips, research, and exclusive offers for your wellness journey."
+        buttonText="Subscribe"
+        backgroundColor="bg-gradient-to-r from-emerald-50 to-white"
+        buttonClasses="bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white"
+      />
     </main>
   )
 } 
