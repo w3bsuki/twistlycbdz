@@ -1,87 +1,59 @@
+import { BenefitItem } from '@/components/shared/category/CategoryBenefits';
+
 // CBD benefits data
-export const cbdBenefits = [
-  {
-    title: "Natural Support",
-    description: "CBD offers a natural alternative to traditional wellness products, working with your body's own systems to promote balance.",
-    iconName: "leaf",
-    color: "bg-green-50",
-    iconColor: "text-green-600",
-    borderColor: "border-green-100",
-    hoverColor: "hover:bg-green-100/50",
-    gradient: "from-green-500 to-emerald-500",
-    stats: {
-      satisfaction: "96%",
-      timeToEffect: "30-45 min"
-    }
-  },
-  {
-    title: "Pain Management",
-    description: "CBD may help alleviate discomfort by interacting with pain receptors and reducing inflammation throughout the body.",
-    iconName: "activity",
-    color: "bg-green-100",
-    iconColor: "text-green-600",
-    borderColor: "border-green-200",
-    hoverColor: "hover:bg-green-200/50",
-    gradient: "from-green-600 to-emerald-600",
-    stats: {
-      satisfaction: "94%",
-      timeToEffect: "25-40 min"
-    }
-  },
-  {
-    title: "Immune Support",
-    description: "Emerging research suggests CBD may have immunomodulatory properties that could help support a healthy immune system.",
-    iconName: "shield",
-    color: "bg-green-200",
-    iconColor: "text-green-700",
-    borderColor: "border-green-300",
-    hoverColor: "hover:bg-green-300/50",
-    gradient: "from-green-700 to-emerald-700",
-    stats: {
-      satisfaction: "91%",
-      timeToEffect: "60-90 min"
-    }
-  },
-  {
-    title: "Mental Clarity",
-    description: "CBD supports healthy brain function and may help improve focus, mental clarity, and overall cognitive performance.",
-    iconName: "brain",
-    color: "bg-green-50",
-    iconColor: "text-green-600",
-    borderColor: "border-green-100",
-    hoverColor: "hover:bg-green-100/50",
-    gradient: "from-green-600 to-emerald-500",
-    stats: {
-      satisfaction: "87%",
-      timeToEffect: "15-30 min"
-    }
-  },
+export const cbdBenefits: BenefitItem[] = [
   {
     title: "Stress Relief",
-    description: "CBD helps regulate stress responses through the endocannabinoid system, promoting calm without any intoxicating effects.",
+    description: "CBD may help reduce stress by interacting with receptors in the endocannabinoid system that regulate mood and anxiety responses.",
     iconName: "heart",
-    color: "bg-green-100",
-    iconColor: "text-green-600",
-    borderColor: "border-green-200",
-    hoverColor: "hover:bg-green-200/50",
-    gradient: "from-green-600 to-emerald-600",
     stats: {
       satisfaction: "92%",
-      timeToEffect: "20-30 min"
+      timeToEffect: "30-60 min"
     }
   },
   {
     title: "Better Sleep",
-    description: "CBD may improve sleep quality by addressing root causes like anxiety and pain that often interfere with restful sleep patterns.",
+    description: "Many users report improved sleep quality and reduced insomnia when using CBD as part of their nightly routine.",
     iconName: "moon",
-    color: "bg-green-50",
-    iconColor: "text-green-600",
-    borderColor: "border-green-100",
-    hoverColor: "hover:bg-green-100/50",
-    gradient: "from-green-600 to-emerald-500",
     stats: {
       satisfaction: "89%",
       timeToEffect: "45-60 min"
+    }
+  },
+  {
+    title: "Mental Clarity",
+    description: "CBD may help promote focus and mental clarity by reducing anxiety and stress that can cloud thinking.",
+    iconName: "brain",
+    stats: {
+      satisfaction: "87%",
+      timeToEffect: "30-60 min"
+    }
+  },
+  {
+    title: "Physical Recovery",
+    description: "Athletes and active individuals use CBD to help with post-workout recovery and exercise-induced inflammation.",
+    iconName: "activity",
+    stats: {
+      satisfaction: "91%",
+      timeToEffect: "60-120 min"
+    }
+  },
+  {
+    title: "Natural Wellness",
+    description: "CBD offers a plant-based approach to wellness that complements healthy lifestyle choices and natural remedies.",
+    iconName: "leaf",
+    stats: {
+      satisfaction: "94%",
+      timeToEffect: "varies"
+    }
+  },
+  {
+    title: "Balanced Mood",
+    description: "Regular CBD use may help stabilize mood fluctuations and promote a more balanced emotional state throughout the day.",
+    iconName: "shield",
+    stats: {
+      satisfaction: "88%",
+      timeToEffect: "1-2 weeks"
     }
   }
 ]; 

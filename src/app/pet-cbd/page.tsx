@@ -1,7 +1,6 @@
 import React from 'react'
 import { Metadata } from 'next'
-import { CategoryHero, PetTheme } from '@/components/shared/category'
-import { BenefitsSection } from './components/BenefitsSection'
+import { CategoryHero, CategoryBenefits, PetTheme } from '@/components/shared/category'
 import { FeaturedProducts } from './components/FeaturedProducts'
 import { ResearchSection } from './components/ResearchSection'
 import { TestimonialsSection } from './components/TestimonialsSection'
@@ -9,6 +8,7 @@ import { CtaSection } from './components/CtaSection'
 import { FaqSection } from './components/FaqSection'
 import { CbdIngredientsSection } from './components/CbdIngredientsSection'
 import { Newsletter } from '@/components/Newsletter'
+import { petBenefits } from './data/benefits'
 
 export const metadata: Metadata = {
   title: 'Pet CBD - Twistly CBD',
@@ -50,7 +50,14 @@ export default function PetCBDPage() {
         imageSrc="/images/tincture2.png"
         imageAlt="CBD Products for Pets"
       />
-      <BenefitsSection pageTheme={pageTheme} />
+      <CategoryBenefits
+        theme={PetTheme}
+        sectionTitle="Why Pet Owners Choose CBD"
+        sectionDescription="CBD offers natural support for your pet's health and wellness without the side effects of many traditional medications"
+        benefits={petBenefits}
+        ctaText="Browse All Pet CBD Products"
+        ctaLink="/shop/category/pet"
+      />
       <FeaturedProducts pageTheme={pageTheme} />
       <ResearchSection pageTheme={pageTheme} />
       <CbdIngredientsSection pageTheme={pageTheme} />
