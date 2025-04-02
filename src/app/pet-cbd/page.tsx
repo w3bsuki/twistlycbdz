@@ -1,14 +1,20 @@
 import React from 'react'
 import { Metadata } from 'next'
-import { CategoryHero, CategoryBenefits, CategoryFeaturedProducts, PetTheme } from '@/components/shared/category'
+import { 
+  CategoryHero, 
+  CategoryBenefits, 
+  CategoryFeaturedProducts, 
+  CategoryTestimonials,
+  PetTheme 
+} from '@/components/shared/category'
 import { ResearchSection } from './components/ResearchSection'
-import { TestimonialsSection } from './components/TestimonialsSection'
 import { CtaSection } from './components/CtaSection'
 import { FaqSection } from './components/FaqSection'
 import { CbdIngredientsSection } from './components/CbdIngredientsSection'
 import { Newsletter } from '@/components/Newsletter'
 import { petBenefits } from './data/benefits'
 import { petProducts } from './data/products'
+import { petTestimonials } from './data/testimonials'
 
 export const metadata: Metadata = {
   title: 'Pet CBD - Twistly CBD',
@@ -68,7 +74,13 @@ export default function PetCBDPage() {
       />
       <ResearchSection pageTheme={pageTheme} />
       <CbdIngredientsSection pageTheme={pageTheme} />
-      <TestimonialsSection pageTheme={pageTheme} />
+      <CategoryTestimonials
+        theme={PetTheme}
+        sectionTitle="See How Our Products Help Pets Thrive"
+        sectionDescription="Real stories from pet owners who have seen remarkable improvements in their pets' health and wellbeing"
+        testimonials={petTestimonials}
+        displayType="carousel"
+      />
       <CtaSection pageTheme={pageTheme} />
       <FaqSection pageTheme={pageTheme} />
       <Newsletter 

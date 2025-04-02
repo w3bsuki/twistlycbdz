@@ -1,17 +1,23 @@
 'use client'
 
 import React from 'react'
-import { CategoryHero, CategoryBenefits, CategoryFeaturedProducts, HealthTheme } from '@/components/shared/category'
+import { 
+  CategoryHero, 
+  CategoryBenefits, 
+  CategoryFeaturedProducts,
+  CategoryTestimonials,
+  HealthTheme 
+} from '@/components/shared/category'
 // Adjust imports to use a central index file
 import {
   ConditionsTabs,
   CbdIngredientsSection,
   FaqSection,
-  TestimonialsSection,
   CtaSection
 } from './components' // Assuming ./components/index.ts or similar exists
 import { cbdBenefits } from './data/benefits'
 import { healthProducts } from './data/products'
+import { healthTestimonials } from './data/testimonials'
 
 // Theme configuration for health & wellness page (using green shades)
 const pageTheme = {
@@ -66,7 +72,13 @@ export default function HealthAndWellnessPage() {
       />
       <ConditionsTabs pageTheme={pageTheme} />
       <CbdIngredientsSection pageTheme={pageTheme} />
-      <TestimonialsSection pageTheme={pageTheme} />
+      <CategoryTestimonials
+        theme={HealthTheme}
+        sectionTitle="Customer Testimonials"
+        sectionDescription="Read what our customers are saying about how our CBD products have improved their well-being"
+        testimonials={healthTestimonials}
+        displayType="slider"
+      />
       <CtaSection pageTheme={pageTheme} />
       <FaqSection pageTheme={pageTheme} />
     </main>
