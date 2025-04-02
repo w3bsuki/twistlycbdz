@@ -58,8 +58,8 @@ export function HomePageHeroSection({
   title, 
   description, 
   actions,
-  imageSrc = "/images/tincture2.png",
-  imageAlt = "Premium CBD Products" 
+  imageSrc = "/images/logos/1.png",
+  imageAlt = "Twistly CBD Logo" 
 }: HomePageHeroProps) {
   
   return (

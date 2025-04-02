@@ -1,0 +1,352 @@
+# TWISTLY CBD WEBSITE REFACTORING PLAN
+
+## OVERVIEW
+This plan provides a systematic approach to clean up and optimize the Twistly CBD website codebase,
+ensuring we have a solid foundation for finalizing features and launching the site.
+
+## 1. PROJECT ASSESSMENT
+
+### Current Issues:
+- Bloated codebase with unused components/sections
+- Duplicate code and redundant files
+- Unoptimized file/folder structure
+- Image directory needs cleanup
+- Update scripts (update-*.js) that may be obsolete
+- Inconsistent UI/UX patterns
+- Incomplete shop functionality
+
+### Goals:
+- Streamlined, maintainable codebase
+- Optimized performance
+- Consistent UI/UX
+- Fully functional e-commerce features
+- Mobile-first responsive design
+
+## 2. CODEBASE CLEANUP
+
+### Component Audit:
+1. Map all currently used components via import analysis
+   - Start from page components and follow the import tree
+   - Document component dependencies
+
+2. Identify unused components
+   - Check for components not imported anywhere
+   - Check for components imported but not rendered
+
+3. Consolidate duplicate functionality
+   - Merge similar components
+   - Create more generic, reusable components
+
+4. Delete or archive unused files
+   - Move to an "archived" folder first before deletion
+   - Maintain git history for reference
+
+### Pages & Routing Cleanup:
+1. Document active routes and their dependencies
+   - Map the complete routing structure
+   - Identify necessary layout components
+
+2. Remove unused page files
+   - Check analytics for unused routes if available
+   - Remove routes that don't serve the core business
+
+3. Standardize page structure
+   - Consistent layouts
+   - Shared components
+   - Proper metadata
+
+### Scripts Cleanup:
+1. Identify and document functionality of utility scripts
+   - What do update-*.js files actually do?
+   - Are they still needed?
+
+2. Delete obsolete scripts
+   - Remove update scripts after confirming they're no longer needed
+   - Keep only necessary build/utility scripts
+
+### Asset Optimization:
+1. Audit image usage across the site
+   - Which images are actually displayed?
+   - Which can be optimized or removed?
+
+2. Organize image directory
+   - Create logical structure: logos, products, banners, etc.
+   - Use consistent naming conventions
+
+3. Delete unused images
+   - Remove all images not referenced in the codebase
+   - Consider creating an archive for potential future use
+
+4. Optimize remaining images
+   - Compress and resize for web
+   - Convert to modern formats (WebP)
+   - Add proper alt text and metadata
+
+## 3. CODE QUALITY IMPROVEMENTS
+
+### Component Refactoring:
+1. Standardize component interfaces
+   - Consistent props pattern
+   - Proper TypeScript typing
+   - Default props where appropriate
+
+2. Implement consistent component patterns
+   - Composition over inheritance
+   - Container/presenter pattern where appropriate
+   - Proper error boundaries
+
+3. Improve component reusability
+   - Extract common functionality
+   - Create flexible, composable components
+   - Implement proper prop drilling or context
+
+### State Management:
+1. Audit current state management approach
+   - Document global state usage
+   - Identify redundant state
+
+2. Optimize state management
+   - Centralize global state
+   - Use local state where appropriate
+   - Implement proper context providers
+
+3. Ensure proper data flow
+   - One-way data flow
+   - Proper state initialization
+   - Clear update patterns
+
+### Style System:
+1. Audit current styling approach
+   - Document tailwind usage
+   - Check for inline styles
+   - Review shadcn implementation
+
+2. Unify styling approach
+   - Consistent class naming
+   - Component-specific styles
+   - Global theme variables
+
+3. Implement design system
+   - Typography scale
+   - Color system
+   - Spacing system
+   - Component variants
+
+## 4. PERFORMANCE OPTIMIZATION
+
+### Rendering Optimization:
+1. Implement proper component memoization
+   - Use React.memo for expensive components
+   - Optimize rendering with useMemo and useCallback
+
+2. Optimize image loading
+   - Implement lazy loading
+   - Use proper sizing
+   - Add loading priority to critical images
+
+3. Code splitting
+   - Route-based code splitting
+   - Component-based code splitting
+   - Proper Suspense boundaries
+
+### Bundle Optimization:
+1. Analyze bundle size
+   - Identify large dependencies
+   - Check for duplicate packages
+
+2. Reduce bundle size
+   - Tree-shake unused code
+   - Split code into chunks
+   - Lazy-load non-critical features
+
+3. Optimize third-party dependencies
+   - Remove unused dependencies
+   - Consider smaller alternatives
+   - Implement proper import strategy
+
+## 5. FEATURE IMPLEMENTATION
+
+### UI/UX Improvements:
+1. Standardize UI components
+   - Consistent button styles
+   - Form elements
+   - Cards and containers
+
+2. Ensure responsive design
+   - Mobile-first approach
+   - Breakpoint consistency
+   - Touch-friendly interactions
+
+3. Implement consistent animations
+   - Define animation patterns
+   - Ensure accessibility
+   - Respect user preferences
+
+### Frontend Features:
+1. Product display components
+   - Product cards
+   - Product details
+   - Product gallery
+
+2. Search and filtering
+   - Implement search functionality
+   - Category filtering
+   - Price/feature filtering
+
+3. User journey optimization
+   - Clear navigation
+   - Breadcrumbs
+   - Related products
+
+### E-commerce Features:
+1. Shopping cart
+   - Add/remove items
+   - Update quantities
+   - Save cart state
+
+2. Checkout process
+   - Multi-step checkout
+   - Address validation
+   - Payment integration
+
+3. Order management
+   - Order history
+   - Order tracking
+   - Reordering functionality
+
+### Backend Integration:
+1. API integration
+   - Product data
+   - User authentication
+   - Order processing
+
+2. Form handling
+   - Validation
+   - Submission
+   - Error handling
+
+3. Data persistence
+   - Local storage strategy
+   - Session handling
+   - Caching strategy
+
+## 6. TESTING & DEPLOYMENT
+
+### Testing:
+1. Component testing
+   - Visual regression tests
+   - Functionality tests
+   - Edge cases
+
+2. Integration testing
+   - Page functionality
+   - User flows
+   - API integration
+
+3. Responsiveness testing
+   - Multiple devices
+   - Different browsers
+   - Accessibility compliance
+
+### Deployment:
+1. Build optimization
+   - Production build configuration
+   - Asset optimization
+   - Environment variables
+
+2. CI/CD setup
+   - Automated testing
+   - Build pipeline
+   - Deployment strategy
+
+3. Monitoring and analytics
+   - Error tracking
+   - Performance monitoring
+   - User analytics
+
+## IMPLEMENTATION TIMELINE
+
+### DAY 1 - CLEANUP & REFACTORING
+
+#### Morning (3-4 hours):
+- Run codebase analysis for unused files and dependencies
+- Map component dependencies starting from pages
+- Audit and clean up public/images folder
+- Delete obsolete utility scripts
+
+#### Afternoon (4-5 hours):
+- Refactor folder structure for better organization
+- Delete/archive unused components and pages
+- Optimize and reorganize image assets
+- Clean up redundant styles
+
+#### Evening (2-3 hours):
+- Standardize component props and interfaces
+- Implement consistent styling patterns
+- Fix styling inconsistencies
+- Document changes and progress
+
+### DAY 2 - FEATURE COMPLETION & OPTIMIZATION
+
+#### Morning (3-4 hours):
+- Complete UI component library standardization
+- Implement responsive fixes for all viewports
+- Enhance user experience elements
+- Optimize component rendering performance
+
+#### Afternoon (4-5 hours):
+- Set up shop functionality
+- Implement order processing flow
+- Create and validate form handling
+- Connect with backend services
+
+#### Evening (2-3 hours):
+- Comprehensive testing across devices
+- Performance optimization and bundle analysis
+- Prepare deployment pipeline
+- Final review and documentation update
+
+## DEVELOPMENT RULES
+
+1. **Complete implementation:** Finish each section fully before moving to the next
+2. **Document changes:** Maintain documentation of all major changes
+3. **Commit frequently:** Make small, targeted commits with clear messages
+4. **Focus on scope:** Avoid feature creep and stick to the plan
+5. **Test after changes:** Verify functionality after each significant change
+6. **Naming consistency:** Follow established naming conventions
+7. **Component modularity:** Keep components focused and properly abstracted
+8. **Backwards compatibility:** Ensure existing functionality doesn't break
+9. **Mobile-first approach:** Design for mobile before desktop
+10. **User experience priority:** Focus on usability over complex features
+11. **Performance mindset:** Consider performance implications of all changes
+12. **Accessibility standards:** Maintain WCAG compliance throughout
+
+## SUCCESS CRITERIA
+
+The refactoring will be considered successful when:
+1. All unused code has been removed
+2. Folder structure is logical and maintainable
+3. Component interfaces are consistent and well-typed
+4. UI is consistent across the entire application
+5. All features work correctly on mobile and desktop
+6. Page load times are optimized (< 2s initial load)
+7. All critical user flows function correctly
+8. No console errors or warnings appear
+9. Code is properly documented
+10. Build process is optimized for production
+
+## FINAL CHECKLIST BEFORE LAUNCH
+
+- [ ] All pages load without errors
+- [ ] Responsive design works on all target devices
+- [ ] All links function correctly
+- [ ] Forms submit properly with validation
+- [ ] Shopping cart and checkout process works end-to-end
+- [ ] Images load properly with correct sizing
+- [ ] Performance metrics meet targets
+- [ ] SEO metadata is properly implemented
+- [ ] Analytics tracking is in place
+- [ ] Backup strategy is implemented
+- [ ] Legal pages (Terms, Privacy) are complete
+- [ ] Contact information is accurate
+- [ ] 404 and error pages are properly styled 

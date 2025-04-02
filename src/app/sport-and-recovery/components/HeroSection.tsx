@@ -81,15 +81,15 @@ export function HeroSection({ pageTheme }: HeroSectionProps) {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative h-[250px] lg:h-[300px] flex justify-center"
+              className="relative h-80 md:h-[400px] lg:h-[500px] w-full rounded-lg overflow-hidden"
             >
               <Image
-                src="/images/tincture2.png"
-                alt="CBD Sport and Recovery Products"
+                src="/images/logos/1.png"
+                alt="Sport CBD products for enhanced performance and recovery"
                 fill
-                className="object-contain"
+                className="object-cover"
+                priority
               />
-              <div className="absolute -bottom-6 left-0 right-0 mx-auto w-[90%] h-16 bg-gradient-to-r from-blue-100 to-blue-50 blur-3xl rounded-full opacity-70"></div>
             </motion.div>
           </div>
         </div>

@@ -112,7 +112,7 @@ export function DrTwistlySection() {
                 <div className="flex items-center gap-2.5">
                   <div className="h-10 w-10 rounded-full overflow-hidden relative border-2 border-white/50 shadow-md">
                     <Image
-                      src="/images/dr-twistly.png" 
+                      src="/images/logos/1.png" 
                       alt="Dr. Twistly" 
                       fill
                       className="object-cover"

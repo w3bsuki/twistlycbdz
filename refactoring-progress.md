@@ -354,3 +354,80 @@ Although not explicitly in the original plan, we should add standardization for 
   - Identified need for consistent page layouts across category pages
   - Developed reusable components that support category-specific styling
   - Created a component system that can be applied to all category pages 
+
+## 2. CODEBASE CLEANUP
+**STATUS: IN PROGRESS**
+
+### 2.1 Component Dependency Analysis
+- [x] Analyze component usage across the application
+  - Created component-dependency-analysis.txt with initial manual analysis
+  - Developed analyze-component-dependencies.js script for automated analysis
+  - Generated comprehensive component-dependencies-report.md
+  - Identified most used components (React, Button, Separator, Link, Card)
+  - Discovered potentially unused components, particularly in sections directory
+- [x] Create a summary report of findings
+  - Created component-dependency-analysis-summary.md with key findings
+  - Documented high component duplication in category pages
+  - Listed potentially unused components
+  - Identified obsolete utility scripts
+  - Outlined recommended action items with priority and impact assessment
+
+### 2.2 Remove Obsolete Scripts
+- [x] Identify obsolete utility scripts
+  - Found 8 one-time migration scripts in the root directory
+  - Verified they were only used for one-time component imports updates
+- [x] Delete unnecessary scripts
+  - Removed update-all-shadcn-imports.js
+  - Removed update-carousel-imports.js
+  - Removed update-tabs-imports.js
+  - Removed update-separator-imports.js
+  - Removed update-badge-imports.js
+  - Removed update-button-imports.js
+  - Removed update-aspect-ratio-imports.js
+  - Removed update-badge-component.js
+
+### 2.3 Archive Unused Components
+- [x] Create an archived components directory
+  - Created src/archived/components for storing unused components
+  - Added README.md documenting the archived components and restoration process
+- [x] Move unused section components to archive
+  - Moved AnimatedListDemo.tsx to archived directory
+  - Moved FeaturedCollectionsCard.tsx to archived directory
+  - Moved FeaturedProductsCard.tsx to archived directory
+  - Moved HeroFeatures.tsx to archived directory
+  - Moved HeroWithCollections.tsx to archived directory
+  - Moved NavigationGrid.tsx to archived directory
+  - Moved NewestProductsCard.tsx to archived directory
+  - Moved SimplifiedHeroCards.tsx to archived directory
+  - Moved WiderHeroCards.tsx to archived directory
+- [x] Move unused UI components to archive
+  - Moved FeatureCard.tsx to archived directory
+  - Moved highlighter.tsx to archived directory
+  - Moved marquee.tsx to archived directory
+  - Moved spotlight.tsx to archived directory
+  - Moved focus-cards.tsx to archived directory
+- [x] Move unused feature components to archive
+  - Moved AiChatHero.tsx to archived directory
+
+### Next Steps:
+We will now proceed with the next phase of our refactoring plan:
+
+1. Create shared, themeable components for product category pages
+   - Start with the most duplicated components across category pages
+   - Implement proper theming support with consistent color schemes
+   - Update category pages to use these shared components
+
+2. Optimize the shop implementation
+   - Extract filter functionality into a separate component
+   - Extract product grid into a separate component
+   - Improve state management for better performance
+
+3. Organize image assets
+   - Create a more logical directory structure in public/images
+   - Move images to appropriate subdirectories
+   - Update image paths throughout the codebase
+
+Immediate next tasks:
+- Identify the most duplicated components across category pages
+- Create a shared component template with theming support
+- Begin updating category pages to use the shared components 

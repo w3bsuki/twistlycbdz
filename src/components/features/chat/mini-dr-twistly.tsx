@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 
 interface MiniDrTwistlyProps {
   className?: string
@@ -18,11 +19,13 @@ export function MiniDrTwistly({ className }: MiniDrTwistlyProps) {
   return (
     <div className="max-w-xl mx-auto bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-3 sm:p-4 shadow-sm border border-gray-100">
       <div className="flex items-center gap-3">
-        <div className="flex-shrink-0 w-10 h-10 bg-white rounded-full shadow-sm p-2 flex items-center justify-center">
-          <img 
-            src="/images/4.png" 
+        <div className="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden">
+          <Image 
+            src="/images/logos/1.png" 
             alt="Dr. Twistly" 
-            className="w-8 h-8 object-contain"
+            width={40} 
+            height={40} 
+            className="object-cover"
           />
         </div>
         <div className="flex-1">

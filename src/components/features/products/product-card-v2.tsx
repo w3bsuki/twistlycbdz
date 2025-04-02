@@ -113,7 +113,7 @@ const ProductCard = memo(({
   // Computed values
   const discountedPrice = discount ? price - (price * discount) / 100 : price;
   const productUrl = `/shop/${id}`;
-  const productImage = image || images?.[0] || '/images/products/placeholder.png';
+  const productImage = image || images?.[0] || '/images/logos/1.png';
   
   /**
    * Handles adding the product to the cart

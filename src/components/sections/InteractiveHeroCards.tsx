@@ -32,7 +32,7 @@ const featuredProducts = [
     id: "full-spectrum-cbd-oil",
     name: "Full Spectrum CBD Oil",
     strength: "1000mg",
-    image: "/images/products/tincture-1.png",
+    image: "/images/logos/1.png",
     price: "$59.99",
     rating: 4.8,
     reviews: 124,
@@ -41,7 +41,7 @@ const featuredProducts = [
     id: "broad-spectrum-cbd-oil",
     name: "Broad Spectrum CBD Oil",
     strength: "750mg",
-    image: "/images/products/tincture-2.png",
+    image: "/images/logos/1.png",
     price: "$49.99",
     rating: 4.6,
     reviews: 89,
@@ -50,7 +50,7 @@ const featuredProducts = [
     id: "cbd-gummies-mixed-fruit",
     name: "CBD Gummies Mixed Fruit",
     strength: "25mg/gummy",
-    image: "/images/products/gummies-1.png",
+    image: "/images/logos/1.png",
     price: "$34.99",
     rating: 4.9,
     reviews: 156,
@@ -59,7 +59,7 @@ const featuredProducts = [
     id: "cbd-pain-cream",
     name: "CBD Pain Relief Cream",
     strength: "500mg",
-    image: "/images/products/topical-1.png",
+    image: "/images/logos/1.png",
     price: "$44.99",
     rating: 4.7,
     reviews: 72,
@@ -68,7 +68,7 @@ const featuredProducts = [
     id: "cbd-sleep-capsules",
     name: "CBD Sleep Capsules",
     strength: "30mg/capsule",
-    image: "/images/products/capsules-1.png",
+    image: "/images/logos/1.png",
     price: "$39.99",
     rating: 4.5,
     reviews: 63,
@@ -77,7 +77,7 @@ const featuredProducts = [
     id: "cbd-pet-tincture",
     name: "CBD Pet Tincture",
     strength: "300mg",
-    image: "/images/products/pet-1.png",
+    image: "/images/logos/1.png",
     price: "$29.99",
     rating: 4.8,
     reviews: 47,
@@ -90,7 +90,7 @@ const newestProducts = [
     id: "cbd-sleep-gummies",
     name: "CBD Sleep Gummies",
     strength: "50mg",
-    image: "/images/products/gummies-2.png",
+    image: "/images/logos/1.png",
     price: "$39.99",
     rating: 4.9,
     reviews: 28,
@@ -100,7 +100,7 @@ const newestProducts = [
     id: "cbd-recovery-balm",
     name: "CBD Recovery Balm",
     strength: "1000mg",
-    image: "/images/products/topical-2.png",
+    image: "/images/logos/1.png",
     price: "$54.99",
     rating: 4.7,
     reviews: 17,
@@ -110,7 +110,7 @@ const newestProducts = [
     id: "cbd-focus-tincture",
     name: "CBD Focus Tincture",
     strength: "1500mg",
-    image: "/images/products/tincture-3.png",
+    image: "/images/logos/1.png",
     price: "$69.99",
     rating: 4.8,
     reviews: 12,
@@ -120,7 +120,7 @@ const newestProducts = [
     id: "cbd-bath-bombs",
     name: "CBD Bath Bombs",
     strength: "100mg/bomb",
-    image: "/images/products/bath-1.png",
+    image: "/images/logos/1.png",
     price: "$24.99",
     rating: 4.6,
     reviews: 32,
@@ -130,7 +130,7 @@ const newestProducts = [
     id: "cbd-protein-powder",
     name: "CBD Protein Powder",
     strength: "25mg/serving",
-    image: "/images/products/powder-1.png",
+    image: "/images/logos/1.png",
     price: "$49.99",
     rating: 4.5,
     reviews: 9,
@@ -140,7 +140,7 @@ const newestProducts = [
     id: "cbd-face-serum",
     name: "CBD Face Serum",
     strength: "250mg",
-    image: "/images/products/beauty-1.png",
+    image: "/images/logos/1.png",
     price: "$45.99",
     rating: 4.9,
     reviews: 14,
@@ -153,42 +153,42 @@ const featuredCollections = [
   {
     id: "oils-tinctures",
     name: "Oils & Tinctures",
-    image: "/images/tincture.png",
+    image: "/images/logos/1.png",
     productCount: 12,
     description: "Premium CBD oils for daily wellness"
   },
   {
     id: "edibles",
     name: "Edibles & Gummies",
-    image: "/images/gummies.png", 
+    image: "/images/logos/1.png", 
     productCount: 8,
     description: "Delicious CBD treats and gummies"
   },
   {
     id: "topicals",
     name: "Topicals & Balms",
-    image: "/images/balm.png",
+    image: "/images/logos/1.png",
     productCount: 6,
     description: "Targeted relief for muscles and skin"
   },
   {
     id: "pet-products",
     name: "Pet CBD",
-    image: "/images/pet-oil.png",
+    image: "/images/logos/1.png",
     productCount: 5,
     description: "CBD products formulated for pets"
   },
   {
     id: "bundles",
     name: "Value Bundles",
-    image: "/images/bundle.png",
+    image: "/images/logos/1.png",
     productCount: 4,
     description: "Save with our curated product sets"
   },
   {
     id: "wellness",
     name: "Wellness",
-    image: "/images/wellness.png",
+    image: "/images/logos/1.png",
     productCount: 10,
     description: "Support your daily wellness routine"
   }
@@ -252,16 +252,19 @@ export const InteractiveHeroCards = () => {
                   >
                     <Link href={`/shop/collections/${collection.id}`}>
                       <AspectRatio ratio={16/9} className="bg-white dark:bg-neutral-800 rounded-lg border border-emerald-100 dark:border-emerald-800/50 shadow-sm overflow-hidden">
-                        <Image
-                          src={collection.image}
-                          alt={collection.name}
-                          fill
-                          className="object-cover scale-110 opacity-90"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-emerald-800/40 to-emerald-900/10 rounded-lg" />
-                        <div className="absolute inset-0 flex flex-col justify-end p-3 sm:p-4">
-                          <h4 className="text-white text-xs sm:text-sm font-semibold leading-tight">{collection.name}</h4>
-                          <p className="text-white/80 text-[9px] sm:text-xs mt-1">{collection.productCount} products</p>
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={collection.image}
+                            alt={collection.name}
+                            fill
+                            className="object-contain scale-105"
+                            sizes="(max-width: 640px) 240px, (max-width: 768px) 280px, (max-width: 1024px) 320px, 400px"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-emerald-800/40 to-emerald-900/10 rounded-lg" />
+                          <div className="absolute inset-0 flex flex-col justify-end p-3 sm:p-4">
+                            <h4 className="text-white text-xs sm:text-sm font-semibold leading-tight">{collection.name}</h4>
+                            <p className="text-white/80 text-[9px] sm:text-xs mt-1">{collection.productCount} products</p>
+                          </div>
                         </div>
                       </AspectRatio>
                     </Link>

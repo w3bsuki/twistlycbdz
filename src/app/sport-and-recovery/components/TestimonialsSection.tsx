@@ -24,30 +24,30 @@ interface TestimonialsSectionProps {
 // Athlete testimonials data
 const testimonials = [
   {
+    quote: "As a marathon runner, recovery is crucial. CBD has been a game-changer for my training routine. It helps me bounce back faster between runs.",
+    author: "Sarah L.",
+    role: "Marathon Runner",
+    rating: 5,
+    image: "/images/logos/1.png",
+  },
+  {
+    quote: "The CBD recovery balm is my go-to after intense training sessions. It targets soreness exactly where I need it most.",
+    author: "Mike T.",
+    role: "Crossfit Trainer",
+    rating: 4,
+    image: "/images/logos/1.png",
+  },
+  {
+    quote: "I was skeptical at first, but after using CBD oil as part of my recovery, I've noticed significant improvements in my sleep quality and muscle recovery time.",
+    author: "Jessica K.",
+    role: "Triathlete",
+    rating: 5,
+    image: "/images/logos/1.png",
+  },
+  {
     quote: "The Recovery CBD Balm is now a permanent part of my post-workout routine. It helps me bounce back faster after intense training sessions and keeps me performing at my best.",
     author: "Michael R.",
     role: "Professional Cyclist",
-    image: "/images/tincture2.png",
-    rating: 5
-  },
-  {
-    quote: "As a marathon runner, recovery is everything. The Sport CBD Oil has made a noticeable difference in how quickly I recover between training runs. I'm a believer!",
-    author: "Emma S.",
-    role: "Marathon Runner",
-    image: "/images/tincture2.png",
-    rating: 5
-  },
-  {
-    quote: "The Muscle Gel provides immediate relief after my CrossFit sessions. The cooling sensation combined with the CBD benefits is exactly what my muscles need.",
-    author: "Jason T.",
-    role: "CrossFit Athlete",
-    image: "/images/tincture2.png",
-    rating: 4
-  },
-  {
-    quote: "I was skeptical at first, but the CBD capsules help me stay calm and focused before competitions. It's a game-changer for my mental preparation.",
-    author: "Sarah K.",
-    role: "Competitive Swimmer",
     image: "/images/tincture2.png",
     rating: 5
   },

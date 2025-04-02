@@ -1,0 +1,264 @@
+# COMPONENT DEPENDENCY ANALYSIS
+
+## Core Pages and Their Component Dependencies
+
+### 1. Homepage (src/app/page.tsx)
+- **Direct Dependencies:**
+  - HomePageHeroSection (from @/components/sections/HomePageHeroSection)
+  - CategoryHighlights (from @/components/features/home/category-highlights)
+  - FeaturedProducts (from @/components/features/home/featured-products-optimized)
+  - CBDBenefits (from @/components/features/home/cbd-benefits)
+  - DrTwistlySection (from @/components/features/home/dr-twistly-section)
+  - Testimonials (from @/components/features/home/testimonials)
+  - Container (from @/components/ui/container)
+  - Icons: ShoppingBag, Leaf (from lucide-react)
+
+### 2. App Layout (src/app/layout.tsx)
+- **Direct Dependencies:**
+  - Navbar (from @/components/common/layout/navbar)
+  - Footer (from @/components/common/layout/footer)
+  - Providers (from @/components/providers)
+  - CartProvider (from @/context/cart-context)
+  - Font: Inter (from next/font/google)
+  
+  *Note: The layout wraps ALL pages in the application, making these components globally available.*
+
+## Core Global Components
+These components appear on every page through the RootLayout:
+
+1. **Navbar** - Main navigation (src/components/common/layout/navbar.tsx)
+2. **Footer** - Site-wide footer (src/components/common/layout/footer.tsx)
+3. **Providers** - Context providers wrapper (src/components/providers.tsx)
+4. **CartProvider** - Shopping cart state management (src/context/cart-context.tsx)
+
+## Most Used Components
+
+Based on automatic dependency analysis:
+
+1. **React** - Used across 14 pages
+2. **Button** - Used across 13 pages
+3. **Separator** - Used across 12 pages  
+4. **Link** - Used across 10 pages
+5. **Card/CardContent** - Used across 8 pages
+6. **Badge** - Used across 6 pages
+7. **motion (framer-motion)** - Used across 6 pages
+8. **Input** - Used across 6 pages
+9. **FeaturedProducts** - Used across 6 pages (across category pages and homepage)
+
+This indicates that UI components (Button, Separator, Card, etc.) are the most reused elements of the application, while feature components tend to be more specialized.
+
+## Potentially Unused Components
+
+The automatic analysis identified several potentially unused components:
+
+1. **Section Components** - Many components in the `/sections` directory appear unused:
+   - AnimatedListDemo
+   - FeaturedCollectionsCard 
+   - FeaturedProductsCard
+   - HeroFeatures
+   - HeroWithCollections
+   - **InteractiveHeroCards** (this one appears in HomePageHeroSection but isn't directly imported in pages)
+   - NavigationGrid
+   - NewestProductsCard
+   - SimplifiedHeroCards
+   - WiderHeroCards
+
+2. **UI Components**:
+   - FeatureCard
+   - Highlighter
+   - Marquee
+   - Spotlight
+   - Toaster (may be used dynamically)
+
+3. **Feature Components**:
+   - AiChatHero (previously was being edited, but may not be in use)
+
+*Note: Some components may be dynamically imported or referenced, so further validation is needed before deletion.*
+
+## Product Category Pages:
+
+### Common Pattern for Product Category Pages:
+All product category pages follow a similar structure with themed components. Each page has its own copy of similar components in its directory:
+
+- **Health and Wellness** (src/app/health-and-wellness/page.tsx):
+  - HeroSection, BenefitsSection, FeaturedProducts, ConditionsTabs, CbdIngredientsSection, TestimonialsSection, CtaSection, FaqSection
+
+- **Pet CBD** (src/app/pet-cbd/page.tsx):
+  - HeroSection, BenefitsSection, FeaturedProducts, ResearchSection, CbdIngredientsSection, TestimonialsSection, CtaSection, FaqSection, Newsletter
+
+- **Beauty and Cosmetics** (src/app/beauty-and-cosmetics/page.tsx) 
+  - *Similar component structure*
+
+- **Sport and Recovery** (src/app/sport-and-recovery/page.tsx)
+  - *Similar component structure*
+
+- **Hybrid and Mushrooms** (src/app/hybrid-and-mushrooms/page.tsx)
+  - *Similar component structure*
+
+*Note: There is significant duplication in the product category pages. Each page has its own copy of similar components with category-specific styling.*
+
+### Pattern Analysis:
+1. Each product category page uses a `pageTheme` object for consistent styling
+2. Components are mostly duplicated across categories instead of being reused with different props
+3. Major opportunity for consolidation by creating shared, themeable components
+
+## Shop Pages:
+
+### Shop Main (src/app/shop/page.tsx)
+- **Direct Dependencies:**
+  - ProductCard (from @/components/features/products/product-card)
+  - Many UI components: Button, Input, Badge, Separator, Slider, Select, Sheet, Accordion, Tabs, Checkbox, Card
+  - Tooltip, Dialog components 
+  - useCart hook (from @/context/cart-context)
+  - Product data (from @/lib/products)
+  - Animation: motion, AnimatePresence (from framer-motion)
+  - Multiple Lucide icons
+
+### Product Detail (src/app/shop/[productId]/page.tsx)
+- *Need to analyze*
+
+## Account Pages:
+- Account Main (src/app/account/page.tsx)
+- Account Orders (src/app/account/orders/page.tsx)
+- Order Detail (src/app/account/orders/[orderId]/page.tsx)
+- Account Settings (src/app/account/settings/page.tsx)
+
+## Additional Pages:
+- About (src/app/about/page.tsx)
+- Blog (src/app/blog/page.tsx)
+- Blog Post (src/app/blog/[slug]/page.tsx)
+- Contact (src/app/contact/page.tsx)
+- Checkout (src/app/checkout/page.tsx)
+- Checkout Success (src/app/checkout/success/page.tsx)
+- Lab Demo (src/app/lab/page.tsx)
+- Bento Demo (src/app/bento-demo/page.tsx)
+
+## Update Scripts Analysis
+
+The project contains several JavaScript files for updating import paths and component structures:
+
+### Update Scripts:
+1. **update-all-shadcn-imports.js**
+   - Purpose: Updates all imports from '@/components/common/ui/*' to '@/components/ui/*'
+   - Type: One-time migration script
+   - Status: Obsolete (can be safely deleted)
+
+2. **update-carousel-imports.js**
+   - Purpose: Updates carousel component imports in specific files
+   - Type: One-time migration script
+   - Status: Obsolete (can be safely deleted)
+
+3. **update-tabs-imports.js**, **update-separator-imports.js**, **update-badge-imports.js**, **update-button-imports.js**, **update-aspect-ratio-imports.js**
+   - Purpose: Similar one-time migration scripts for specific component imports
+   - Type: One-time migration scripts
+   - Status: Obsolete (can be safely deleted)
+
+4. **update-badge-component.js**
+   - Purpose: Updates badge component structure
+   - Type: One-time migration script
+   - Status: Obsolete (can be safely deleted)
+
+5. **component-standardizer.js**
+   - Purpose: Standardizes component structure and props
+   - Type: Utility script
+   - Status: Potentially still useful for component refactoring
+
+6. **copy-missing-components.js**
+   - Purpose: Copies missing components from one location to another
+   - Type: Utility script
+   - Status: Potentially still useful for component refactoring
+
+*Note: Most update scripts appear to be one-time migration scripts that are now obsolete and can be safely deleted.*
+
+## Component Categories
+
+### UI Components (src/components/ui/*)
+- Heavily used across the application, particularly in the shop pages
+- Components include: Button, Input, Badge, Separator, Slider, Select, Sheet, Accordion, Tabs, Checkbox, Card, etc.
+- Generally well-structured and reusable
+
+### Feature Components (src/components/features/*)
+- Home Features (src/components/features/home/*)
+  - Used primarily on the homepage
+- Product Features (src/components/features/products/*)
+  - ProductCard - Used in shop pages and possibly product category pages
+- Shared Features (src/components/features/shared/*)
+- Pet Features (src/components/features/pet/*)
+- Chat Features (src/components/features/chat/*)
+- Cart Features (src/components/features/cart/*)
+
+### Section Components (src/components/sections/*)
+- HomePageHeroSection - Used on the homepage
+- Several potentially unused section components
+
+### Layout Components (src/components/common/layout/*)
+- Navbar - Used globally in the app layout
+- Footer - Used globally in the app layout
+- Tabbed Navbar - *Need to check usage*
+
+### Block Components (src/components/blocks/*)
+- *Need to analyze usage across the app*
+
+## Key Observations:
+
+1. **Duplication in Product Category Pages**:
+   - Each product category has nearly identical component structure
+   - Components are duplicated rather than reused with different props/themes
+   - Major opportunity to create shared, themeable components
+
+2. **Complex Shop Page**:
+   - Shop page is feature-rich with many UI components and complex state
+   - Contains filtering, sorting, and product display functionality
+   - Uses cart context for e-commerce functionality
+   
+3. **Component Granularity**:
+   - UI components are well-modularized (shadcn/ui style)
+   - Feature components tend to be larger and less reusable
+   - Section components are page-specific
+
+4. **Obsolete Scripts**:
+   - Multiple update scripts that were used for one-time migrations
+   - These scripts are now obsolete and can be safely deleted
+   - Some utility scripts may still be useful for ongoing refactoring
+
+5. **Potentially Unused Components**:
+   - Several components, especially in the `/sections` directory, appear to be unused
+   - These should be verified and either repurposed or removed
+
+## Refactoring Recommendations:
+
+1. **Create Shared Category Page Components**:
+   - Develop a set of shared, themeable components for product category pages
+   - Replace duplicated components with shared components that accept theme parameters
+   - This will greatly reduce code duplication and improve maintainability
+
+2. **Clean Up Unused Components**:
+   - After verification, remove unused components
+   - Archive them if there's a possibility of future use
+
+3. **Delete Obsolete Scripts**:
+   - Remove one-time migration scripts that are no longer needed
+
+4. **Reorganize Component Structure**:
+   - Group related components together
+   - Consider a more consistent naming convention
+   - Improve component documentation
+
+5. **Optimize Shop Page**:
+   - The shop page is complex and could benefit from better state management
+   - Consider splitting into smaller, more focused components
+
+## Next Steps for Analysis:
+1. Analyze remaining major pages to map complete dependency tree
+2. Verify potentially unused components
+3. Assess component performance metrics
+4. Document duplicate functionality across components
+5. Clean up obsolete scripts
+
+## Analysis Progress:
+- ✅ Initial component mapping
+- ✅ Automated dependency analysis
+- ✅ Identification of potentially unused components
+- ✅ Assessment of update scripts
+- ⬜ Performance assessment
+- ⬜ Detailed analysis of duplicate functionality 

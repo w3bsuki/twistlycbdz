@@ -254,23 +254,16 @@ const ProductCard = memo(function ProductCard({
         </div>
         
         {/* Product image */}
-        <div className={`relative overflow-hidden bg-gradient-to-b from-${categoryColor}-50 to-white dark:from-${categoryColor}-900/20 dark:to-gray-900 pt-3`}>
-          <div className="relative h-28 md:h-32 mx-auto transition-transform duration-500 group-hover:scale-105 p-3">
+        <div className="relative overflow-hidden rounded-t-lg">
+          <AspectRatio ratio={1} className="w-full">
             <Image
-              src={product.image}
+              src="/images/logos/1.png"
               alt={product.name}
               fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-              className="object-contain"
-              priority={product.bestSeller}
+              className="object-contain transition-transform duration-300 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
-          </div>
-          
-          {product.details?.concentration && (
-            <div className={`absolute bottom-2 left-1/2 transform -translate-x-1/2 z-10 px-3 py-1 rounded-full text-xs bg-white/80 backdrop-blur-sm shadow-sm border border-${categoryColor}-100 text-${categoryColor}-700`}>
-              {product.details.concentration}
-            </div>
-          )}
+          </AspectRatio>
         </div>
         
         <CardContent className="p-5 flex flex-col space-y-4">
@@ -688,17 +681,14 @@ export function FeaturedProducts() {
                         )}
                         
                         {/* Product image */}
-                        <div className={cn(
-                          "w-full pt-0.5",
-                          `bg-gradient-to-b from-${getCategoryColor(product.category)}-50/50 to-white/40`
-                        )}>
-                          <AspectRatio ratio={1.3} className="w-full px-2">
+                        <div className="relative overflow-hidden rounded-t-lg">
+                          <AspectRatio ratio={1} className="w-full">
                             <Image
-                              src={product.image}
+                              src="/images/logos/1.png"
                               alt={product.name}
                               fill
-                              className="object-contain"
-                              priority={product.bestSeller}
+                              className="object-contain transition-transform duration-300 group-hover:scale-105"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             />
                           </AspectRatio>
                         </div>
@@ -726,6 +716,7 @@ export function FeaturedProducts() {
                                 e.stopPropagation();
                                 handleAddToCart(product, e);
                               }}
+                              aria-label={`Add ${product.name} to cart`}
                             >
                               <ShoppingCart className={cn("h-2.5 w-2.5", `text-${getCategoryColor(product.category)}-600`)} />
                             </button>
@@ -777,15 +768,14 @@ export function FeaturedProducts() {
                         </div>
                         
                         {/* Product image */}
-                        <div className="w-full pt-0.5 bg-gradient-to-b from-blue-50/50 to-white/40">
-                          <AspectRatio ratio={1.3} className="w-full px-2">
+                        <div className="relative overflow-hidden rounded-t-lg">
+                          <AspectRatio ratio={1} className="w-full">
                             <Image
-                              key={`new-product-image-${index}`}
-                              src="/images/tincture2.png"
+                              src="/images/logos/1.png"
                               alt={product.name}
                               fill
-                              className="object-contain"
-                              priority={true}
+                              className="object-contain transition-transform duration-300 group-hover:scale-105"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             />
                           </AspectRatio>
                         </div>
@@ -821,9 +811,9 @@ export function FeaturedProducts() {
                   onClick={() => handleQuickView(product)}
                 >
                   <div className="relative pt-0.5 px-0.5">
-                    <AspectRatio ratio={1.3} className="w-full">
+                    <AspectRatio ratio={1} className="w-full">
                       <Image
-                        src="/images/tincture2.png"
+                        src="/images/logos/1.png"
                         alt={product.name}
                         fill
                         className="object-contain"
@@ -848,17 +838,17 @@ export function FeaturedProducts() {
           <DialogContent className="sm:max-w-[800px] p-0 overflow-hidden bg-white dark:bg-gray-900">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
               {/* Product image */}
-              <div className={`relative bg-gradient-to-br from-${getCategoryColor(selectedProduct.category)}-50 to-white dark:from-${getCategoryColor(selectedProduct.category)}-900/30 dark:to-gray-900 p-8`}>
-                <div className="relative h-[280px] w-full">
+              <div className="relative bg-gradient-to-br from-${getCategoryColor(selectedProduct.category)}-50 to-white dark:from-${getCategoryColor(selectedProduct.category)}-900/30 dark:to-gray-900 p-6">
+                <AspectRatio ratio={1} className="w-full max-w-md mx-auto">
                   <Image
-                    src={selectedProduct.image}
+                    src="/images/logos/1.png"
                     alt={selectedProduct.name}
                     fill
                     sizes="(max-width: 768px) 100vw, 400px"
                     className="object-contain"
                     priority
                   />
-                </div>
+                </AspectRatio>
                 
                 <div className="absolute top-4 left-4 flex flex-col gap-2">
                   {selectedProduct.bestSeller && (

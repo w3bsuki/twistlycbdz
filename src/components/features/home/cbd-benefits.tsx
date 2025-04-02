@@ -171,7 +171,7 @@ const cbdConditions = [
     shortDesc: "May regulate mood and reduce anxiety symptoms",
     content: "CBD may interact with serotonin receptors in the brain, potentially helping to regulate mood and reduce symptoms of anxiety and stress. Studies have shown CBD might positively impact how your brain's receptors respond to serotonin.",
     color: "green",
-    imageUrl: "/images/benefits/anxiety.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Calming effect", "Stress reduction", "Mental clarity", "Improved relaxation", "Better stress response"]
   },
   {
@@ -181,7 +181,7 @@ const cbdConditions = [
     shortDesc: "Anti-inflammatory properties for pain relief",
     content: "CBD has anti-inflammatory properties and may influence endocannabinoid receptor activity, potentially reducing inflammation and interacting with neurotransmitters to alleviate chronic pain. This could be beneficial for conditions like arthritis and multiple sclerosis.",
     color: "blue",
-    imageUrl: "/images/benefits/pain.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Inflammation reduction", "Pain management", "Joint support", "Muscle recovery", "Nerve comfort"]
   },
   {
@@ -191,7 +191,7 @@ const cbdConditions = [
     shortDesc: "May improve sleep quality and duration",
     content: "By addressing underlying causes of sleep issues like anxiety or pain, CBD may help improve sleep quality and duration. Some studies suggest CBD might affect sleep cycles directly, potentially increasing overall sleep time and improving insomnia symptoms.",
     color: "purple",
-    imageUrl: "/images/benefits/sleep.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Better sleep quality", "Easier to fall asleep", "More restful nights", "Consistent sleep cycles", "Wake feeling refreshed"]
   },
   {
@@ -201,7 +201,7 @@ const cbdConditions = [
     shortDesc: "Potential neuroprotective properties",
     content: "Research suggests CBD may have neuroprotective properties that could support brain health and cognitive function. By reducing inflammation and oxidative stress in the brain, CBD might help improve focus and clarity.",
     color: "amber",
-    imageUrl: "/images/benefits/focus.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Mental clarity", "Brain health", "Better focus", "Improved concentration", "Cognitive support"]
   },
   {
@@ -211,7 +211,7 @@ const cbdConditions = [
     shortDesc: "Potential antidepressant-like effects",
     content: "CBD may influence how your brain's chemical receptors respond to serotonin that's already present in your system. Some studies indicate CBD could have antidepressant-like effects, potentially helping to stabilize mood and improve overall well-being.",
     color: "orange",
-    imageUrl: "/images/benefits/mood.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Mood stabilization", "Emotional balance", "Sense of well-being", "Improved outlook", "Stress resilience"]
   },
   {
@@ -221,7 +221,7 @@ const cbdConditions = [
     shortDesc: "May support gut health and reduce inflammation",
     content: "CBD may help support digestive health by interacting with cannabinoid receptors in the digestive tract. Studies suggest it could reduce inflammation in the gut, potentially easing symptoms of digestive disorders and supporting a healthy gut microbiome.",
     color: "green",
-    imageUrl: "/images/benefits/digestive.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Gut health", "Reduced irritation", "Better digestion", "Appetite regulation", "Microbiome support"]
   },
   {
@@ -231,7 +231,7 @@ const cbdConditions = [
     shortDesc: "Anti-inflammatory and antioxidant properties",
     content: "When applied topically, CBD can work with the endocannabinoid receptors in your skin to help reduce inflammation, balance oil production, and support skin health. Research indicates CBD's antioxidant properties may also help protect against environmental damage and support collagen production.",
     color: "purple",
-    imageUrl: "/images/benefits/skin.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Anti-Aging", "Acne Control", "Skin Recovery", "Radiant Glow", "Balanced Oil Production"]
   },
   {
@@ -241,7 +241,7 @@ const cbdConditions = [
     shortDesc: "Support for pets' overall wellbeing",
     content: "CBD interacts with pets' endocannabinoid systems similarly to humans. Research suggests it may help manage anxiety, reduce discomfort, and support mobility in aging pets. The non-psychoactive nature of CBD makes it safe for pets when properly dosed.",
     color: "orange",
-    imageUrl: "/images/benefits/pet.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Anxiety relief", "Joint support", "Calm behavior", "Overall wellness", "Improved comfort"]
   },
   {
@@ -251,7 +251,7 @@ const cbdConditions = [
     shortDesc: "May aid post-workout recovery",
     content: "CBD may help accelerate recovery by reducing inflammation in muscles and joints after intense physical activity. Its potential anti-inflammatory properties could help minimize soreness and speed up the body's natural healing process.",
     color: "blue",
-    imageUrl: "/images/benefits/recovery.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Faster recovery", "Reduced soreness", "Better mobility", "Post-workout support", "Inflammation control"]
   },
   {
@@ -261,7 +261,7 @@ const cbdConditions = [
     shortDesc: "May support athletic performance",
     content: "By potentially reducing performance anxiety and helping manage pre-competition stress, CBD might contribute to better sports performance. Some athletes report improved focus and endurance when using CBD as part of their training regimen.",
     color: "blue",
-    imageUrl: "/images/benefits/performance.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Better focus", "Stress management", "Improved endurance", "Pre-workout support", "Mental clarity"]
   },
   {
@@ -271,7 +271,7 @@ const cbdConditions = [
     shortDesc: "Antioxidant and nourishing properties",
     content: "CBD's antioxidant properties may help combat free radicals that contribute to skin aging. When incorporated into skincare, it may help reduce the appearance of fine lines and support skin elasticity and firmness for a more youthful appearance.",
     color: "purple",
-    imageUrl: "/images/benefits/anti-aging.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Wrinkle reduction", "Skin elasticity", "Collagen support", "Antioxidant protection", "Radiant complexion"]
   },
   {
@@ -281,7 +281,7 @@ const cbdConditions = [
     shortDesc: "May support scalp health and hair growth",
     content: "CBD may help create a healthier environment for hair growth by soothing the scalp, reducing inflammation, and balancing oil production. Its moisturizing properties can help strengthen hair follicles and potentially reduce hair loss related to inflammation.",
     color: "purple",
-    imageUrl: "/images/benefits/hair-scalp.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Scalp soothing", "Hair strengthening", "Oil balance", "Reduced irritation", "Healthier follicles"]
   },
   {
@@ -291,7 +291,7 @@ const cbdConditions = [
     shortDesc: "May help regulate immune response",
     content: "Research suggests CBD may have immunomodulatory effects that could help balance the immune system. By potentially reducing excessive inflammation, CBD might contribute to a more balanced immune response and overall immune health.",
     color: "amber",
-    imageUrl: "/images/benefits/immunity.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Balanced response", "Inflammation control", "Stress reduction", "Cellular support", "Antioxidant properties"]
   },
   {
@@ -301,7 +301,7 @@ const cbdConditions = [
     shortDesc: "May support natural energy levels",
     content: "By potentially improving sleep quality and reducing anxiety, CBD might indirectly support better natural energy levels throughout the day. Some users report feeling more balanced energy without the crashes associated with stimulants.",
     color: "amber",
-    imageUrl: "/images/benefits/energy.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Sustainable energy", "Better focus", "Reduced fatigue", "Natural balance", "Mental clarity"]
   },
   {
@@ -311,7 +311,7 @@ const cbdConditions = [
     shortDesc: "May help calm nervous pets",
     content: "CBD may help manage anxiety in pets during stressful situations like thunderstorms, fireworks, or separation. It interacts with their endocannabinoid system to potentially promote a sense of calm without sedating effects.",
     color: "orange",
-    imageUrl: "/images/benefits/pet-anxiety.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Noise sensitivity help", "Calmer behavior", "Reduced stress", "Travel comfort", "Separation support"]
   },
   {
@@ -321,7 +321,7 @@ const cbdConditions = [
     shortDesc: "May support aging pets' joint health",
     content: "As pets age, CBD may help support better mobility and comfort by potentially reducing joint inflammation and discomfort. Many pet owners report their senior pets show improved activity levels and comfort when using CBD products.",
     color: "orange",
-    imageUrl: "/images/benefits/pet-mobility.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Joint support", "Easier movement", "Senior pet care", "Active lifestyle", "Comfort improvement"]
   },
   {
@@ -331,7 +331,7 @@ const cbdConditions = [
     shortDesc: "Support for pets' general health",
     content: "CBD may contribute to your pet's overall wellness by supporting multiple body systems simultaneously. From healthy skin and coat to digestive comfort and immune function, CBD's balancing properties may benefit pets of all ages.",
     color: "orange",
-    imageUrl: "/images/benefits/pet-wellness.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Digestive support", "Skin & coat health", "Balanced behavior", "General vitality", "Overall comfort"]
   },
   {
@@ -341,7 +341,7 @@ const cbdConditions = [
     shortDesc: "Support for pet digestive comfort",
     content: "CBD may help support your pet's digestive system by interacting with cannabinoid receptors in their gut. Many pet owners report improvements in digestive issues, including reduced upset stomach and better overall digestive comfort.",
     color: "orange",
-    imageUrl: "/images/benefits/pet-digestion.jpg",
+    imageUrl: "/images/logos/1.png",
     pillars: ["Digestive comfort", "Reduced sensitivity", "Better appetite", "Regular function", "Less digestive upset"]
   }
 ]
@@ -398,7 +398,7 @@ const conditionProducts = {
     name: "CBD Calm Capsules",
     description: "Our CBD Calm Capsules deliver a precise dose of CBD combined with calming adaptogens to help you manage stress and maintain focus throughout your day.",
     price: 64.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Promotes calm without drowsiness", "Supports mental clarity", "Helps manage stress", "Supports mood balance"],
     rating: 4.6,
     reviewCount: 84
@@ -409,7 +409,7 @@ const conditionProducts = {
     description: "This powerful recovery balm delivers targeted relief to sore muscles and joints with a potent combination of CBD, arnica, and menthol for cooling comfort.",
     price: 54.99,
     discountPrice: 49.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Targets muscle soreness", "Soothes joint discomfort", "Cooling sensation", "Absorbs quickly"],
     rating: 4.9,
     reviewCount: 156
@@ -419,7 +419,7 @@ const conditionProducts = {
     name: "CBD Sleep Gummies",
     description: "Our CBD Sleep Gummies combine premium CBD with melatonin and calming herbs to promote restful sleep and help you wake up refreshed.",
     price: 49.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Promotes faster sleep onset", "Supports deeper sleep", "Helps regulate sleep cycles", "Non-habit forming"],
     rating: 4.7,
     reviewCount: 203
@@ -430,7 +430,7 @@ const conditionProducts = {
     description: "Formulated specifically for athletes, our Sport Performance Drops combine CBD with BCAAs and electrolytes to support recovery, endurance and optimal performance.",
     price: 74.99,
     discountPrice: 64.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Supports muscle recovery", "Enhances endurance", "Helps maintain focus", "Promotes joint mobility"],
     rating: 4.7,
     reviewCount: 118
@@ -440,7 +440,7 @@ const conditionProducts = {
     name: "CBD Wellness Drops",
     description: "Our CBD Wellness Drops combine premium CBD with essential vitamins and adaptogens for a daily wellness boost that supports your body's natural balance.",
     price: 69.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Supports overall wellness", "Enhances daily energy", "Promotes immune function", "Helps maintain mental clarity"],
     rating: 4.6,
     reviewCount: 89
@@ -451,7 +451,7 @@ const conditionProducts = {
     description: "Our premium full-spectrum CBD oil is crafted from organically grown hemp plants, providing a complete profile of beneficial cannabinoids for maximum effectiveness.",
     price: 89.99,
     discountPrice: 79.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Promotes relaxation", "Supports healthy digestion", "Helps manage discomfort", "Supports overall wellness"],
     rating: 4.8,
     reviewCount: 124
@@ -461,7 +461,7 @@ const conditionProducts = {
     name: "CBD Radiance Face Serum",
     description: "This luxurious face serum combines the power of CBD with hyaluronic acid and vitamin C to hydrate, brighten and rejuvenate your skin for a radiant complexion.",
     price: 79.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Hydrates and plumps skin", "Brightens complexion", "Reduces fine lines", "Calms redness and irritation"],
     rating: 4.8,
     reviewCount: 97
@@ -472,7 +472,7 @@ const conditionProducts = {
     description: "Our specially formulated pet CBD tincture is designed with your furry friends in mind, providing gentle support for anxiety, joint discomfort, and overall wellness.",
     price: 59.99,
     discountPrice: 49.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Eases anxiety", "Supports joint health", "Promotes calm", "Easy to administer"],
     rating: 4.8,
     reviewCount: 112
@@ -482,7 +482,7 @@ const conditionProducts = {
     name: "CBD Muscle Recovery Cream",
     description: "This fast-absorbing recovery cream combines CBD with arnica, menthol and MSM to deliver targeted relief to sore muscles after intense workouts.",
     price: 59.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Fast-acting relief", "Cooling sensation", "Targets sore muscles", "No greasy residue"],
     rating: 4.8,
     reviewCount: 136
@@ -492,7 +492,7 @@ const conditionProducts = {
     name: "CBD Performance Drops",
     description: "Our specially formulated Performance Drops combine premium CBD with adaptogenic herbs to support focus, endurance and optimal athletic performance.",
     price: 79.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Pre-workout focus", "Improved stamina", "Clear thinking", "Fast absorption"],
     rating: 4.7,
     reviewCount: 89
@@ -503,7 +503,7 @@ const conditionProducts = {
     description: "This luxurious anti-aging formula harnesses the power of CBD with peptides and hyaluronic acid to reduce fine lines and restore skin's youthful appearance.",
     price: 89.99,
     discountPrice: 74.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Reduces fine lines", "Improves elasticity", "Deep hydration", "Brightens complexion"],
     rating: 4.9,
     reviewCount: 112
@@ -513,7 +513,7 @@ const conditionProducts = {
     name: "CBD Scalp Treatment",
     description: "Our nourishing scalp treatment uses CBD to soothe irritation, balance oil production and create the optimal environment for healthy hair growth.",
     price: 64.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Soothes irritation", "Balances oil", "Strengthens follicles", "Promotes growth"],
     rating: 4.6,
     reviewCount: 74
@@ -523,7 +523,7 @@ const conditionProducts = {
     name: "CBD Immunity Drops",
     description: "Fortify your immune system with our potent blend of CBD, elderberry, zinc and vitamin C designed to support your body's natural defenses year-round.",
     price: 69.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Immune support", "Antioxidant rich", "Daily defense", "Natural ingredients"],
     rating: 4.7,
     reviewCount: 93
@@ -533,7 +533,7 @@ const conditionProducts = {
     name: "CBD Energy Capsules",
     description: "Our innovative Energy Capsules combine CBD with B vitamins, adaptogens and natural caffeine for sustained energy without the crash or jitters.",
     price: 54.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Sustained energy", "No jitters", "Mental clarity", "Stress management"],
     rating: 4.8,
     reviewCount: 106
@@ -543,7 +543,7 @@ const conditionProducts = {
     name: "Pet Calming Treats",
     description: "These delicious CBD-infused treats help pets stay calm during stressful situations like thunderstorms, fireworks, travel or separation anxiety.",
     price: 39.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Stress reduction", "Easy to administer", "No sedation", "Tasty formula"],
     rating: 4.9,
     reviewCount: 145
@@ -553,7 +553,7 @@ const conditionProducts = {
     name: "Pet Joint & Mobility Chews",
     description: "Support your aging pet's mobility with these CBD-infused soft chews containing glucosamine, chondroitin and MSM for comprehensive joint support.",
     price: 44.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Joint comfort", "Improved mobility", "Senior pet support", "Soft texture"],
     rating: 4.8,
     reviewCount: 128
@@ -564,7 +564,7 @@ const conditionProducts = {
     description: "Our premium pet wellness oil delivers the perfect daily dose of CBD to support your pet's overall health, from skin and coat to digestive comfort.",
     price: 54.99,
     discountPrice: 49.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Overall wellness", "Skin & coat health", "Digestive support", "All ages"],
     rating: 4.7,
     reviewCount: 116
@@ -574,7 +574,7 @@ const conditionProducts = {
     name: "Pet Digestive Support Drops",
     description: "Our specialized CBD digestive formula helps maintain your pet's digestive health with a gentle blend of CBD, prebiotics, and digestive enzymes for optimal gut function.",
     price: 49.99,
-    image: "/images/products/placeholder.jpg",
+    image: "/images/logos/1.png",
     benefits: ["Soothes digestive discomfort", "Promotes healthy digestion", "Supports microbiome", "Easy to administer"],
     rating: 4.7,
     reviewCount: 84
@@ -672,7 +672,7 @@ const articleData = [
   {
     title: "The Science of CBD and Anxiety",
     excerpt: "Discover how CBD interacts with your body's endocannabinoid system to help manage stress and anxiety.",
-    image: "/images/tincture2.png",
+    image: "/images/logos/1.png",
     category: "wellness",
     url: "/blog/cbd-and-anxiety",
     date: "June 12, 2023"
@@ -680,7 +680,7 @@ const articleData = [
   {
     title: "CBD for Athletes: Recovery Benefits",
     excerpt: "Learn how CBD can help speed recovery, reduce inflammation, and improve performance for active individuals.",
-    image: "/images/tincture2.png",
+    image: "/images/logos/1.png",
     category: "sport",
     url: "/blog/cbd-for-athletes",
     date: "May 28, 2023"
@@ -688,7 +688,7 @@ const articleData = [
   {
     title: "CBD in Skincare: Anti-Aging Properties",
     excerpt: "Explore the science behind CBD's potential to reduce signs of aging and improve skin health.",
-    image: "/images/tincture2.png",
+    image: "/images/logos/1.png",
     category: "beauty",
     url: "/blog/cbd-skincare-benefits",
     date: "April 15, 2023"
@@ -696,7 +696,7 @@ const articleData = [
   {
     title: "CBD and Sleep: Natural Solutions",
     excerpt: "Find out how CBD may help improve sleep quality without the side effects of traditional sleep aids.",
-    image: "/images/tincture2.png",
+    image: "/images/logos/1.png",
     category: "wellness",
     url: "/blog/cbd-sleep-solutions",
     date: "March 22, 2023"
@@ -704,7 +704,7 @@ const articleData = [
   {
     title: "CBD for Pets: What You Need to Know",
     excerpt: "Learn how CBD may benefit your furry friends and the proper dosing for different animals.",
-    image: "/images/tincture2.png",
+    image: "/images/logos/1.png",
     category: "pet",
     url: "/blog/cbd-for-pets-guide",
     date: "February 10, 2023"
@@ -825,7 +825,7 @@ export function CBDBenefits() {
               >
                 <div className="h-5 w-5 rounded-full overflow-hidden relative">
                   <Image
-                    src="/images/dr-twistly.png"
+                    src="/images/logos/1.png"
                     alt="Dr. Twistly"
                     fill
                     className="object-cover"
@@ -1219,7 +1219,7 @@ export function CBDBenefits() {
               <div className="flex items-center gap-3">
                 <div className="h-12 w-12 relative rounded-full overflow-hidden border-2 border-emerald-200 shadow-sm">
                   <Image 
-                    src="/images/dr-twistly.png" 
+                    src="/images/logos/1.png" 
                     alt="Dr. Twistly" 
                     fill 
                     className="object-cover"

@@ -1,0 +1,285 @@
+# EFFECTIVE PROMPTS FOR WEBSITE REFACTORING
+
+This file contains ready-to-use prompts to guide you through each phase of the refactoring process.
+Each prompt is designed to accomplish specific tasks in the refactoring plan.
+
+## INITIAL ANALYSIS PROMPTS
+
+### Component Dependency Analysis
+```
+Analyze my codebase to map component dependencies. Start with the main page components in src/app/ directory and trace their imports to create a dependency tree. Identify which components are actually being used and which might be unused. Provide a report showing:
+1. Core components used across multiple pages
+2. Page-specific components
+3. Potentially unused components
+4. Components with duplicate functionality
+```
+
+### Utility Scripts Analysis
+```
+Examine all JavaScript files in the root directory that start with "update-" (like update-carousel-imports.js). For each file:
+1. Explain what this script seems to be doing
+2. Determine if it's still necessary or if it was a one-time migration script
+3. Recommend whether to keep or delete it
+```
+
+### Image Asset Audit
+```
+Analyze the public/images directory to identify:
+1. Which images are actually referenced in the codebase
+2. Which images appear to be unused
+3. Suggest a better organization structure for the images
+4. Identify any duplicate or very similar images
+```
+
+### Code Duplication Analysis
+```
+Scan the codebase for potential code duplication, particularly in:
+1. Component implementations with similar functionality
+2. Utility functions
+3. Style definitions
+4. Page layouts
+Recommend which duplicated code should be consolidated into reusable components or utilities.
+```
+
+## CLEANUP PROMPTS
+
+### Component Cleanup
+```
+Based on our dependency analysis, let's clean up unused components. For each component identified as unused:
+1. Verify it's truly not referenced anywhere in the codebase
+2. Create a plan to safely remove it
+3. Implement the removal
+Keep track of all removed components in case we need to restore any.
+```
+
+### Image Directory Restructuring
+```
+Let's restructure the images directory following this plan:
+1. Create subdirectories: /logos, /products, /banners, /icons, /backgrounds
+2. Move each image to the appropriate directory
+3. Rename files for consistency
+4. Delete unused images identified in our audit
+Implement this restructuring and update all image references in the code.
+```
+
+### Script File Cleanup
+```
+Delete the following obsolete utility scripts that we've identified as no longer needed:
+[list scripts here]
+Make sure to verify each one is truly obsolete before deleting.
+```
+
+### Folder Structure Optimization
+```
+Let's optimize our folder structure following these principles:
+1. Group related components together
+2. Separate page-specific components from reusable ones
+3. Organize by feature rather than by type
+4. Keep UI components separate from data/logic components
+Propose a specific restructuring plan and steps to implement it safely.
+```
+
+## REFACTORING PROMPTS
+
+### Component Interface Standardization
+```
+Let's standardize the interface for our product-related components. Examine these key components:
+[list product components]
+Create a consistent props interface that all these components can use. Implement these changes across the components while maintaining backward compatibility.
+```
+
+### Style System Implementation
+```
+Let's implement a consistent style system using Tailwind and shadcn/ui. Define:
+1. A color system with primary, secondary, accent colors
+2. Typography scale with consistent text sizes and weights
+3. Spacing system with standard margin/padding values
+4. Component variant patterns
+Implement this system in a central location and update component styles to use it.
+```
+
+### State Management Optimization
+```
+Analyze our current state management approach and optimize it by:
+1. Centralizing global state in appropriate contexts
+2. Removing redundant state
+3. Implementing proper state initialization
+4. Ensuring clear data flow patterns
+Implement these changes with a focus on maintaining functionality while improving code quality.
+```
+
+### Responsive Design Implementation
+```
+Audit our components for responsive design issues and implement a mobile-first approach:
+1. Identify components that don't work well on mobile
+2. Update layouts to use proper responsive patterns
+3. Ensure touch targets are appropriately sized
+4. Verify text readability across device sizes
+Implement these changes systematically across the application.
+```
+
+## FEATURE IMPLEMENTATION PROMPTS
+
+### Shopping Cart Implementation
+```
+Implement a complete shopping cart feature that includes:
+1. Adding/removing items
+2. Updating quantities
+3. Calculating totals and discounts
+4. Persisting cart state between sessions
+5. Clear cart UI that works on mobile and desktop
+Ensure this implementation follows our component patterns and style system.
+```
+
+### Product Filtering System
+```
+Create a comprehensive product filtering system that allows users to:
+1. Filter by category, price range, and product attributes
+2. Sort by different criteria
+3. Search products by keyword
+4. Save filter preferences
+Implement this in a way that's both performant and user-friendly.
+```
+
+### Checkout Process
+```
+Implement a multi-step checkout process that includes:
+1. Shipping information collection
+2. Billing information collection
+3. Order review
+4. Payment processing
+5. Order confirmation
+Ensure proper validation, error handling, and a smooth user experience throughout.
+```
+
+## OPTIMIZATION PROMPTS
+
+### Performance Optimization
+```
+Optimize our application performance by:
+1. Implementing proper component memoization
+2. Adding code splitting for large components
+3. Optimizing image loading with priority flags
+4. Reducing unnecessary renders
+Measure performance before and after to quantify improvements.
+```
+
+### Bundle Size Optimization
+```
+Analyze and optimize our bundle size:
+1. Identify large dependencies
+2. Implement tree-shaking
+3. Split the bundle into appropriate chunks
+4. Lazy-load non-critical features
+Aim for initial load bundle under 200KB for optimal performance.
+```
+
+### Accessibility Improvements
+```
+Audit our application for accessibility issues and implement fixes:
+1. Ensure proper semantic HTML
+2. Add appropriate ARIA attributes
+3. Check color contrast
+4. Verify keyboard navigation
+5. Test with screen readers
+Make our site WCAG AA compliant across all components.
+```
+
+## TESTING PROMPTS
+
+### Cross-Browser Testing
+```
+Test our application across major browsers:
+1. Chrome
+2. Firefox
+3. Safari
+4. Edge
+Document any inconsistencies and implement fixes to ensure consistent behavior.
+```
+
+### Responsive Testing
+```
+Test our application across various devices and viewport sizes:
+1. Mobile phones (small)
+2. Tablets (medium)
+3. Laptops (large)
+4. Desktops (extra-large)
+Verify that all features work correctly at each size and fix any issues.
+```
+
+### Functionality Testing
+```
+Test all critical user flows:
+1. Browsing products
+2. Adding to cart
+3. Checkout process
+4. Account management
+5. Contact form submission
+Document any issues and implement fixes.
+```
+
+## DEPLOYMENT PROMPTS
+
+### Build Configuration
+```
+Optimize our build configuration for production:
+1. Enable all production optimizations
+2. Configure proper environment variables
+3. Set up asset optimization
+4. Implement caching strategies
+Ensure our build process is efficient and produces optimized output.
+```
+
+### Deployment Setup
+```
+Set up a deployment pipeline that:
+1. Builds the application
+2. Runs tests
+3. Deploys to staging for verification
+4. Allows promotion to production
+Document this process for team reference.
+```
+
+### Launch Checklist Validation
+```
+Validate our launch checklist:
+1. Go through each item in the checklist
+2. Test each feature
+3. Verify all critical paths
+4. Document any remaining issues
+Prioritize any fixes needed before launch.
+```
+
+## MILESTONE CHECK PROMPTS
+
+### Day 1 Morning Progress Check
+```
+Let's check our progress on the Day 1 morning tasks:
+1. Have we completed the codebase analysis?
+2. Do we have a clear map of component dependencies?
+3. Have we audited and cleaned up the images folder?
+4. Have we identified obsolete scripts?
+What remains to be done from this section, and what challenges are we facing?
+```
+
+### Day 1 Afternoon Progress Check
+```
+Let's check our progress on the Day 1 afternoon tasks:
+1. Have we refactored the folder structure?
+2. Have we deleted/archived unused components?
+3. Have we optimized image assets?
+4. Have we cleaned up redundant styles?
+What remains to be done from this section, and what challenges are we facing?
+```
+
+### Final Launch Readiness Check
+```
+Let's do a final launch readiness check:
+1. Go through each item in our launch checklist
+2. Verify all critical features work as expected
+3. Confirm performance meets our targets
+4. Check for any remaining console errors or warnings
+Are we ready to launch, or do we need to address any remaining issues?
+```
+
+Use these prompts as needed throughout your refactoring process. They're designed to help you systematically implement the refactoring plan with minimal risk and maximum efficiency. 
