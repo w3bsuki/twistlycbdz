@@ -1,0 +1,206 @@
+# Project Plan: CBD E-commerce Website Cleanup and Implementation
+
+## Current Project Analysis
+
+After examining the codebase, I've identified the following key aspects:
+
+1. **Project Structure**:
+   - Next.js 15.2.3 with React 19 and TypeScript
+   - App Router implementation
+   - ShadCN UI components with Tailwind CSS
+   - Multiple component directories with some organizational inconsistencies
+
+2. **Current Features**:
+   - Home page with working layout and sections
+   - Basic shop page with product listings
+   - Product detail pages
+   - Mock product data in lib/products.ts
+
+3. **Issues and Improvements Needed**:
+   - Inconsistent component organization
+   - No backend integration for e-commerce functionality
+   - Redundant components and code
+   - Lack of clear separation between UI components and feature components
+   - Missing cart functionality and checkout process
+   - No user authentication/account management
+
+## Cleanup Plan
+
+### 1. Directory Structure Reorganization
+
+Following Next.js best practices, we should adopt this structure:
+
+```
+src/
+├── app/                    # App Router pages
+│   ├── (auth)/             # Authentication routes (grouped)
+│   │   ├── login/
+│   │   ├── register/
+│   │   └── forgot-password/
+│   ├── (shop)/             # Shop routes (grouped)
+│   │   ├── page.tsx        # Shop main page
+│   │   ├── [category]/     # Category pages
+│   │   ├── product/[slug]/ # Product detail pages
+│   │   ├── cart/           # Shopping cart
+│   │   ├── checkout/       # Checkout process
+│   │   └── order-confirmation/
+│   ├── account/            # User account pages
+│   ├── about/              # About page
+│   ├── blog/               # Blog section
+│   ├── contact/            # Contact page
+│   ├── page.tsx            # Home page (keep as is)
+│   └── layout.tsx          # Root layout (keep as is)
+├── components/
+│   ├── ui/                 # Base UI components (ShadCN)
+│   ├── common/             # Shared components (header, footer, etc.)
+│   ├── product/            # Product-related components
+│   │   ├── product-card.tsx
+│   │   ├── product-gallery.tsx
+│   │   ├── product-details.tsx
+│   │   └── product-reviews.tsx
+│   ├── cart/               # Cart components
+│   ├── checkout/           # Checkout components
+│   └── auth/               # Authentication components
+├── lib/
+│   ├── utils.ts            # Utility functions
+│   ├── types.ts            # TypeScript type definitions
+│   ├── products/           # Product-related functions
+│   ├── cart/               # Cart functions
+│   └── auth/               # Authentication functions
+├── hooks/                  # Custom React hooks
+├── context/                # React context providers
+│   ├── cart-context.tsx
+│   ├── auth-context.tsx
+│   └── theme-context.tsx
+├── styles/                 # Global styles
+└── public/                 # Static assets
+```
+
+### 2. Components to Delete/Consolidate
+
+1. Remove any duplicate footer components
+2. Consolidate redundant UI components
+3. Remove unused components in src/components/blocks
+4. Streamline feature components that aren't used on the main page
+
+### 3. Features to Preserve
+
+1. Keep the exact home page layout and components as requested
+2. Preserve the current shop page UI but refactor code organization
+3. Maintain product detail page functionality but improve structure
+
+## Implementation Plan
+
+### Phase 1: Cleanup and Reorganization (1-2 days)
+
+1. Reorganize directory structure according to plan
+2. Remove unused components and files
+3. Refactor existing components for consistency
+4. Set up proper TypeScript types for all components
+
+### Phase 2: E-commerce Core Features (3-4 days)
+
+1. Implement product catalog features
+   - Improve product filtering and search
+   - Add product categories management
+   - Enhance product detail pages
+
+2. Develop shopping cart functionality
+   - Create cart context for state management
+   - Implement add to cart, update quantity, remove items
+   - Build cart sidebar/page UI
+
+3. Build checkout process
+   - Create multi-step checkout
+   - Add address collection
+   - Implement order summary
+
+### Phase 3: Backend Integration (2-3 days)
+
+1. Choose and set up backend solution
+   - Options: Firebase, Supabase, custom API with Node.js
+   - Implement product database
+   - Build API endpoints for products, orders, users
+
+2. Connect frontend to backend
+   - Replace mock data with API calls
+   - Implement proper data fetching with loading states
+   - Add error handling
+
+### Phase 4: User Accounts and Authentication (1-2 days)
+
+1. Set up authentication system
+   - Registration and login
+   - Password reset functionality
+   - Social login options
+
+2. Create user account area
+   - Order history
+   - Saved addresses
+   - Account settings
+
+### Phase 5: CBD-Specific Features (1-2 days)
+
+1. Add CBD educational content
+   - Information about CBD benefits
+   - Usage guides
+   - Product recommendations
+
+2. Implement age verification
+   - Age verification popup
+   - Compliance with regulations
+
+3. Add CBD-specific product filters
+   - Filter by CBD concentration
+   - Filter by product type (oil, topical, edible)
+
+### Phase 6: Testing and Optimization (2-3 days)
+
+1. Comprehensive testing
+   - Cross-browser testing
+   - Mobile responsiveness
+   - User flow testing
+
+2. Performance optimization
+   - Image optimization
+   - Code splitting
+   - Lazy loading
+
+3. SEO optimization
+   - Metadata
+   - Structured data
+   - Sitemap
+
+## Technology Stack
+
+1. **Frontend**:
+   - Next.js 15
+   - React 19
+   - TypeScript
+   - ShadCN UI
+   - Tailwind CSS
+   - React Context API for state management
+
+2. **Backend Options**:
+   - Firebase/Firestore (quickest to implement)
+   - Supabase (good PostgreSQL option)
+   - Custom Node.js API with Express (most flexible)
+   - Serverless functions with Next.js API routes
+
+3. **Payment Processing**:
+   - Stripe
+   - PayPal (alternative)
+
+4. **Deployment**:
+   - Vercel (for frontend)
+   - Appropriate backend hosting based on selection
+
+## Next Steps
+
+1. Begin directory structure reorganization
+2. Identify and clean up unused components
+3. Implement cart context and basic cart functionality
+4. Create proper product database structure
+5. Start building backend integration
+
+Once these initial steps are complete, we can move on to more advanced features while ensuring the main page remains untouched as requested. 

@@ -1,0 +1,7 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="200" rx="20" fill="#E2F3E7"/>
+  <path d="M40 70H160M40 100H160M40 130H160" stroke="#22c55e" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="100" cy="100" r="60" stroke="#166534" stroke-width="8" fill="none"/>
+  <text x="100" y="140" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#166534" text-anchor="middle">TWISTLY</text>
+  <text x="100" y="170" font-family="Arial, sans-serif" font-size="16" fill="#22c55e" text-anchor="middle">Premium CBD</text>
+</svg> 
