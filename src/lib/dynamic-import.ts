@@ -1,24 +1,42 @@
+import { ComponentType } from 'react';
 import dynamic from 'next/dynamic';
-import React from 'react';
 
-interface DynamicImportOptions {
-  /**
-   * Enable/disable SSR for the imported component
-   * Default: true
-   */
-  ssr?: boolean;
-  
-  /**
-   * Custom loading component to show while the component is loading
-   * Default: Minimal loading spinner
-   */
-  loading?: React.ComponentType<any> | null;
-  
-  /**
-   * Optional display name for the loaded component (useful for debugging)
-   */
-  displayName?: string;
+type ComponentImportMap = {
+  [key: string]: () => Promise<{ default: ComponentType<any> }>;
+};
+
+const componentImports: ComponentImportMap = {
+  // Add your component imports here
+  BlogComponent: () => import('@/components/features/home/blog-section'),
+  HeroComponent: () => import('@/components/sections/hero'),
+  TestimonialsComponent: () => import('@/components/features/home/testimonials'),
+  CtaComponent: () => import('@/components/shared/category/CategoryCta'),
+  // Add more components as needed
+};
+
+/**
+ * Dynamically imports a component by its name.
+ * 
+ * @param componentName - The name of the component to import
+ * @param options - Options for the dynamic import (loading component, SSR settings, etc.)
+ * @returns The dynamically imported component
+ */
+export function dynamicImport(
+  componentName: string,
+  options: {
+    loading?: ComponentType;
+    ssr?: boolean;
+  } = {}
+) {
+  if (!componentImports[componentName]) {
+    console.error(`Component "${componentName}" not found in import map`);
+    return null;
+  }
+
+  return dynamic(componentImports[componentName], options);
 }
+
+export default dynamicImport;
 
 /**
  * Creates an optimized, dynamically loaded component with proper TypeScript typing

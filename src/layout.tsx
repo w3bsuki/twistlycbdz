@@ -1,6 +1,13 @@
+import React from 'react';
+import { Inter } from 'next/font/google';
+import { ThemeProvider } from 'next-themes';
 import { CartProvider } from '@/context/cart-context'
 
-// ...existing imports
+// Import components from the correct locations
+import { Navbar } from '@/components/common/layout/navbar';
+import { FooterSection } from '@/components/ui/footer-section';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({
   children,
@@ -8,14 +15,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <ThemeProvider attribute="class" defaultTheme="light">
+      <div className={`${inter.className} min-h-screen flex flex-col`}>
         <CartProvider>
-          <Header />
-          {children}
-          <Footer />
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <FooterSection />
         </CartProvider>
-      </body>
-    </html>
+      </div>
+    </ThemeProvider>
   )
 } 

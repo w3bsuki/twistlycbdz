@@ -4,103 +4,111 @@ import * as React from "react"
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Facebook, Instagram, Linkedin, Send, Twitter } from "lucide-react"
+import Link from "next/link"
 
-function Footerdemo() {
+export function FooterSection() {
   return (
-    <footer className="relative border-t bg-gray-900 text-white">
-      <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-          <div className="relative">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight">Stay Connected</h2>
-            <p className="mb-6 text-gray-400">
-              Join our newsletter for the latest updates and exclusive offers.
-            </p>
-            <form className="relative">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                className="pr-12 backdrop-blur-sm"
-              />
-              <Button
-                type="submit"
-                size="icon"
-                className="absolute right-1 top-1 h-8 w-8 rounded-full bg-primary text-primary-foreground transition-transform hover:scale-105"
-              >
-                <Send className="h-4 w-4" />
-                <span className="sr-only">Subscribe</span>
-              </Button>
-            </form>
-          </div>
-          <div>
-            <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
-            <nav className="space-y-2 text-sm">
-              <a href="#" className="block text-gray-400 hover:text-white transition-colors">
-                Home
-              </Link>
-              <a href="#" className="block text-gray-400 hover:text-white transition-colors">
-                About Us
-              </Link>
-              <a href="#" className="block text-gray-400 hover:text-white transition-colors">
-                Services
-              </Link>
-              <a href="#" className="block text-gray-400 hover:text-white transition-colors">
-                Products
-              </Link>
-              <a href="#" className="block text-gray-400 hover:text-white transition-colors">
-                Contact
-              </Link>
-            </nav>
-          </div>
-          <div>
-            <h3 className="mb-4 text-lg font-semibold">Contact Us</h3>
-            <address className="space-y-2 text-sm not-italic text-gray-400">
-              <p>123 Innovation Street</p>
-              <p>Tech City, TC 12345</p>
-              <p>Phone: (123) 456-7890</p>
-              <p>Email: info@twistly.com</p>
-            </address>
-          </div>
-          <div className="relative">
-            <h3 className="mb-4 text-lg font-semibold">Follow Us</h3>
-            <div className="mb-6 flex space-x-4">
-              <Button variant="outline" size="icon" className="rounded-full">
-                <Facebook className="h-4 w-4" />
-                <span className="sr-only">Facebook</span>
-              </Button>
-              <Button variant="outline" size="icon" className="rounded-full">
-                <Twitter className="h-4 w-4" />
-                <span className="sr-only">Twitter</span>
-              </Button>
-              <Button variant="outline" size="icon" className="rounded-full">
-                <Instagram className="h-4 w-4" />
-                <span className="sr-only">Instagram</span>
-              </Button>
-              <Button variant="outline" size="icon" className="rounded-full">
-                <Linkedin className="h-4 w-4" />
-                <span className="sr-only">LinkedIn</span>
-              </Button>
-            </div>
-          </div>
-        </div>
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-8 text-center md:flex-row">
-          <p className="text-sm text-gray-400">
-            © 2024 Twistly CBD. All rights reserved.
-          </p>
-          <nav className="flex gap-4 text-sm">
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              Privacy Policy
+    <footer className="w-full border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-950" role="contentinfo" aria-label="Site footer">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-4 py-10 md:grid-cols-4 lg:px-8">
+        <div className="space-y-3">
+          <h4 className="text-lg font-semibold">Shop</h4>
+          <nav className="flex flex-col space-y-2" aria-label="Shop navigation">
+            <Link href="/shop" className="text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-gray-300">
+              All Products
             </Link>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              Terms of Service
+            <Link href="/health-and-wellness" className="text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-gray-300">
+              Health & Wellness
             </Link>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">
-              Cookie Settings
+            <Link href="/beauty-and-cosmetics" className="text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-gray-300">
+              Beauty & Cosmetics
+            </Link>
+            <Link href="/sport-and-recovery" className="text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-gray-300">
+              Sport & Recovery
+            </Link>
+            <Link href="/pet-cbd" className="text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-gray-300">
+              Pet CBD
+            </Link>
+            <Link href="/hybrid-and-mushrooms" className="text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-gray-300">
+              Hybrid & Mushrooms
             </Link>
           </nav>
+        </div>
+        <div className="space-y-3">
+          <h4 className="text-lg font-semibold">Company</h4>
+          <nav className="flex flex-col space-y-2" aria-label="Company navigation">
+            <Link href="/about" className="text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-gray-300">
+              About Us
+            </Link>
+            <Link href="/contact" className="text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-gray-300">
+              Contact
+            </Link>
+            <Link href="/lab" className="text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-gray-300">
+              Lab Results
+            </Link>
+            <Link href="/blog" className="text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-gray-300">
+              Blog
+            </Link>
+          </nav>
+        </div>
+        <div className="space-y-3">
+          <h4 className="text-lg font-semibold">Legal</h4>
+          <nav className="flex flex-col space-y-2" aria-label="Legal navigation">
+            <Link href="/privacy" className="text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-gray-300">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-gray-300">
+              Terms of Service
+            </Link>
+            <Link href="/shipping" className="text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-gray-300">
+              Shipping Policy
+            </Link>
+            <Link href="/faq" className="text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-gray-300">
+              FAQ
+            </Link>
+          </nav>
+        </div>
+        <div className="space-y-6">
+          <div>
+            <h4 className="text-lg font-semibold">Subscribe to our newsletter</h4>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              Get the latest updates on new products and upcoming sales.
+            </p>
+          </div>
+          <form className="flex space-x-2" aria-labelledby="newsletter-heading">
+            <span id="newsletter-heading" className="sr-only">Newsletter signup</span>
+            <Input
+              className="max-w-[180px] flex-1"
+              placeholder="Enter your email"
+              type="email"
+              aria-label="Email address"
+              required
+            />
+            <Button type="submit">Subscribe</Button>
+          </form>
+          <div className="flex space-x-4">
+            <a href="https://twitter.com/twistlycbd" className="text-gray-700 hover:text-blue-400 dark:text-gray-400 dark:hover:text-gray-300" aria-label="Twitter">
+              <Twitter className="h-5 w-5" aria-hidden="true" />
+            </a>
+            <a href="https://facebook.com/twistlycbd" className="text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-gray-300" aria-label="Facebook">
+              <Facebook className="h-5 w-5" aria-hidden="true" />
+            </a>
+            <a href="https://instagram.com/twistlycbd" className="text-gray-700 hover:text-pink-600 dark:text-gray-400 dark:hover:text-gray-300" aria-label="Instagram">
+              <Instagram className="h-5 w-5" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="border-t border-gray-200 dark:border-gray-800">
+        <div className="mx-auto flex w-full max-w-7xl flex-col justify-between gap-4 px-4 py-6 text-sm md:flex-row lg:px-8">
+          <p className="text-gray-500 dark:text-gray-400">
+            &copy; {new Date().getFullYear()} Twistly CBD. All rights reserved.
+          </p>
+          <p className="text-gray-500 dark:text-gray-400">
+            <span className="font-medium">Disclaimer:</span> Products are not intended to diagnose,
+            treat, cure or prevent any disease.
+          </p>
         </div>
       </div>
     </footer>
   )
-}
-
-export { Footerdemo } 
+} 
