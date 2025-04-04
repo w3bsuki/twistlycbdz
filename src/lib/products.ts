@@ -1,32 +1,4 @@
-export interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  discountPrice?: number;
-  images: string[];
-  image: string;
-  category: 'health' | 'beauty' | 'sport' | 'hybrid';
-  tags: string[];
-  rating: number;
-  reviewCount: number;
-  stock: number;
-  featured?: boolean;
-  bestSeller?: boolean;
-  new?: boolean;
-  discount?: number;
-  details: {
-    size: string;
-    concentration: string;
-    ingredients: string[];
-    usage: string;
-    benefits: string[];
-    forWho?: string;
-    dosage?: string;
-    usageTime?: string;
-    additionalInfo?: string;
-  };
-}
+import { Product } from '@/types';
 
 export const products: Product[] = [
   {
@@ -508,24 +480,24 @@ export const products: Product[] = [
   }
 ];
 
-export function getProductsByCategory(category: Product['category']) {
+export async function getProductsByCategory(category: Product['category']) {
   return products.filter(product => product.category === category);
 }
 
-export function getFeaturedProducts() {
+export async function getFeaturedProducts() {
   return products.filter(product => product.featured);
 }
 
-export function getBestSellerProducts(limit: number = 4): Product[] {
+export async function getBestSellerProducts(limit: number = 4): Promise<Product[]> {
   return products
     .filter(product => product.bestSeller)
     .slice(0, limit)
 }
 
-export function getNewProducts() {
+export async function getNewProducts() {
   return products.filter(product => product.new);
 }
 
-export function getProductById(id: string): Product | undefined {
+export async function getProductById(id: string): Promise<Product | undefined> {
   return products.find(product => product.id === id)
 } 

@@ -52,7 +52,7 @@ export const addToCart = (cart: CartState, product: Product, quantity: number = 
   console.log('addToCart called with:', { productId: product.id, productName: product.name, quantity });
   
   const existingItemIndex = cart.items.findIndex(item => item?.product?.id === product.id);
-  let newItems = [...cart.items];
+  const newItems = [...cart.items];
   
   if (existingItemIndex >= 0) {
     // Update quantity if item already exists

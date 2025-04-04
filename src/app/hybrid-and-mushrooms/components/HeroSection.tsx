@@ -97,7 +97,7 @@ export function HeroSection({ pageTheme }: HeroSectionProps) {
               className="relative h-[250px] lg:h-[300px] flex justify-center"
             >
               <Image
-                src="/images/hybrid-hero.png"
+                src="/images/logos/1.png"
                 alt="CBD and Mushroom Product"
                 fill
                 className="object-contain"

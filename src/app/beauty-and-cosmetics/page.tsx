@@ -1,5 +1,5 @@
 import React from 'react'
-import { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { 
   CategoryHero, 
   CategoryBenefits, 
@@ -12,15 +12,21 @@ import {
 import { QualityPromiseSection } from './components/QualityPromiseSection'
 import { CbdIngredientsSection } from './components/CbdIngredientsSection'
 import { Newsletter } from '@/components/Newsletter'
-import { beautyBenefits } from './data/benefits'
+import { beautyBenefitItems } from './data/benefits'
 import { beautyProducts } from './data/products'
 import { beautyTestimonials } from './data/testimonials'
 import { beautyFaqs } from './data/faqs'
 
 export const metadata: Metadata = {
-  title: 'Beauty & Cosmetics CBD - Twistly CBD',
-  description: 'Premium CBD beauty products for radiant skin and anti-aging benefits',
+  title: 'Beauty & Cosmetics CBD Products',
+  description: 'Enhance your beauty routine with our premium CBD-infused cosmetics and beauty products for skin, hair, and anti-aging solutions.',
 }
+
+export const viewport: Viewport = {
+  themeColor: "#a855f7", // Purple for beauty theme
+  width: "device-width",
+  initialScale: 1,
+};
 
 export default function BeautyAndCosmeticsPage() {
   return (
@@ -38,14 +44,14 @@ export default function BeautyAndCosmeticsPage() {
           text: "Learn About CBD Beauty",
           href: "/blog/cbd-beauty-benefits"
         }}
-        imageSrc="/images/beauty-serum.png"
+        imageSrc="/images/logos/1.png"
         imageAlt="CBD Beauty Products"
       />
       <CategoryBenefits
         theme={BeautyTheme}
         sectionTitle="CBD Beauty Benefits"
         sectionDescription="Discover how CBD can transform your skincare routine with these powerful beauty benefits"
-        benefits={beautyBenefits}
+        benefits={beautyBenefitItems}
         ctaText="Browse All Beauty Products"
         ctaLink="/shop/category/beauty"
       />
@@ -116,7 +122,7 @@ export default function BeautyAndCosmeticsPage() {
           text: "Beauty Consultation",
           href: "/beauty-consultation"
         }}
-        imageSrc="/images/beauty-serum.png"
+        imageSrc="/images/logos/1.png"
         imageAlt="CBD Beauty Products Collection"
         badgeText="Beauty Essentials"
       />

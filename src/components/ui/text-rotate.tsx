@@ -11,6 +11,9 @@ import {
 import {
   AnimatePresence,
   motion,
+  type Variant,
+  type Transition,
+  type Variants,
 } from "framer-motion"
 
 import { cn } from "@/lib/utils"
@@ -18,12 +21,12 @@ import { cn } from "@/lib/utils"
 interface TextRotateProps {
   texts: (string | ReactNode)[]
   rotationInterval?: number
-  initial?: any
-  animate?: any
-  exit?: any
+  initial?: Variant
+  animate?: Variant
+  exit?: Variant
   animatePresenceMode?: "sync" | "wait" | "popLayout"
   animatePresenceInitial?: boolean
-  transition?: any
+  transition?: Transition
   loop?: boolean
   auto?: boolean
   onNext?: (index: number) => void

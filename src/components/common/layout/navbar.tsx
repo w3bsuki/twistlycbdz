@@ -39,19 +39,19 @@ const productCategories = [
       {
         name: "Tinctures",
         description: "Full spectrum CBD oils for daily balance",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/wellness/tinctures"
       },
       {
         name: "Softgels",
         description: "Easy-to-take CBD capsules for consistent dosing",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/wellness/softgels"
       },
       {
         name: "Capsules",
         description: "Specialized formulas for targeted wellness benefits",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/wellness/capsules"
       }
     ]
@@ -64,19 +64,19 @@ const productCategories = [
       {
         name: "Tinctures",
         description: "Performance-focused CBD oils for active lifestyles",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/sport/tinctures"
       },
       {
         name: "Softgels",
         description: "Pre and post-workout supplements for recovery",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/sport/softgels"
       },
       {
         name: "Bandages",
         description: "Targeted relief for muscles and joints",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/sport/bandages"
       }
     ]
@@ -89,19 +89,19 @@ const productCategories = [
       {
         name: "Tinctures",
         description: "Beauty-enhancing CBD formulas for skin health",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/beauty/tinctures"
       },
       {
         name: "Serums",
         description: "Concentrated CBD treatments for targeted concerns",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/beauty/serums"
       },
       {
         name: "Oils",
         description: "Nourishing oils for face and body",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/beauty/oils"
       }
     ]
@@ -114,19 +114,19 @@ const productCategories = [
       {
         name: "Tinctures",
         description: "CBD-mushroom blend formulas for cognitive support",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/hybrid/tinctures"
       },
       {
         name: "Capsules",
         description: "Functional mushroom supplements with CBD",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/hybrid/capsules"
       },
       {
         name: "Gummies",
         description: "Tasty CBD-mushroom edibles for daily wellness",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/hybrid/gummies"
       }
     ]
@@ -139,19 +139,19 @@ const productCategories = [
       {
         name: "Dog Tinctures",
         description: "Calming CBD oil specially formulated for dogs",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/pet-cbd/dog-tinctures"
       },
       {
         name: "Cat Drops",
         description: "Gentle CBD formulas for feline wellness",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/pet-cbd/cat-drops"
       },
       {
         name: "Treats",
         description: "CBD-infused treats for joint support and anxiety relief",
-        image: "/images/tincture2.png",
+        image: "/images/logos/1.png",
         path: "/pet-cbd/treats"
       }
     ]
@@ -311,7 +311,7 @@ export function Navbar() {
                                   category.color === "amber" && "group-hover:border-amber-300 border-amber-100 bg-amber-50/50"
                                 )}>
                                   <Image
-                                    src="/images/tincture2.png"
+                                    src="/images/logos/1.png"
                                     alt={product.name}
                                     fill
                                     className="object-contain p-2 transition-all duration-300 ease-in-out group-hover:scale-110"
@@ -430,26 +430,8 @@ export function Navbar() {
             
             {/* Desktop Right Side Actions - Rearranged */}
             <div className="hidden md:flex items-center space-x-3">
-              {/* Cart with notification badge - with nested styling */}
-              <div className="relative">
-                <div className="inline-flex bg-gradient-to-br from-green-50/80 to-white rounded-full border border-green-200/40 shadow-sm p-1">
-                  <CartDrawer>
-                    <Button 
-                      variant="ghost" 
-                      size="icon" 
-                      className="text-white bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 relative rounded-full h-8 w-8 flex items-center justify-center"
-                      aria-label="Cart"
-                    >
-                      <ShoppingCart className="h-[16px] w-[16px]" />
-                    </Button>
-                  </CartDrawer>
-                </div>
-                {totalItems > 0 && (
-                  <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-green-600 text-[10px] font-medium text-white z-10 border border-white">
-                    {totalItems}
-                  </span>
-                )}
-              </div>
+              {/* Cart with notification badge */}
+              <CartDrawer />
               
               {/* User Menu - with nested styling */}
               <div className="inline-flex bg-gradient-to-br from-green-50/80 to-white rounded-full border border-green-200/40 shadow-sm p-1">
@@ -527,26 +509,8 @@ export function Navbar() {
                 </div>
               </div>
               
-              {/* Mobile Cart with badge */}
-              <div className="relative">
-                <div className="inline-flex bg-gradient-to-br from-green-50/80 to-white rounded-full border border-green-200/40 shadow-sm p-1">
-                  <CartDrawer>
-                    <Button 
-                      variant="ghost" 
-                      size="icon" 
-                      className="text-white bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 relative rounded-full h-8 w-8 flex items-center justify-center"
-                      aria-label="Cart"
-                    >
-                      <ShoppingCart className="h-[16px] w-[16px]" />
-                    </Button>
-                  </CartDrawer>
-                </div>
-                {totalItems > 0 && (
-                  <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-green-600 text-[10px] font-medium text-white z-10 border border-white">
-                    {totalItems}
-                  </span>
-                )}
-              </div>
+              {/* Mobile Cart */}
+              <CartDrawer />
               
               {/* Mobile Menu */}
               <div className="inline-flex bg-gradient-to-br from-green-50/80 to-white rounded-full border border-green-200/40 shadow-sm p-1">

@@ -21,32 +21,33 @@ import { Button } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
 import { cn } from '@/lib/utils'
 import { CategoryTheme } from './CategoryHero'
+import Link from 'next/link'
 
 // Icon mapping function
 const getIconByName = (iconName: string, className?: string) => {
   switch (iconName.toLowerCase()) {
     case 'heart':
-      return <Heart className={className} />;
+      return <Heart className={className} aria-hidden="true" />;
     case 'moon':
-      return <Moon className={className} />;
+      return <Moon className={className} aria-hidden="true" />;
     case 'brain':
-      return <Brain className={className} />;
+      return <Brain className={className} aria-hidden="true" />;
     case 'activity':
-      return <Activity className={className} />;
+      return <Activity className={className} aria-hidden="true" />;
     case 'leaf':
-      return <Leaf className={className} />;
+      return <Leaf className={className} aria-hidden="true" />;
     case 'shield':
-      return <Shield className={className} />;
+      return <Shield className={className} aria-hidden="true" />;
     case 'clock':
-      return <Clock className={className} />;
+      return <Clock className={className} aria-hidden="true" />;
     case 'zap':
-      return <Zap className={className} />;
+      return <Zap className={className} aria-hidden="true" />;
     case 'timer':
-      return <Timer className={className} />;
+      return <Timer className={className} aria-hidden="true" />;
     case 'flame':
-      return <Flame className={className} />;
+      return <Flame className={className} aria-hidden="true" />;
     default:
-      return <Heart className={className} />;
+      return <Heart className={className} aria-hidden="true" />;
   }
 };
 
@@ -268,14 +269,16 @@ export function CategoryBenefits({
   };
   
   const classes = getClasses();
+  const sectionId = `${theme.name.toLowerCase().replace(/[&\s]+/g, '-')}-benefits`;
   
   return (
     <section 
       className={cn(classes.section, className)}
-      id={`${theme.name.toLowerCase().replace(/[&\s]+/g, '-')}-benefits`}
+      id={sectionId}
+      aria-labelledby={`${sectionId}-heading`}
     >
       {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div className={classes.bgDecorationPrimary}></div>
         <div className={classes.bgDecorationAccent}></div>
       </div>
@@ -285,18 +288,18 @@ export function CategoryBenefits({
           <div className="text-center mb-4">
             <div className={classes.badgeOuter}>
               <div className={classes.badgeInner}>
-                <Sparkles className="h-3.5 w-3.5" />
+                <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
                 <span>{theme.name} Benefits</span>
               </div>
             </div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mt-3 mb-2">{sectionTitle}</h2>
+            <h2 id={`${sectionId}-heading`} className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mt-3 mb-2">{sectionTitle}</h2>
             <p className="text-gray-600 max-w-2xl mx-auto mb-4 text-sm md:text-base leading-relaxed">
               {sectionDescription}
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {benefits.map((benefit) => (
+            {benefits.map((benefit, index) => (
               <div
                 key={benefit.title}
                 className="h-full"
@@ -312,7 +315,7 @@ export function CategoryBenefits({
                   >
                     <CardContent className="p-3 flex flex-col h-full">
                       <div className="flex items-start gap-2.5 mb-2">
-                        <div className={classes.iconBackground}>
+                        <div className={classes.iconBackground} aria-hidden="true">
                           {getIconByName(benefit.iconName, classes.iconColor)}
                         </div>
                         
@@ -322,7 +325,7 @@ export function CategoryBenefits({
                             <span className="text-xs text-gray-500">
                               <span className={classes.statHighlight}>{benefit.stats.satisfaction}</span> satisfaction
                             </span>
-                            <span className="mx-1 text-gray-300">•</span>
+                            <span className="mx-1 text-gray-300" aria-hidden="true">•</span>
                             <span className="text-xs text-gray-500">
                               <span className={classes.statHighlight}>{benefit.stats.timeToEffect}</span>
                             </span>
@@ -333,17 +336,21 @@ export function CategoryBenefits({
                       <p className="text-gray-600 text-xs mb-2 flex-grow h-[4rem] overflow-hidden">{benefit.description}</p>
                       
                       <div className="mt-auto">
-                        <div className={classes.divider}></div>
+                        <div className={classes.divider} aria-hidden="true"></div>
                         <Button 
                           variant="ghost" 
                           size="sm" 
                           className={classes.buttonText}
                           asChild
                         >
-                          <a href="#featured-products" className="flex items-center">
+                          <Link 
+                            href="#featured-products" 
+                            className="flex items-center" 
+                            aria-label={`View products related to ${benefit.title}`}
+                          >
                             View related products
-                            <ChevronRight className="h-3 w-3 ml-1" />
-                          </a>
+                            <ChevronRight className="h-3 w-3 ml-1" aria-hidden="true" />
+                          </Link>
                         </Button>
                       </div>
                     </CardContent>
@@ -361,10 +368,14 @@ export function CategoryBenefits({
                 className={classes.ctaButton}
                 asChild
               >
-                <a href={ctaLink} className="flex items-center">
+                <Link 
+                  href={ctaLink} 
+                  className="flex items-center" 
+                  aria-label={ctaText}
+                >
                   {ctaText}
-                  <ChevronRight className="h-3 w-3 ml-1" />
-                </a>
+                  <ChevronRight className="h-3 w-3 ml-1" aria-hidden="true" />
+                </Link>
               </Button>
             </div>
           </div>

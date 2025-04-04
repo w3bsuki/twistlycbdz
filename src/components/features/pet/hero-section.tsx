@@ -55,7 +55,7 @@ export function PetHeroSection({
   title = "Premium CBD Products for Pets",
   subtitle = "Naturally Supporting Your Pet's Wellness",
   description = "Our veterinarian-developed CBD formulations help manage your pet's anxiety, joint discomfort, and overall well-being with natural, THC-free ingredients they'll love.",
-  imageUrl = "/images/pet-hero.jpg",
+  imageUrl = "/images/pet-cbd-cta.jpg",
   primaryButtonText = "Shop Pet CBD",
   primaryButtonAction,
   secondaryButtonText = "Learn More",

@@ -99,11 +99,14 @@ export default function ContactPage() {
               <div className="flex items-start space-x-2 pt-2">
                 <div className="flex items-center h-5">
                   <input
+                    id="consent"
                     type="checkbox"
                     className="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
+                    aria-describedby="consent-description"
+                    title="Marketing communications consent"
                   />
                 </div>
-                <label htmlFor="consent" className="text-sm text-gray-500">
+                <label htmlFor="consent" className="text-sm text-gray-500" id="consent-description">
                   I agree to receive occasional marketing communications from Twistly. You can unsubscribe at any time.
                 </label>
               </div>

@@ -770,6 +770,33 @@ We will proceed with:
   - Implemented fallbacks to prevent undefined property errors
   - Fixed errors appearing on Sport & Recovery, Beauty & Cosmetics, and Hybrid & Mushrooms pages
 
+## Hydration Mismatch Fixes (2024-06-25)
+
+During our continued performance optimization, we encountered and fixed a hydration mismatch error that was occurring between the server and client rendering:
+
+### Hydration Issues
+
+- **HTML Class Order Mismatch**:
+  - Fixed inconsistent class ordering between server and client rendering
+  - Updated the root layout HTML element to use consistent class ordering
+  - Changed from `scroll-smooth light ${inter.variable}` to `scroll-smooth ${inter.variable} light`
+  - This ensures the browser can properly match the server-rendered HTML with client hydration
+
+- **Theme Provider Enhancements**:
+  - Added a consistent storage key to the theme provider
+  - Improved initialization stability by using a consistent storage key "twistly-theme"
+  - Ensures application theme is consistently applied across server and client renders
+  - Prevents flashes of incorrect theme during page load
+
+These changes eliminate React hydration warnings and ensure a smooth, consistent experience across all pages. The hydration mismatch was causing React to detect differences between the server-rendered HTML and the client-side component tree, which could lead to unexpected UI behavior and performance issues.
+
+## Next Steps
+
+- Further optimize image loading strategies
+- Refine error boundaries for improved UX during network issues
+- Create a comprehensive loading state system
+- Implement comprehensive E2E tests for critical paths
+
 ## Responsive Design Improvements
 
 - Enhanced ProductDetail component for better mobile experience
@@ -865,106 +892,690 @@ We will proceed with:
 - Implement proper error handling in forms and API calls
 - Add automated testing for critical components
 
-## Latest Fixes (2024-06-20)
+## Latest Fixes (2024-06-22)
 
-- Fixed parsing error in footer component
-  - Fixed incorrect JSX syntax in the Contact Us section
-  - Replaced improper `</Link>` closing tags with `</a>` tags for HTML anchor elements
-  - Resolved build error causing the entire application to fail
-  - Ensured consistent usage of anchor vs Link components throughout the footer
+- Fixed multiple tag mismatch errors in components
+  - Fixed tag mismatches in all BenefitsSection components by changing `</Link>` to `</a>`
+  - Fixed mismatches in CTASection, navbar, and other components where anchor tags were closed incorrectly
+  - Replaced all incorrect `<Link>` components with proper `<a>` tags for better consistency
+  - Fixed parsing errors that prevented the site from compiling properly
+  - Standardized link patterns across all components
 
-- Fixed parsing error in navbar component
-  - Fixed unescaped HTML entities (&quot;) in Button component props
-  - Replaced HTML entities with proper JSX quotes in the Popular Searches section
-  - Resolved build error that was preventing the application from compiling
-  - Improved code consistency by using proper JSX attribute syntax
+- Fixed issues caused by mixing Next.js Link and HTML anchor tags
+  - Created consistent pattern for using anchor tags with Button asChild prop
+  - Fixed issues in hero sections, benefits sections, navigation components
+  - Ensured proper accessibility attributes on links
+  - Maintained proper styling and interaction patterns
+  - Fixed navigation components to ensure proper markup
 
-- Fixed parsing error in cart-drawer component 
-  - Fixed unescaped HTML entities (&quot; and &apos;) in various text elements
-  - Replaced HTML entities with proper JSX quotes for strings and attributes
-  - Fixed accessibility label text to use proper quote syntax
-  - Ensured consistent string formatting throughout component
+- Next steps for cleanup
+  - Continue fixing linting issues related to unused imports and variables
+  - Implement proper error handling throughout the application
+  - Standardize approach to links throughout the codebase (either use Next.js Link consistently or anchor tags)
+  - Complete comprehensive check for unescaped entities in text content
+  - Test responsive behavior on various devices
 
-- Fixed parsing error in category-highlights component
-  - Fixed unescaped HTML entities (&quot;) in the SliderContent section
-  - Replaced HTML entities with proper JSX quotes in className and props
-  - Resolved build error in the homepage category highlights section
-  - Fixed component syntax to ensure proper JSX rendering
+This round of fixes addresses the most critical parsing errors that were preventing proper compilation and causing hydration mismatches, allowing development to continue with the refactoring plan.
 
-- Fixed parsing error in cbd-benefits component
-  - Fixed unescaped HTML entities (&quot; and &apos;) in the BenefitIcon component
-  - Replaced HTML entities with proper JSX quotes in className attributes
-  - Fixed string concatenation and category display logic
-  - Also fixed HTML entities in badge display and MiniDrTwistly component
+## Performance and Accessibility Improvements (2024-06-22)
 
-- Fixed parsing error in dr-twistly-section component
-  - Fixed unescaped HTML entities (&quot; and &apos;) in the chat interface
-  - Replaced HTML entities with proper JSX quotes in message type checks
-  - Fixed className attributes and text content with proper quotes
-  - Resolved build error preventing the display of the Dr. Twistly section
+Following our critical bug fixes, several performance and accessibility improvements have been implemented:
 
-- Fixed parsing error in featured-products-optimized component
-  - Fixed unescaped HTML entities (&apos;) in TabsTrigger components
-  - Replaced HTML entities with proper JSX quotes in className template literals
-  - Fixed error message formatting with proper quotes
-  - Resolved build error preventing the display of featured products on homepage
+### Performance Optimization
 
-- Fixed parsing error in testimonials component
-  - Fixed unescaped HTML entities (&quot; and &apos;) in paragraph elements
-  - Replaced HTML entities with proper JSX quotes in className attributes
-  - Fixed customer testimonial text formatting with proper quotes
-  - Resolved build error preventing the display of customer testimonials on homepage
+- **Font Loading Improvements**:
+  - Created a dedicated `fonts.ts` module to manage font loading strategy
+  - Implemented proper font fallbacks and subset loading
+  - Added preconnect resource hints for Google Fonts
+  - Optimized font display with swap strategy to prevent content blocking
 
-- Fixed parsing error in skip-to-content component
-  - Fixed HTML tag mismatch in the SkipToContent component
-  - Replaced improper `</Link>` closing tag with `</a>` to match opening `<a>` tag
-  - Resolved build error in the accessibility component
-  - Fixed inconsistency between opening and closing tags
+- **Image Optimization**:
+  - Added proper `sizes` attributes to all images for responsive loading
+  - Applied lazy loading to non-critical images to improve initial page load
+  - Set quality settings to balance visual fidelity and file size
+  - Preloaded critical logo image to improve perceived performance
 
-- Fixed parsing error in CategoryBenefits component
-  - Fixed HTML tag mismatch by replacing `</Link>` closing tags with `</a>` tags
-  - Replaced HTML entities (&apos;) in the section ID with proper hyphen characters
-  - Fixed element nesting in Button components wrapping anchor elements
-  - Resolved build error that was preventing category benefits sections from rendering
+- **Resource Hints Implementation**:
+  - Added preconnect hints for external domains
+  - Preloaded critical resources to improve initial rendering
+  - Enhanced metadata for better SEO and social sharing
 
-- Fixed parsing error in CategoryCta component
-  - Fixed unescaped HTML entities (&apos;) in the section ID
-  - Replaced HTML entities with proper hyphen characters in the ID attribute
-  - Ensured consistent section ID formatting across shared category components
-  - Resolved build error that was preventing category CTA sections from rendering
+- **Bundle Optimization**:
+  - Maintained webpack configuration improvements for code splitting and tree shaking
+  - Created vendor chunk splitting for better caching strategy
+  - Implemented dynamic imports for non-critical components
 
-- Fixed parsing error in CategoryFaq component
-  - Fixed unescaped HTML entities (&quot; and &apos;) in the AI chat section
-  - Replaced HTML entities with proper JSX quotes in Button props and text content
-  - Fixed section ID attribute to use proper hyphen characters
-  - Resolved build error that was preventing category FAQ sections from rendering
+### Accessibility Improvements
 
-- Fixed parsing error in CategoryFeaturedProducts component
-  - Fixed unescaped HTML entities (&apos;) in the section ID
-  - Replaced HTML entities with proper hyphen characters in the ID attribute
-  - Ensured consistent section ID formatting across shared category components
-  - Resolved build error that was preventing featured products sections from rendering
+- **Enhanced Keyboard Navigation**:
+  - Added visible focus states to interactive elements
+  - Improved tab order for logical navigation flow
+  - Added focus ring styles that work in high contrast mode
 
-- Fixed parsing error in CategoryTestimonials component
-  - Fixed unescaped HTML entities (&quot; and &apos;) in text elements and attributes
-  - Replaced HTML entities with proper JSX quotes in className and string values
-  - Fixed section ID attribute to use proper hyphen characters
-  - Resolved build error that was preventing testimonials from rendering on category pages
+- **ARIA Attributes and Semantic HTML**:
+  - Added proper ARIA labels to quantity controls
+  - Improved tab panels with appropriate ARIA roles and relationships
+  - Enhanced button accessibility with descriptive labels
+  - Made quantity controls properly announce changes to screen readers
 
-- Fixed parsing error in CbdIngredientsSection component
-  - Fixed unescaped HTML entities (&quot; and &apos;) in Button component props
-  - Replaced HTML entities with proper JSX quotes in strings and template literals
-  - Improved consistency of quote usage throughout the component
-  - Resolved build error that was preventing CBD ingredients sections from rendering
+- **Content Structure**:
+  - Improved heading hierarchy for better screen reader navigation
+  - Enhanced tab interfaces with proper labeling and control relationships
+  - Added visual borders to tabs for better contrast and usability
+  - Applied consistent text colors for better readability
 
-- Created automated fix scripts for HTML entity issues
-  - Developed entity-fix.js to replace common HTML entities across the codebase
-  - Created id-fix.js to fix section ID attributes with template literals
-  - Implemented comprehensive-entity-fix.js to systematically address all entity issues
-  - The script analyzes all JSX files and fixes HTML entities in various contexts:
-    - General HTML entities in content
-    - Entities in JSX attributes like className, style, and id
-    - Entities in template literals used for section IDs
-    - Entities in string literals and interpolations
-  - This automated approach ensures consistent quote usage across the entire codebase
-  - Prevented future build errors by standardizing proper JSX syntax
+These improvements help ensure that the Twistly CBD site is not only visually appealing and fast, but also accessible to users with disabilities and those using assistive technologies.
+
+## Cart and Button Improvements (2024-06-22)
+
+To further enhance the user interface and functionality, the following improvements have been implemented:
+
+- **Cart Functionality Fixes**:
+  - Fixed the cart toggle button to properly open and close the cart drawer
+  - Simplified button implementation for better event handling
+  - Removed unnecessary wrapper elements that were causing styling conflicts
+  - Ensured proper z-index handling for the cart popover content
+
+- **Button Styling Standardization**:
+  - Implemented proper shadcn Button component styling for the cart button
+  - Updated checkout button to use the site's green color scheme
+  - Improved hover states and transitions for a more polished look
+  - Standardized button size and border radius for consistency
+
+- **User Interface Enhancements**:
+  - Added shipping information to the cart summary
+  - Improved spacing and typography in the cart drawer
+  - Enhanced the button labels for clarity
+  - Maintained badge notification for cart items
+
+These improvements ensure that the cart functionality works as expected while maintaining a consistent design language throughout the site, following the shadcn component library's styling patterns.
+
+## TypeScript and Code Quality Improvements (2024-06-23)
+
+Following the Next.js metadata and viewport fixes, we've made significant improvements to the codebase's type safety, navigation, and error handling:
+
+### TypeScript Type Safety Enhancements
+
+- **Replaced `any` Types with Proper Interfaces**:
+  - Added proper TypeScript types for Framer Motion variants and transitions in the `text-rotate.tsx` component
+  - Created proper interfaces for the animation configurations in the `cbd-benefits.tsx` component
+  - Defined specific type for the carousel API based on embla-carousel's functionality
+  - Eliminated implicit `any` types to improve code reliability
+
+### Next.js Link Component Standardization
+
+- **Converted HTML Anchor Tags to Next.js Link Components**:
+  - Updated the `navbar-base.tsx` component to use proper Next.js `Link` components instead of HTML `<a>` tags
+  - Maintained proper styling and accessibility attributes throughout the conversion
+  - Ensured type-safe props for improved developer experience
+  - Fixed all button links to use Next.js Link components with the `asChild` prop
+  - Created consistency across navigation elements
+
+### Error Handling Improvements
+
+- **Enhanced Cart Context Error Handling**:
+  - Implemented custom error classes (`CartError`, `ItemNotFoundError`, `QuantityError`) for better error categorization
+  - Added proper type checking in error handlers using `instanceof` checks
+  - Improved error messages with more descriptive text and product details
+  - Added validation checks before operations to prevent invalid states
+  - Implemented comprehensive error handling for all cart operations
+
+### Code Quality Refinements
+
+- **Best Practices Implementation**:
+  - Added proper default parameter typing in function signatures
+  - Improved variable naming for better clarity
+  - Added proper null/undefined checks before operations
+  - Implemented consistent error handling patterns
+  - Fixed potential edge cases in logic
+
+These improvements contribute to a more robust, type-safe codebase with improved developer experience and fewer potential runtime errors. The standardization of Next.js Link components will also lead to better client-side navigation performance.
+
+## Accessibility and Performance Improvements (2024-06-23)
+
+### Completed Optimizations
+
+- **Next.js Async Usage Fixed**:
+  - Fixed critical error in product detail pages (`[productId]/page.tsx`) by properly handling async params
+  - Resolved all "Route used params.productId" errors by using object destructuring on params objects
+  - Updated product utility functions to be properly async for better compatibility with modern Next.js
+
+- **Accessibility Enhancements**:
+  - **Footer Component**:
+    - Added proper `role="contentinfo"` and `aria-label` to the footer
+    - Improved navigation with semantic `<nav>` elements and proper `aria-label` attributes
+    - Added ARIA attributes to decorative icons with `aria-hidden="true"`
+    - Improved form accessibility with `aria-labelledby` for the newsletter signup
+    - Enhanced link descriptions with `aria-label` for screen reader users
+  
+  - **CategoryBenefits Component**:
+    - Added proper heading structure with `aria-labelledby` and unique IDs
+    - Marked decorative elements with `aria-hidden="true"`
+    - Improved link labels with descriptive `aria-label` attributes
+    - Enhanced semantic structure and element relationships
+
+### Next Steps
+
+1. **Performance Optimization**:
+   - Implement lazy loading for below-the-fold images
+   - Add suspense boundaries for non-critical UI components
+   - Refactor remaining components with unused imports
+   - Analyze and fix useEffect dependencies in components
+
+2. **Accessibility Improvements**:
+   - Run accessibility audit tools (Lighthouse/axe) to identify remaining issues
+   - Add keyboard navigation enhancements for interactive components
+   - Improve color contrast where needed
+   - Add skip links for keyboard users
+
+3. **Testing**:
+   - Implement automated tests for key components
+   - Add integration tests for user flows
+   - Test with screen readers and assistive technology
+
+## Performance Optimizations (2024-06-24)
+
+### Image Loading and Performance Improvements
+
+- **Enhanced `OptimizedImage` Component**:
+  - Added proper lazy loading strategy for non-priority images
+  - Implemented automatic loading attribute selection based on priority flag
+  - Improved error handling for failed image loads
+  - Maintained backward compatibility with existing component usage
+
+- **Next.js Image Configuration**:
+  - Configured `dangerouslyAllowSVG: true` in `next.config.ts` to fix SVG loading issues
+  - Added proper `contentDispositionType: 'attachment'` for security enhancement
+  - Optimized image formats with AVIF and WebP prioritization
+  - Set appropriate device and image sizes for responsive behavior
+
+- **Accessibility Enhancements**:
+  - **Footer Component**:
+    - Added proper `role="contentinfo"` and semantic HTML structure
+    - Improved navigation with semantic `<nav>` elements and proper ARIA labels
+    - Enhanced form accessibility with descriptive labeling
+    - Improved link descriptions for screen reader users
+  
+  - **CategoryBenefits Component**:
+    - Added structured heading hierarchies with proper ARIA relationships
+    - Marked decorative elements with `aria-hidden="true"`
+    - Enhanced user interaction with descriptive link labels
+
+### Webpack Optimizations
+
+- Enhanced the Webpack configuration with:
+  - Optimized chunk splitting for better caching
+  - Configured tree shaking for smaller bundle sizes
+  - Implemented aggressive code elimination for production builds
+
+### Next Steps
+
+The website is now running more efficiently with improved performance and accessibility. Future optimizations should focus on:
+
+1. **Lazy Component Loading**:
+   - Implement dynamic imports for non-critical components
+   - Add suspense boundaries for code-split components
+
+2. **Advanced Performance**:
+   - Implement React.memo and useMemo for complex rendering optimizations
+   - Add resource hints (preconnect, prefetch) for critical third-party resources
+
+3. **Testing and Monitoring**:
+   - Run Lighthouse audits to verify improvements
+   - Implement performance monitoring with Core Web Vitals tracking
+
+## Performance Optimization and Error Handling (2024-06-24)
+
+Following the implementation of image optimizations and accessibility enhancements, we've made significant improvements to the codebase's performance, resilience, and user experience:
+
+### Component Optimization
+
+- **Memoization Implementation**:
+  - Updated shared components (CategoryFaq, CategoryTestimonials) to use React.useMemo and React.useCallback
+  - Prevented unnecessary recalculations in theme-based styling
+  - Added proper event handler optimization with useCallback
+  - Broken down large components into logical, memoized sub-components
+  - Improved performance for dynamically rendered item lists
+
+- **ProductDetail Component Refactoring**:
+  - Reorganized component structure for better maintainability
+  - Implemented memoization to prevent unnecessary re-renders
+  - Created separate, memoized components for product gallery, tabs, and related products
+  - Added proper prop handling for dynamic color schemes
+  - Optimized image loading with proper sizes and loading strategies
+  - Improved accessibility with enhanced ARIA attributes
+
+### Error Handling and Loading States
+
+- **Robust Error Management**:
+  - Added comprehensive try/catch blocks for API interactions
+  - Implemented fallback content for error states
+  - Enhanced error logging with informative messages
+  - Created user-friendly error UI with recovery options
+
+- **Loading State Improvements**:
+  - Added Suspense boundaries with skeleton UI components
+  - Created ProductSkeleton component for improved loading UX
+  - Implemented progressive loading patterns for main content
+  - Optimized loading sequence to prioritize critical content
+
+### NextJS Integration Fixes
+
+- **Async Route Handler Fixes**:
+  - Fixed "Route used params.productId" error in dynamic routes
+  - Updated metadata generation function to properly await params
+  - Implemented proper error handling in generateMetadata
+  - Created separate component for product content to work with Suspense
+
+### Accessibility Improvements
+
+- **Enhanced ARIA Implementation**:
+  - Fixed ARIA attribute values to conform to standards
+  - Added descriptive labels for interactive elements
+  - Implemented proper aria-hidden attributes for decorative elements
+  - Enhanced aria-label content with detailed descriptions
+  - Added proper roles and relationships between elements
+
+These changes collectively improve the performance, resilience, and user experience of the application while adhering to modern React best practices and accessibility standards.
+
+## Next Steps
+
+- Continue optimizing the shopping cart experience
+- ✅ Implement lazy loading for below-the-fold content in category pages
+- ✅ Create comprehensive E2E tests for critical paths
+
+## End-to-End Testing Implementation (2024-06-26)
+
+We've implemented comprehensive end-to-end testing using Playwright to ensure the reliability and quality of the website across different browsers and devices:
+
+### Test Infrastructure
+
+- **Playwright Configuration**:
+  - Set up a robust Playwright configuration for cross-browser testing
+  - Configured test runners for Chromium, Firefox, Safari, and mobile devices
+  - Implemented test reports and failure screenshots/videos
+  - Added automatic local development server startup for testing
+
+- **Test Coverage Areas**:
+  - Created comprehensive test suites covering critical user journeys:
+    - Navigation and core functionality
+    - Product browsing and details
+    - Shopping cart operations
+    - Accessibility compliance
+    - Performance metrics
+
+- **Test Types and Capabilities**:
+  - **Functional Tests**: Verify core functionality works as expected
+  - **Accessibility Tests**: Ensure WCAG compliance using axe-core integration
+  - **Performance Tests**: Monitor Core Web Vitals and page load metrics
+  - **Mobile Responsiveness**: Test responsive behavior on mobile devices
+
+### Specific Test Cases
+
+- **Navigation Tests**:
+  - Verify all category pages are accessible
+  - Test main navigation functionality
+  - Confirm proper linking between pages
+
+- **Product & Cart Tests**:
+  - Test product filtering and browsing
+  - Verify product details display correctly
+  - Test adding/removing items from cart
+  - Verify quantity adjustments and price calculations
+  - Test checkout flow
+
+- **Accessibility Tests**:
+  - Verify WCAG 2.1 AA compliance using axe-core
+  - Test keyboard navigation and focus management
+  - Verify screen reader compatibility
+  - Test focus trapping in modals and drawers
+
+- **Performance Tests**:
+  - Measure First Contentful Paint (FCP)
+  - Verify Core Web Vitals metrics are collected
+  - Test image loading efficiency
+  - Measure navigation timing metrics
+
+### Benefits
+
+1. **Quality Assurance**:
+   - Catch regressions before deployment
+   - Ensure cross-browser compatibility
+   - Verify mobile responsiveness
+
+2. **Accessibility Compliance**:
+   - Automated checks for accessibility issues
+   - Keyboard navigation verification
+   - Screen reader compatibility
+
+3. **Performance Monitoring**:
+   - Track page load times over time
+   - Detect performance regressions
+   - Verify optimization effectiveness
+
+4. **Developer Experience**:
+   - Clear test reports and failure diagnostics
+   - Easy-to-maintain test structure
+   - Interactive debug mode for troubleshooting
+
+The E2E test suite provides confidence in the reliability and quality of the website, ensuring that critical user journeys continue to work as expected as new features are added and existing ones are modified.
+
+## Lazy Loading Implementation (2024-06-25)
+
+To improve performance and reduce initial page load times, we've implemented comprehensive lazy loading for below-the-fold content:
+
+### Custom Hooks and Components
+
+- **`useLazyLoad` Hook**:
+  - Created a flexible hook that wraps the IntersectionObserver API
+  - Configurable thresholds and root margins for precise control
+  - Support for immediate loading of critical content
+  - Built-in loading state management with TypeScript typing
+
+- **`LazySection` Component**:
+  - General-purpose component for lazily loading any content
+  - Provides default skeleton loader while content is loading
+  - Allows custom placeholders for better user experience
+  - Accessible implementation with proper ARIA attributes
+
+- **`LazyImage` Component**:
+  - Enhanced image component for advanced lazy loading
+  - Smooth fade-in transitions for loaded images
+  - Built-in error handling with fallback images
+  - Support for blur placeholders and aspect ratios
+  - Automatically determines optimal loading strategy based on image position
+
+### Technical Implementation
+
+- Used IntersectionObserver API for efficient viewport detection
+- Implemented React hooks pattern for reusable lazy loading logic
+- Optimized loading behavior with configurable pre-loading distance (rootMargin)
+- Added proper loading state transitions with CSS animations
+- Created TypeScript interfaces for type-safe implementations
+
+### Benefits
+
+1. **Performance Improvements**:
+   - Reduced initial page load time by deferring non-critical content
+   - Decreased bandwidth usage by loading images only when needed
+   - Improved Core Web Vitals metrics (LCP, CLS)
+
+2. **User Experience**:
+   - Faster perceived load times with prioritized above-the-fold content
+   - Smooth loading transitions prevent jarring layout shifts
+   - Fallback states for errors improve resilience
+
+3. **Developer Experience**:
+   - Consistent API for lazy loading different content types
+   - Type-safe implementation with proper TypeScript definitions
+   - Flexible configuration options for different use cases
+   - Well-documented components with usage examples
+
+## Fixed Hydration and Parameter Errors (2024-06-25)
+
+Additionally, we've fixed several issues that were causing errors in the console:
+
+- **Dynamic Route Parameter Error**:
+  - Fixed "Route /shop/[productId] used params.productId" warning
+  - Updated product page to properly handle params without destructuring
+  - Resolved parameter handling in generateMetadata and main page component
+  - Ensured proper async context handling in dynamic routes
+
+- **Cart Context Improvements**:
+  - Enhanced error handling in cart operations
+  - Added type checking for improved reliability
+  - Fixed potential edge cases in quantity updates
+
+These improvements collectively enhance the site's performance, user experience, and code quality, addressing key items from our refactoring plan.
+
+## Performance Monitoring with Core Web Vitals (2024-06-25)
+
+As part of our ongoing performance optimization efforts, we've implemented a comprehensive Core Web Vitals monitoring system to track and analyze the website's performance metrics in real-time.
+
+### Core Web Vitals Tracking
+
+- **Analytics Service**:
+  - Created a centralized analytics service in `src/lib/analytics.ts`
+  - Implemented support for various event types including page views, e-commerce events, and web vitals
+  - Designed with flexible payload structure to accommodate different metrics
+  - Built with proper TypeScript typing for improved developer experience
+
+- **Web Vitals Implementation**:
+  - Added the `web-vitals` package for accurate measurement of key metrics
+  - Created `src/lib/web-vitals.ts` to handle metric collection and processing
+  - Configured thresholds based on Google's recommended values for CLS, FID, LCP, FCP, TTFB, and INP
+  - Implemented rating system to classify metrics as 'good', 'needs-improvement', or 'poor'
+
+- **Performance Monitor Component**:
+  - Built a `PerformanceMonitor` component for site-wide performance tracking
+  - Added automatic page view tracking on route changes
+  - Implemented client-side error tracking to monitor runtime issues
+  - Integrated with Next.js to work correctly with the App Router
+
+- **Navigation Timing**:
+  - Added support for collecting detailed navigation timing metrics
+  - Tracking DNS lookup time, TCP connection time, request/response times
+  - Measuring DOM interactive and complete timings
+
+This implementation allows us to:
+1. Identify pages with performance issues
+2. Track performance improvements over time
+3. Establish performance budgets for critical user journeys
+4. Detect performance regressions early
+
+The data collected will be instrumental in making data-driven decisions for future optimizations, especially for critical user flows like product browsing and checkout.
+
+## Next Steps
+
+- Continue optimizing the shopping cart experience
+- ✅ Implement lazy loading for below-the-fold content in category pages
+- ✅ Create comprehensive E2E tests for critical paths
+
+## End-to-End Testing Implementation (2024-06-26)
+
+We've implemented comprehensive end-to-end testing using Playwright to ensure the reliability and quality of the website across different browsers and devices:
+
+### Test Infrastructure
+
+- **Playwright Configuration**:
+  - Set up a robust Playwright configuration for cross-browser testing
+  - Configured test runners for Chromium, Firefox, Safari, and mobile devices
+  - Implemented test reports and failure screenshots/videos
+  - Added automatic local development server startup for testing
+
+- **Test Coverage Areas**:
+  - Created comprehensive test suites covering critical user journeys:
+    - Navigation and core functionality
+    - Product browsing and details
+    - Shopping cart operations
+    - Accessibility compliance
+    - Performance metrics
+
+- **Test Types and Capabilities**:
+  - **Functional Tests**: Verify core functionality works as expected
+  - **Accessibility Tests**: Ensure WCAG compliance using axe-core integration
+  - **Performance Tests**: Monitor Core Web Vitals and page load metrics
+  - **Mobile Responsiveness**: Test responsive behavior on mobile devices
+
+### Specific Test Cases
+
+- **Navigation Tests**:
+  - Verify all category pages are accessible
+  - Test main navigation functionality
+  - Confirm proper linking between pages
+
+- **Product & Cart Tests**:
+  - Test product filtering and browsing
+  - Verify product details display correctly
+  - Test adding/removing items from cart
+  - Verify quantity adjustments and price calculations
+  - Test checkout flow
+
+- **Accessibility Tests**:
+  - Verify WCAG 2.1 AA compliance using axe-core
+  - Test keyboard navigation and focus management
+  - Verify screen reader compatibility
+  - Test focus trapping in modals and drawers
+
+- **Performance Tests**:
+  - Measure First Contentful Paint (FCP)
+  - Verify Core Web Vitals metrics are collected
+  - Test image loading efficiency
+  - Measure navigation timing metrics
+
+### Benefits
+
+1. **Quality Assurance**:
+   - Catch regressions before deployment
+   - Ensure cross-browser compatibility
+   - Verify mobile responsiveness
+
+2. **Accessibility Compliance**:
+   - Automated checks for accessibility issues
+   - Keyboard navigation verification
+   - Screen reader compatibility
+
+3. **Performance Monitoring**:
+   - Track page load times over time
+   - Detect performance regressions
+   - Verify optimization effectiveness
+
+4. **Developer Experience**:
+   - Clear test reports and failure diagnostics
+   - Easy-to-maintain test structure
+   - Interactive debug mode for troubleshooting
+
+The E2E test suite provides confidence in the reliability and quality of the website, ensuring that critical user journeys continue to work as expected as new features are added and existing ones are modified.
+
+## Lazy Loading Implementation (2024-06-25)
+
+To improve performance and reduce initial page load times, we've implemented comprehensive lazy loading for below-the-fold content:
+
+### Custom Hooks and Components
+
+- **`useLazyLoad` Hook**:
+  - Created a flexible hook that wraps the IntersectionObserver API
+  - Configurable thresholds and root margins for precise control
+  - Support for immediate loading of critical content
+  - Built-in loading state management with TypeScript typing
+
+- **`LazySection` Component**:
+  - General-purpose component for lazily loading any content
+  - Provides default skeleton loader while content is loading
+  - Allows custom placeholders for better user experience
+  - Accessible implementation with proper ARIA attributes
+
+- **`LazyImage` Component**:
+  - Enhanced image component for advanced lazy loading
+  - Smooth fade-in transitions for loaded images
+  - Built-in error handling with fallback images
+  - Support for blur placeholders and aspect ratios
+  - Automatically determines optimal loading strategy based on image position
+
+### Technical Implementation
+
+- Used IntersectionObserver API for efficient viewport detection
+- Implemented React hooks pattern for reusable lazy loading logic
+- Optimized loading behavior with configurable pre-loading distance (rootMargin)
+- Added proper loading state transitions with CSS animations
+- Created TypeScript interfaces for type-safe implementations
+
+### Benefits
+
+1. **Performance Improvements**:
+   - Reduced initial page load time by deferring non-critical content
+   - Decreased bandwidth usage by loading images only when needed
+   - Improved Core Web Vitals metrics (LCP, CLS)
+
+2. **User Experience**:
+   - Faster perceived load times with prioritized above-the-fold content
+   - Smooth loading transitions prevent jarring layout shifts
+   - Fallback states for errors improve resilience
+
+3. **Developer Experience**:
+   - Consistent API for lazy loading different content types
+   - Type-safe implementation with proper TypeScript definitions
+   - Flexible configuration options for different use cases
+   - Well-documented components with usage examples
+
+## Fixed Hydration and Parameter Errors (2024-06-25)
+
+Additionally, we've fixed several issues that were causing errors in the console:
+
+- **Dynamic Route Parameter Error**:
+  - Fixed "Route /shop/[productId] used params.productId" warning
+  - Updated product page to properly handle params without destructuring
+  - Resolved parameter handling in generateMetadata and main page component
+  - Ensured proper async context handling in dynamic routes
+
+- **Cart Context Improvements**:
+  - Enhanced error handling in cart operations
+  - Added type checking for improved reliability
+  - Fixed potential edge cases in quantity updates
+
+These improvements collectively enhance the site's performance, user experience, and code quality, addressing key items from our refactoring plan.
+
+## Performance Monitoring with Core Web Vitals (2024-06-25)
+
+As part of our ongoing performance optimization efforts, we've implemented a comprehensive Core Web Vitals monitoring system to track and analyze the website's performance metrics in real-time.
+
+### Core Web Vitals Tracking
+
+- **Analytics Service**:
+  - Created a centralized analytics service in `src/lib/analytics.ts`
+  - Implemented support for various event types including page views, e-commerce events, and web vitals
+  - Designed with flexible payload structure to accommodate different metrics
+  - Built with proper TypeScript typing for improved developer experience
+
+- **Web Vitals Implementation**:
+  - Added the `web-vitals` package for accurate measurement of key metrics
+  - Created `src/lib/web-vitals.ts` to handle metric collection and processing
+  - Configured thresholds based on Google's recommended values for CLS, FID, LCP, FCP, TTFB, and INP
+  - Implemented rating system to classify metrics as 'good', 'needs-improvement', or 'poor'
+
+- **Performance Monitor Component**:
+  - Built a `PerformanceMonitor` component for site-wide performance tracking
+  - Added automatic page view tracking on route changes
+  - Implemented client-side error tracking to monitor runtime issues
+  - Integrated with Next.js to work correctly with the App Router
+
+- **Navigation Timing**:
+  - Added support for collecting detailed navigation timing metrics
+  - Tracking DNS lookup time, TCP connection time, request/response times
+  - Measuring DOM interactive and complete timings
+
+This implementation allows us to:
+1. Identify pages with performance issues
+2. Track performance improvements over time
+3. Establish performance budgets for critical user journeys
+4. Detect performance regressions early
+
+The data collected will be instrumental in making data-driven decisions for future optimizations, especially for critical user flows like product browsing and checkout.
+
+## Next Steps
+
+- Continue optimizing the shopping cart experience
+- ✅ Implement lazy loading for below-the-fold content in category pages
+- ✅ Create comprehensive E2E tests for critical paths
+
+## Data Testid Standardization
+
+**Status:** COMPLETED
+
+- [x] Created centralized `data-testid` constants in `src/components/ui/data-testid.ts`
+- [x] Applied constants to all testable components:
+  - [x] Header component
+  - [x] ProductCard component
+  - [x] Cart components
+  - [x] Navigation elements
+  - [x] Product detail pages
+- [x] Updated E2E tests to use the standardized constants
+- [x] Documented usage pattern for future component development
+
+## Remaining Tasks
+
+- [ ] Implement server-side error logging
+- [ ] Add comprehensive form validation
+- [ ] Optimize bundle size with code splitting
+- [ ] Implement proper SEO optimization
+- [ ] Add comprehensive analytics events tracking

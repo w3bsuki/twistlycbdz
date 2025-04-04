@@ -55,6 +55,7 @@ export function Providers({ children }: ProvidersProps) {
         forcedTheme="light"
         enableSystem={false}
         disableTransitionOnChange
+        storageKey="twistly-theme"
       >
         <PreferencesProvider>
           <CartProvider>

@@ -18,19 +18,11 @@ import {
   ShieldCheck, 
   Star,
   PawPrint,
-  Plus,
-  Minus,
   Moon,
   Zap,
-  PanelBottomClose,
-  ArrowUpRight,
   CheckCircle2,
   ScrollText,
   Microscope,
-  ExternalLink,
-  Info,
-  PlusCircle,
-  MinusCircle,
   ChevronRight,
   LucideProps,
   ShoppingCart,
@@ -42,41 +34,26 @@ import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogDescription, 
-  DialogFooter, 
-  DialogHeader, 
-  DialogTitle, 
-  DialogTrigger 
-} from '@/components/ui/dialog'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { cn } from '@/lib/utils'
 import { Container } from '@/components/ui/container'
 import { MiniDrTwistly } from '@/components/features/chat/mini-dr-twistly'
 import { AspectRatio } from '@/components/ui/aspect-ratio'
-import { useAnimationConfig } from '@/hooks'
+import { useAnimationConfig } from '@/hooks/use-animation-config'
 
 // Category-specific use cases
 const categories = [
@@ -711,12 +688,31 @@ const articleData = [
   }
 ];
 
+// Define types for animation variants and carousel
+interface AnimationVariants {
+  hidden: object;
+  visible: object;
+}
+
+interface AnimationConfig {
+  getVariants: (variants: AnimationVariants) => AnimationVariants;
+}
+
+// Define carousel API type based on embla-carousel
+interface CarouselApi {
+  scrollNext: () => void;
+  scrollPrev: () => void;
+  scrollTo: (index: number) => void;
+  canScrollNext: () => boolean;
+  canScrollPrev: () => boolean;
+}
+
 export function CBDBenefits() {
   const [activeCategory, setActiveCategory] = useState<string>("wellness")
   const [selectedBenefit, setSelectedBenefit] = useState<{category: string, benefit: string, index: number} | null>(null)
   const [showDrTwistly, setShowDrTwistly] = useState<boolean>(false)
-  const animConfig = useAnimationConfig ? useAnimationConfig() : { getVariants: (v: any) => v };
-  const [carouselApi, setCarouselApi] = React.useState<any>(null);
+  const animConfig = useAnimationConfig ? useAnimationConfig() : { getVariants: (v: AnimationVariants) => v };
+  const [carouselApi, setCarouselApi] = React.useState<CarouselApi | null>(null);
   
   // Animation variants
   const containerVariants = {
@@ -901,7 +897,7 @@ export function CBDBenefits() {
                             className: `h-4 w-4 ${activeCategory === category.id ? 'text-white' : `text-${category.color}-500`}`
                           })}
                           <span className="hidden sm:inline">{category.name}</span>
-                          <span className="sm:hidden">{category.name.split('&')[0]}</span>
+                          <span className="sm:hidden">{category.name.split('')[0]}</span>
                         </TabsTrigger>
                       ))}
                     </TabsList>
@@ -1057,6 +1053,8 @@ export function CBDBenefits() {
                                         alt={conditionProducts[condition.id].name}
                                         fill
                                         className="object-contain p-1"
+                                        sizes="(max-width: 768px) 64px, 64px"
+                                        loading="lazy"
                                       />
                                     </div>
                                     <div className="flex-1 min-w-0">
@@ -1175,6 +1173,9 @@ export function CBDBenefits() {
                               alt={article.title}
                               fill
                               className="object-cover"
+                              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                              loading="lazy"
+                              quality={80}
                             />
                             <div className="absolute top-1 right-1">
                               <Badge className={cn(

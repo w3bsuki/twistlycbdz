@@ -1,5 +1,5 @@
 import React from 'react'
-import { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { 
   CategoryHero, 
   CategoryBenefits, 
@@ -17,9 +17,15 @@ import { healthTestimonials } from './data/testimonials'
 import { healthFaqs } from './data/faqs'
 
 export const metadata: Metadata = {
-  title: 'Health & Wellness CBD - Twistly CBD',
-  description: 'Premium CBD products for your health and wellness journey',
+  title: 'Health & Wellness CBD Products',
+  description: 'Explore our premium CBD products designed to support your wellness journey, including oils, tinctures, and supplements for overall health.',
 }
+
+export const viewport: Viewport = {
+  themeColor: "#22c55e", // Green for health theme
+  width: "device-width",
+  initialScale: 1,
+};
 
 export default function HealthAndWellnessPage() {
   return (
@@ -37,7 +43,7 @@ export default function HealthAndWellnessPage() {
           text: "Learn About CBD Benefits",
           href: "/blog/cbd-health-benefits"
         }}
-        imageSrc="/images/tincture-transparent.png"
+        imageSrc="/images/logos/1.png"
         imageAlt="CBD Health Products"
       />
       <CategoryBenefits
@@ -87,7 +93,7 @@ export default function HealthAndWellnessPage() {
           text: "Ask AI Expert",
           href: "/ai-chat"
         }}
-        imageSrc="/images/tincture2.png"
+        imageSrc="/images/logos/1.png"
         imageAlt="CBD Wellness Products"
         badgeText="Take Action"
       />

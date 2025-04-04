@@ -11,6 +11,7 @@ interface OptimizedImageProps extends Omit<ImageProps, 'alt'> {
   wrapperClassName?: string;
   coverClassName?: string;
   fallbackSrc?: string;
+  loading?: 'eager' | 'lazy';
 }
 
 /**
@@ -28,15 +29,18 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw',
   quality = 85,
   priority = false,
+  loading: loadingProp,
   fallbackSrc = '/images/2.png',
   ...props
 }) => {
   const [imgSrc, setImgSrc] = useState(src);
   const [isError, setIsError] = useState(false);
+  // Determine loading strategy - use priority for above-the-fold images, lazy otherwise
+  // Only apply if not explicitly specified by the loadingProp
+  const loading = loadingProp || (priority ? undefined : 'lazy');
 
   // Handle image load error
   const handleError = () => {
-    console.log('Image load error, using fallback image');
     setIsError(true);
     setImgSrc(fallbackSrc);
   };
@@ -73,6 +77,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
         sizes={sizes}
         quality={quality}
         priority={priority}
+        loading={loading}
         onError={handleError}
         className={cn(
           'object-cover transition-all',

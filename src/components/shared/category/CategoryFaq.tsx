@@ -20,7 +20,11 @@ import {
 } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
 import { CategoryTheme } from './CategoryHero'
-import { FaqItem } from './types'
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
 
 export interface CategoryFaqProps {
   theme: CategoryTheme;
@@ -58,38 +62,28 @@ export function CategoryFaq({
   // Handle AI chat functionality
   const handleAskExpert = (e: React.FormEvent) => {
     e.preventDefault();
+    
     if (!userQuestion.trim()) return;
     
+    // Simulate AI typing
     setIsAiTyping(true);
-    setAiResponse("");
     
-    // Simulate AI typing response (placeholder)
-    const demoResponses = [
-      "Based on what you're asking, our most popular product for this situation is the Full Spectrum CBD Oil. It provides comprehensive support with all beneficial cannabinoids.",
-      "From what you've described, I would recommend our CBD isolate products if you're concerned about THC sensitivity or drug testing.",
-      "For your specific needs, our Enhanced CBD formula with additional terpenes might be the most effective option.",
-      "It sounds like you're looking for targeted relief. Our topical CBD cream applied directly to the area might work best for your situation."
-    ];
-    
-    const randomResponse = demoResponses[Math.floor(Math.random() * demoResponses.length)];
-    let displayText = "";
-    
-    const typeWriter = (text: string, i: number = 0) => {
-      if (i < text.length) {
-        displayText += text.charAt(i);
-        setAiResponse(displayText);
-        setTimeout(() => typeWriter(text, i + 1), 30);
-      } else {
-        setIsAiTyping(false);
-      }
-    };
-    
-    setTimeout(() => typeWriter(randomResponse), 500);
-    setUserQuestion("");
+    // Simple AI response simulation
+    setTimeout(() => {
+      const responses = [
+        `Based on what you're looking for, I'd recommend trying our CBD oil tinctures. They're versatile, easy to use, and provide consistent dosing.`,
+        `For your specific question about ${userQuestion.split(' ').slice(0, 3).join(' ')}..., our products are designed to support overall wellness rather than treat specific conditions.`,
+        `That's a great question! Our ${theme.name} products are specially formulated with premium ingredients for optimal effectiveness.`,
+        `I understand your concern about ${userQuestion.split(' ').slice(0, 3).join(' ')}... Many customers report positive experiences, but remember that results can vary from person to person.`
+      ];
+      
+      setAiResponse(responses[Math.floor(Math.random() * responses.length)]);
+      setIsAiTyping(false);
+    }, 1500);
   };
-
-  // Map theme color properties to actual tailwind classes
-  const getClasses = () => {
+  
+  // Memoized classes to avoid recalculation on every render
+  const classes = React.useMemo(() => {
     const { colors } = theme;
     
     return {
@@ -261,12 +255,10 @@ export function CategoryFaq({
         'text-gray-600'
       )
     };
-  };
+  }, [theme]);
   
-  const classes = getClasses();
-  
-  // Conditional rendering for accordion based on type
-  const renderAccordion = () => {
+  // Render accordion based on type
+  const renderAccordion = React.useCallback(() => {
     if (accordionType === 'multiple') {
       return (
         <Accordion 
@@ -284,6 +276,7 @@ export function CategoryFaq({
                 classes.accordionBorder,
                 expandedFaqs.includes(`item-${index}`) ? classes.accordionItemExpanded : ""
               )}
+              data-state={expandedFaqs.includes(`item-${index}`) ? "open" : "closed"}
             >
               <AccordionTrigger 
                 className={cn(
@@ -293,7 +286,11 @@ export function CategoryFaq({
               >
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className={cn("px-4 py-3 text-xs text-gray-700", classes.accordionContent)}>
+              <AccordionContent 
+                className={cn("px-4 py-3 text-xs text-gray-700", classes.accordionContent)}
+                role="region"
+                aria-labelledby={`accordion-item-${index}`}
+              >
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
@@ -302,13 +299,28 @@ export function CategoryFaq({
       );
     } else {
       return (
-        <Accordion type="single" collapsible className="w-full">
+        <Accordion 
+          type="single" 
+          collapsible 
+          className="w-full rounded-lg border border-gray-100 shadow-sm overflow-hidden bg-white/50"
+        >
           {faqs.map((faq, index) => (
-            <AccordionItem key={index} value={`item-${index}`} className={classes.accordionBorder}>
-              <AccordionTrigger className={cn("text-sm py-4", classes.accordionTrigger)}>
+            <AccordionItem 
+              key={index} 
+              value={`item-${index}`} 
+              className={classes.accordionBorder}
+            >
+              <AccordionTrigger 
+                id={`accordion-item-${index}`}
+                className={cn("text-sm py-4 px-4", classes.accordionTrigger)}
+              >
                 {faq.question}
               </AccordionTrigger>
-              <AccordionContent className="text-gray-600 text-sm">
+              <AccordionContent 
+                className={cn("px-4 py-3 text-sm text-gray-700", classes.accordionContent)}
+                role="region"
+                aria-labelledby={`accordion-item-${index}`}
+              >
                 {faq.answer}
               </AccordionContent>
             </AccordionItem>
@@ -316,82 +328,104 @@ export function CategoryFaq({
         </Accordion>
       );
     }
-  };
+  }, [accordionType, faqs, expandedFaqs, classes]);
   
-  // Render AI chat feature
-  const renderAiChat = () => {
+  // Render AI chat component
+  const renderAiChat = React.useCallback(() => {
     if (!showAiChat) return null;
     
     return (
       <div className={cn("mt-6", classes.aiChatContainer)}>
         <div className="flex flex-col md:flex-row items-center gap-4">
           <div className={classes.aiIconBackground}>
-            <Bot className="w-6 h-6 text-white" />
+            <Bot className="w-6 h-6 text-white" aria-hidden="true" />
           </div>
+          
           <div className="flex-1 text-center md:text-left">
             <h3 className="text-base font-bold text-gray-900 mb-1">{aiChatTitle}</h3>
             <p className="text-gray-600 text-xs mb-3">
               {aiChatDescription}
             </p>
+            
             <Dialog>
               <DialogTrigger asChild>
-                <Button size="sm" className={classes.aiButton}>
+                <Button 
+                  size="sm"
+                  className={classes.aiButton}
+                >
                   {aiChatBtnText}
-                  <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                  <ArrowRight className="ml-1.5 h-3.5 w-3.5" aria-hidden="true" />
                 </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-md">
                 <DialogHeader>
-                  <DialogTitle className="flex items-center gap-2 text-base">
-                    <Bot className={`h-4 w-4 ${classes.aiModalIcon}`} />
-                    <span>{aiChatTitle}</span>
+                  <DialogTitle className="flex items-center gap-2">
+                    <Bot className={cn("h-5 w-5", classes.aiModalIcon)} aria-hidden="true" />
+                    <span>Ask Our CBD Experts</span>
                   </DialogTitle>
                 </DialogHeader>
-                <div className="bg-gray-50 p-3 rounded-md my-4 max-h-[200px] overflow-y-auto text-sm">
+                
+                <div className="p-1">
                   {aiResponse ? (
-                    <div className="text-gray-800">
-                      {aiResponse}
-                      {isAiTyping && <span className={classes.aiTypingCursor} />}
+                    <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                      <p className="text-sm text-gray-700">{aiResponse}</p>
+                    </div>
+                  ) : isAiTyping ? (
+                    <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                      <p className="text-sm text-gray-700">
+                        Thinking
+                        <span className="inline-flex">
+                          <span className="animate-bounce">.</span>
+                          <span className="animate-bounce animation-delay-200">.</span>
+                          <span className="animate-bounce animation-delay-400">.</span>
+                        </span>
+                        <span className={classes.aiTypingCursor}></span>
+                      </p>
                     </div>
                   ) : (
-                    <div className="text-gray-500 italic">
-                      Ask about which CBD product might be right for your needs...
-                    </div>
+                    <p className="text-sm text-gray-700 mb-4">
+                      Ask our expert system about our {theme.name} products, usage recommendations, or any CBD-related questions.
+                    </p>
                   )}
+                  
+                  <form onSubmit={handleAskExpert} className="flex gap-2">
+                    <input
+                      type="text"
+                      placeholder="Ask your question..."
+                      className={cn(
+                        "flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm",
+                        classes.aiInputFocus
+                      )}
+                      value={userQuestion}
+                      onChange={(e) => setUserQuestion(e.target.value)}
+                      aria-label="Your question"
+                      disabled={isAiTyping}
+                    />
+                    <Button 
+                      type="submit" 
+                      className={classes.aiButton}
+                      disabled={isAiTyping || !userQuestion.trim()}
+                    >
+                      Send
+                    </Button>
+                  </form>
                 </div>
-                <form onSubmit={handleAskExpert} className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    value={userQuestion}
-                    onChange={(e) => setUserQuestion(e.target.value)}
-                    placeholder="Type your question..."
-                    className={cn("flex-1 border border-gray-300 rounded-md px-3 py-1.5 text-xs focus:outline-none h-8", classes.aiInputFocus)}
-                    disabled={isAiTyping}
-                  />
-                  <Button 
-                    type="submit"
-                    size="sm"
-                    className={classes.aiButton}
-                    disabled={isAiTyping}
-                  >
-                    {isAiTyping ? "Thinking..." : "Ask"}
-                  </Button>
-                </form>
               </DialogContent>
             </Dialog>
           </div>
         </div>
       </div>
     );
-  };
+  }, [showAiChat, aiChatTitle, aiChatDescription, aiChatBtnText, classes, theme.name, aiResponse, isAiTyping, userQuestion, handleAskExpert]);
   
   return (
     <section 
       className={cn(classes.section, className)}
       id={`${theme.name.toLowerCase().replace(/[&\s]+/g, '-')}-faq`}
+      aria-labelledby="faq-section-title"
     >
       {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div className={classes.bgDecorationPrimary}></div>
         <div className={classes.bgDecorationAccent}></div>
       </div>
@@ -401,11 +435,16 @@ export function CategoryFaq({
           <div className="text-center mb-6">
             <div className={classes.badgeOuter}>
               <div className={classes.badgeInner}>
-                <HelpCircle className="h-3.5 w-3.5" />
+                <HelpCircle className="h-3.5 w-3.5" aria-hidden="true" />
                 <span>FAQ</span>
               </div>
             </div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mt-3 mb-2">{sectionTitle}</h2>
+            <h2 
+              id="faq-section-title"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mt-3 mb-2"
+            >
+              {sectionTitle}
+            </h2>
             <p className="text-gray-600 max-w-2xl mx-auto mb-4 text-sm md:text-base leading-relaxed">
               {sectionDescription}
             </p>

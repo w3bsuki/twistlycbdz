@@ -36,19 +36,19 @@ function Footerdemo() {
             <nav className="space-y-2 text-sm">
               <a href="#" className="block text-gray-400 hover:text-white transition-colors">
                 Home
-              </a>
+              </Link>
               <a href="#" className="block text-gray-400 hover:text-white transition-colors">
                 About Us
-              </a>
+              </Link>
               <a href="#" className="block text-gray-400 hover:text-white transition-colors">
                 Services
-              </a>
+              </Link>
               <a href="#" className="block text-gray-400 hover:text-white transition-colors">
                 Products
-              </a>
+              </Link>
               <a href="#" className="block text-gray-400 hover:text-white transition-colors">
                 Contact
-              </a>
+              </Link>
             </nav>
           </div>
           <div>
@@ -89,13 +89,13 @@ function Footerdemo() {
           <nav className="flex gap-4 text-sm">
             <a href="#" className="text-gray-400 hover:text-white transition-colors">
               Privacy Policy
-            </a>
+            </Link>
             <a href="#" className="text-gray-400 hover:text-white transition-colors">
               Terms of Service
-            </a>
+            </Link>
             <a href="#" className="text-gray-400 hover:text-white transition-colors">
               Cookie Settings
-            </a>
+            </Link>
           </nav>
         </div>
       </div>

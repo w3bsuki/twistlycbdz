@@ -1,11 +1,19 @@
+import React from 'react';
+import type { Viewport } from 'next';
 import { HomePageHeroSection } from "@/components/sections/HomePageHeroSection";
 import { ShoppingBag, Leaf } from "lucide-react";
-import { FeaturedProducts } from "@/components/features/home/featured-products-optimized";
-import { CategoryHighlights } from "@/components/features/home/category-highlights";
-import { CBDBenefits } from "@/components/features/home/cbd-benefits";
-import { Testimonials } from "@/components/features/home/testimonials";
+import { CategoryHighlights } from '@/components/features/home/category-highlights';
+import { FeaturedProducts } from '@/components/features/home/featured-products-optimized';
+import { CBDBenefits } from '@/components/features/home/cbd-benefits';
+import { Testimonials } from '@/components/features/home/testimonials';
 import { DrTwistlySection } from '@/components/features/home/dr-twistly-section';
 import { Container } from '@/components/ui/container'
+
+export const viewport: Viewport = {
+  themeColor: "#22c55e",
+  width: "device-width",
+  initialScale: 1,
+};
 
 export default function HomePage() {
   return (

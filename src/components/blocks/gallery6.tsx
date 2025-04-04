@@ -11,6 +11,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { Card } from "@/components/ui/card";
+import Image from "next/image";
 
 interface GalleryItem {
   id: string;
@@ -103,9 +104,11 @@ const Gallery6 = ({
                 <Card className="overflow-hidden border-2 transition-all duration-300 hover:border-primary/50 hover:shadow-lg">
                   <a href={item.url} className="group block">
                     <div className="aspect-[16/9] overflow-hidden bg-muted">
-                      <img
+                      <Image
                         src={item.image}
                         alt={item.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                       />
                     </div>

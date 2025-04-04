@@ -4,6 +4,24 @@ import React, { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { 
+  RotateCcw, 
+  Activity, 
+  Clock, 
+  Zap, 
+  Timer, 
+  Flame,
+  Brain,
+  Shield,
+  Leaf,
+  Sparkles,
+  Heart,
+  Sun,
+  Feather,
+  Droplet,
+  TrendingUp,
+  LucideIcon
+} from 'lucide-react'
+import { 
   BaseComponentProps, 
   ColorScheme, 
   HeadingProps, 
@@ -19,10 +37,35 @@ export interface Benefit {
   title: string
   /** Description text explaining the benefit */
   description: string
-  /** Icon or image representing the benefit */
-  icon: ReactNode
+  /** Icon or image representing the benefit - can be a ReactNode or a string identifier for a Lucide icon */
+  icon: ReactNode | string
   /** Optional custom background color class */
   color?: string
+  /** Optional statistical data to display */
+  stat?: string
+  /** Optional time to effect information */
+  timeToEffect?: string
+}
+
+/**
+ * Map of icon identifiers to Lucide icon components
+ */
+const ICON_MAP: Record<string, LucideIcon> = {
+  'rotate-ccw': RotateCcw,
+  'activity': Activity,
+  'clock': Clock,
+  'zap': Zap,
+  'timer': Timer,
+  'flame': Flame,
+  'brain': Brain,
+  'shield': Shield,
+  'leaf': Leaf,
+  'sparkles': Sparkles,
+  'heart': Heart,
+  'sun': Sun,
+  'feather': Feather,
+  'droplet': Droplet,
+  'trending-up': TrendingUp,
 }
 
 /**
@@ -130,6 +173,15 @@ export function BenefitsGrid({
     }
   }
   
+  // Render the icon based on its type (string or ReactNode)
+  const renderIcon = (icon: ReactNode | string) => {
+    if (typeof icon === 'string' && icon in ICON_MAP) {
+      const IconComponent = ICON_MAP[icon];
+      return <IconComponent className="h-5 w-5" />;
+    }
+    return icon;
+  };
+  
   return (
     <section 
       id={id}
@@ -181,9 +233,19 @@ export function BenefitsGrid({
                 benefit.color || colors.cardBg
               )}
             >
-              <div className="mb-4">{benefit.icon}</div>
+              <div className="mb-4">{renderIcon(benefit.icon)}</div>
               <h3 className={cn("text-lg font-medium mb-2", colors.title)}>{benefit.title}</h3>
               <p className="text-gray-600 text-sm">{benefit.description}</p>
+              {benefit.stat && (
+                <div className="mt-3 flex items-center">
+                  <span className="text-sm font-semibold text-green-600">{benefit.stat}</span>
+                </div>
+              )}
+              {benefit.timeToEffect && (
+                <div className="mt-2 flex items-center">
+                  <span className="text-xs text-gray-500">Time to effect: {benefit.timeToEffect}</span>
+                </div>
+              )}
             </motion.div>
           ))}
         </motion.div>

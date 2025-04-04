@@ -41,19 +41,16 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
   };
 
   const handleAddToCart = () => {
-    console.log('Add to cart clicked from product detail page for:', product.name, 'quantity:', quantity);
     setIsAdding(true);
     
     try {
       addItem(product, quantity);
-      console.log('Added to cart, current cart state:', state?.items?.length || 0);
       
       toast({
         title: "Added to cart",
         description: `${quantity} ${quantity === 1 ? 'item' : 'items'} of ${product.name} has been added to your cart.`,
       });
     } catch (error) {
-      console.error('Error adding to cart:', error);
       toast({
         title: "Error",
         description: "There was an error adding this item to your cart.",
@@ -101,6 +98,8 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
                   "relative aspect-square overflow-hidden rounded-md",
                   selectedImage === index ? "ring-2 ring-green-600" : "ring-1 ring-gray-200"
                 )}
+                aria-label={`View ${product.name} thumbnail ${index + 1}`}
+                title={`View ${product.name} thumbnail ${index + 1}`}
               >
                 <Image
                   src={image}
@@ -109,6 +108,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
                   className="object-cover"
                   sizes="(max-width: 768px) 20vw, 10vw"
                   quality={80}
+                  loading="lazy"
                 />
               </button>
             ))}
@@ -173,20 +173,22 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
               </div>
               
               <div className="mb-4">
-                <span className="block mb-2 text-sm font-medium text-gray-900">Quantity:</span>
-                <div className="flex items-center border rounded-md w-fit">
+                <span className="block mb-2 text-sm font-medium text-gray-900" id="quantity-label">Quantity:</span>
+                <div className="flex items-center border rounded-md w-fit" role="group" aria-labelledby="quantity-label">
                   <button
                     onClick={decreaseQuantity}
-                    className="px-3 py-1 border-r text-gray-600 hover:bg-gray-100"
+                    className="px-3 py-1 border-r text-gray-600 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-inset"
                     disabled={quantity <= 1}
+                    aria-label="Decrease quantity"
                   >
                     -
                   </button>
-                  <span className="px-4 py-1">{quantity}</span>
+                  <span className="px-4 py-1" aria-live="polite" aria-atomic="true">{quantity}</span>
                   <button
                     onClick={increaseQuantity}
-                    className="px-3 py-1 border-l text-gray-600 hover:bg-gray-100"
+                    className="px-3 py-1 border-l text-gray-600 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-inset"
                     disabled={quantity >= product.stock}
+                    aria-label="Increase quantity"
                   >
                     +
                   </button>
@@ -247,22 +249,30 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
           </div>
           
           {/* Product tabs */}
-          <Tabs defaultValue="details">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="details">Details</TabsTrigger>
-              <TabsTrigger value="ingredients">Ingredients</TabsTrigger>
-              <TabsTrigger value="benefits">Benefits</TabsTrigger>
+          <Tabs defaultValue="details" className="mt-8">
+            <TabsList className="grid w-full grid-cols-3 mb-2">
+              <TabsTrigger value="details" aria-controls="details-content">Product Details</TabsTrigger>
+              <TabsTrigger value="ingredients" aria-controls="ingredients-content">Ingredients</TabsTrigger>
+              <TabsTrigger value="benefits" aria-controls="benefits-content">Benefits</TabsTrigger>
             </TabsList>
             
-            <TabsContent value="details" className="mt-4 text-gray-600">
-              <h3 className="font-medium mb-2">Product Details</h3>
+            <TabsContent 
+              value="details" 
+              className="mt-4 text-gray-600 p-4 border rounded-md" 
+              id="details-content"
+            >
+              <h3 className="font-medium text-gray-900 mb-2">Product Details</h3>
               <p className="mb-3">{product.description}</p>
-              <h4 className="font-medium mt-4 mb-2">How to Use</h4>
+              <h4 className="font-medium text-gray-900 mt-4 mb-2">How to Use</h4>
               <p>{product.details.usage}</p>
             </TabsContent>
             
-            <TabsContent value="ingredients" className="mt-4 text-gray-600">
-              <h3 className="font-medium mb-2">Ingredients</h3>
+            <TabsContent 
+              value="ingredients" 
+              className="mt-4 text-gray-600 p-4 border rounded-md" 
+              id="ingredients-content"
+            >
+              <h3 className="font-medium text-gray-900 mb-2">Ingredients</h3>
               <ul className="list-disc pl-5 space-y-1">
                 {product.details.ingredients.map((ingredient, index) => (
                   <li key={index}>{ingredient}</li>
@@ -270,8 +280,12 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
               </ul>
             </TabsContent>
             
-            <TabsContent value="benefits" className="mt-4 text-gray-600">
-              <h3 className="font-medium mb-2">Benefits</h3>
+            <TabsContent 
+              value="benefits" 
+              className="mt-4 text-gray-600 p-4 border rounded-md" 
+              id="benefits-content"
+            >
+              <h3 className="font-medium text-gray-900 mb-2">Benefits</h3>
               <ul className="list-disc pl-5 space-y-1">
                 {product.details.benefits.map((benefit, index) => (
                   <li key={index}>{benefit}</li>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { 
   CategoryHero, 
   CategoryBenefits, 
@@ -18,9 +18,15 @@ import { petTestimonials } from './data/testimonials'
 import { petFaqs } from './data/faqs'
 
 export const metadata: Metadata = {
-  title: 'Pet CBD - Twistly CBD',
-  description: 'Premium CBD products specially formulated for your pets',
+  title: 'Pet CBD Products',
+  description: 'Premium CBD products specially formulated for pets to support their health, mobility, and anxiety relief.',
 }
+
+export const viewport: Viewport = {
+  themeColor: "#f59e0b", // Amber for pet theme
+  width: "device-width",
+  initialScale: 1,
+};
 
 // Theme configuration for pet page
 const pageTheme = {
@@ -54,7 +60,7 @@ export default function PetCBDPage() {
           text: "Learn About CBD For Pets",
           href: "/blog/cbd-for-pets"
         }}
-        imageSrc="/images/tincture2.png"
+        imageSrc="/images/logos/1.png"
         imageAlt="CBD Products for Pets"
       />
       <CategoryBenefits
@@ -104,7 +110,7 @@ export default function PetCBDPage() {
           text: "Read Pet Wellness Guide",
           href: "/blog/pet-wellness"
         }}
-        imageSrc="/images/pet-tincture.png"
+        imageSrc="/images/pet-oil.png"
         imageAlt="Happy pets with CBD products"
         badgeText="Pet Wellness"
       />

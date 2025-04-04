@@ -8,7 +8,7 @@
 "use client";
 
 import React, { useState, useCallback, useMemo, memo } from "react";
-import { ChevronRight, AlertCircle, ShoppingCart, Heart, Star, Eye, Info, Droplet, Check, ArrowRight, Sparkles, Package, BadgePercent, Award, Tag, Grid2X2 } from "lucide-react";
+import { ChevronRight, AlertCircle, ShoppingCart, Heart, Star, Eye, Info, Droplet, Check, ArrowRight, Sparkles, Package, BadgePercent, Award, Tag, Grid2X2, RefreshCw, Plus } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -262,6 +262,7 @@ const ProductCard = memo(function ProductCard({
               fill
               className="object-contain transition-transform duration-300 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              loading="lazy"
             />
           </AspectRatio>
         </div>
@@ -465,14 +466,29 @@ export function FeaturedProducts() {
               Unable to Load Products
             </h2>
             <p className="text-gray-600 mb-4">
-              We're having trouble loading our featured products. Please try again later.
+              {hasError instanceof Error 
+                ? hasError.message 
+                : "We're having trouble loading our featured products. Please try again later."}
             </p>
-            <Button 
-              onClick={() => refetch()}
-              className="bg-red-600 hover:bg-red-700"
-            >
-              Retry
-            </Button>
+            <div className="flex gap-3">
+              <Button 
+                onClick={() => refetch()}
+                className="bg-red-600 hover:bg-red-700 flex items-center gap-2"
+              >
+                <RefreshCw className="h-4 w-4" />
+                Retry
+              </Button>
+              <Button 
+                variant="outline" 
+                onClick={() => window.location.reload()}
+                className="border-red-300 text-red-700 hover:bg-red-100"
+              >
+                Refresh Page
+              </Button>
+            </div>
+            <p className="mt-4 text-sm text-gray-500">
+              If this problem persists, please contact our support team.
+            </p>
           </div>
         </div>
       </section>
@@ -1070,7 +1086,7 @@ const newestProducts = [
     id: "cbd-relief-roll-on",
     name: "CBD Relief Roll-On",
     strength: "500mg",
-    image: "/images/products/tincture-2.png",
+    image: "/images/logos/1.png",
     price: "$34.99",
     rating: 4.9,
     reviews: 23,
@@ -1079,7 +1095,7 @@ const newestProducts = [
     id: "cbd-recovery-balm",
     name: "CBD Recovery Balm",
     strength: "1000mg",
-    image: "/images/products/tincture-2.png",
+    image: "/images/logos/1.png",
     price: "$54.99",
     rating: 4.7,
     reviews: 17,
@@ -1088,7 +1104,7 @@ const newestProducts = [
     id: "cbd-focus-tincture",
     name: "CBD Focus Tincture",
     strength: "1500mg",
-    image: "/images/products/tincture-2.png",
+    image: "/images/logos/1.png",
     price: "$69.99",
     rating: 4.8,
     reviews: 12,
@@ -1097,7 +1113,7 @@ const newestProducts = [
     id: "cbd-bath-bombs",
     name: "CBD Bath Bombs",
     strength: "100mg/bomb",
-    image: "/images/products/tincture-2.png",
+    image: "/images/logos/1.png",
     price: "$24.99",
     rating: 4.6,
     reviews: 32,
@@ -1106,7 +1122,7 @@ const newestProducts = [
     id: "cbd-protein-powder",
     name: "CBD Protein Powder",
     strength: "25mg/serving",
-    image: "/images/products/tincture-2.png",
+    image: "/images/logos/1.png",
     price: "$49.99",
     rating: 4.5,
     reviews: 9,
@@ -1115,7 +1131,7 @@ const newestProducts = [
     id: "cbd-face-serum",
     name: "CBD Face Serum",
     strength: "250mg",
-    image: "/images/products/tincture-2.png",
+    image: "/images/logos/1.png",
     price: "$45.99",
     rating: 4.9,
     reviews: 14,
