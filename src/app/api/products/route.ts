@@ -6,16 +6,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { 
-  getBestSellerProducts, 
-  getFeaturedProducts, 
-  getNewProducts, 
-  getProductsByCategory,
-  products as allProducts
-} from '@/lib/products';
+import { products } from '@/lib/products';
 
 // Sample product data
-const products = [
+const sampleProducts = [
   {
     id: '1',
     name: 'CBD Tincture - Full Spectrum',
@@ -99,57 +93,68 @@ const products = [
 ];
 
 /**
- * GET handler for product data
+ * GET handler for products API
+ * Supports filtering by category, featured, bestSeller, and new
  */
-export async function GET(request: NextRequest) {
+export async function GET(request: Request) {
   // Get URL parameters
-  const searchParams = request.nextUrl.searchParams;
-  const page = parseInt(searchParams.get('page') || '1');
-  const limit = parseInt(searchParams.get('limit') || '10');
-  const sort = searchParams.get('sort') || 'newest';
-  const category = searchParams.get('category') || undefined;
-  const minPrice = searchParams.get('minPrice') ? parseFloat(searchParams.get('minPrice')!) : undefined;
-  const maxPrice = searchParams.get('maxPrice') ? parseFloat(searchParams.get('maxPrice')!) : undefined;
-  const search = searchParams.get('search') || undefined;
-  const inStock = searchParams.get('inStock') === 'true';
-  const featured = searchParams.get('featured') === 'true';
+  const url = new URL(request.url);
+  const category = url.searchParams.get('category');
+  const featured = url.searchParams.get('featured') === 'true';
+  const bestSeller = url.searchParams.get('bestSeller') === 'true';
+  const newProducts = url.searchParams.get('new') === 'true';
+  const page = parseInt(url.searchParams.get('page') || '1');
+  const limit = parseInt(url.searchParams.get('limit') || '12');
   
-  // Filter products
+  console.log('API Request params:', { category, featured, bestSeller, newProducts, page, limit });
+  console.log('Total products in database:', products.length);
+  
+  // Set up filtering
   let filteredProducts = [...products];
   
-  if (featured) {
-    filteredProducts = filteredProducts.filter(product => product.featured);
-  }
-  
+  // Apply category filter
   if (category) {
-    filteredProducts = filteredProducts.filter(product => product.category === category);
+    filteredProducts = filteredProducts.filter(
+      (product) => product.category === category
+    );
+    console.log(`After category filter (${category}):`, filteredProducts.length);
   }
   
-  // Sort products
-  if (sort === 'newest') {
-    // For demo, we'll just use the current order
-  } else if (sort === 'price-low') {
-    filteredProducts.sort((a, b) => a.price - b.price);
-  } else if (sort === 'price-high') {
-    filteredProducts.sort((a, b) => b.price - a.price);
-  } else if (sort === 'rating') {
-    filteredProducts.sort((a, b) => b.rating - a.rating);
+  // Apply featured filter
+  if (featured) {
+    filteredProducts = filteredProducts.filter(
+      (product) => product.featured === true
+    );
+    console.log('After featured filter:', filteredProducts.length);
   }
   
-  // Paginate
+  // Apply bestSeller filter
+  if (bestSeller) {
+    filteredProducts = filteredProducts.filter(
+      (product) => product.bestSeller === true
+    );
+    console.log('After bestSeller filter:', filteredProducts.length);
+  }
+  
+  // Apply new products filter
+  if (newProducts) {
+    filteredProducts = filteredProducts.filter(
+      (product) => product.new === true
+    );
+    console.log('After new filter:', filteredProducts.length);
+  }
+  
+  // Handle pagination
   const startIndex = (page - 1) * limit;
   const endIndex = startIndex + limit;
   const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
   
-  // Add a small delay to simulate network latency
-  await new Promise(resolve => setTimeout(resolve, 300));
-  
+  // Return the filtered products with pagination info
   return NextResponse.json({
     products: paginatedProducts,
-    pagination: {
-      currentPage: page,
-      totalPages: Math.ceil(filteredProducts.length / limit),
-      totalProducts: filteredProducts.length
-    }
+    hasMore: endIndex < filteredProducts.length,
+    total: filteredProducts.length,
+    page,
+    limit
   });
 } 

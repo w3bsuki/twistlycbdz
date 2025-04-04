@@ -1,313 +1,256 @@
-'use client';
+import { Metadata } from 'next'
+import Link from 'next/link'
+import Image from 'next/image'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { ShoppingBag, Settings, LogOut, UserCircle, ArrowLeft, ChevronRight, Truck, CheckCircle } from 'lucide-react'
+import { Separator } from '@/components/ui/separator'
 
-import React from 'react';
-import { useParams, notFound } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
-import { Card, CardContent } from '@/components/ui/card';
-import { motion } from 'framer-motion';
-import { ArrowLeft, Calendar, Package, Truck, CheckCircle, Download, FileText } from 'lucide-react';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
+export const metadata: Metadata = {
+  title: 'Order Details | Twistly CBD',
+  description: 'View the details of your Twistly CBD order.',
+}
 
-// Mock orders data - would come from API in real implementation
-const mockOrders = [
-  {
-    id: 'ORD-45678',
-    date: 'March 21, 2025',
-    total: 129.99,
-    status: 'Delivered',
-    items: [
-      { id: 'CBD-123', name: 'Full Spectrum CBD Oil', quantity: 1, price: 79.99, image: '/images/products/cbd-oil.jpg' },
-      { id: 'CBD-456', name: 'CBD Sleep Gummies', quantity: 1, price: 49.99, image: '/images/products/cbd-gummies.jpg' },
-    ],
-    tracking: 'USP12345678901',
-    address: {
-      name: 'John Doe',
-      line1: '123 Main St',
-      line2: 'Apt 4B',
-      city: 'Portland',
-      state: 'OR',
-      postal: '97201',
-      country: 'United States'
-    },
-    payment: {
-      method: 'Visa ending in 4242',
-      subtotal: 129.98,
-      shipping: 0,
-      tax: 0,
-      total: 129.99
-    },
-    timeline: [
-      { date: 'March 21, 2025 - 2:30 PM', status: 'Delivered', message: 'Package delivered' },
-      { date: 'March 19, 2025 - 8:45 AM', status: 'Shipped', message: 'Package in transit' },
-      { date: 'March 18, 2025 - 3:15 PM', status: 'Processing', message: 'Preparing for shipment' },
-      { date: 'March 17, 2025 - 10:22 AM', status: 'Order Placed', message: 'Order confirmed' },
-    ]
-  },
-  {
-    id: 'ORD-45612',
-    date: 'March 15, 2025',
-    total: 89.50,
-    status: 'Processing',
-    items: [
-      { id: 'CBD-789', name: 'CBD Recovery Balm', quantity: 1, price: 49.99, image: '/images/products/cbd-balm.jpg' },
-      { id: 'CBD-101', name: 'CBD Calm Capsules', quantity: 1, price: 39.50, image: '/images/products/cbd-capsules.jpg' },
-    ],
-    address: {
-      name: 'John Doe',
-      line1: '123 Main St',
-      line2: 'Apt 4B',
-      city: 'Portland',
-      state: 'OR',
-      postal: '97201',
-      country: 'United States'
-    },
-    payment: {
-      method: 'Visa ending in 4242',
-      subtotal: 89.49,
-      shipping: 0,
-      tax: 0,
-      total: 89.50
-    },
-    timeline: [
-      { date: 'March 18, 2025 - 3:15 PM', status: 'Processing', message: 'Preparing for shipment' },
-      { date: 'March 15, 2025 - 10:22 AM', status: 'Order Placed', message: 'Order confirmed' },
-    ]
-  },
-  {
-    id: 'ORD-45590',
-    date: 'February 28, 2025',
-    total: 154.97,
-    status: 'Delivered',
-    items: [
-      { id: 'CBD-123', name: 'Full Spectrum CBD Oil', quantity: 1, price: 79.99, image: '/images/products/cbd-oil.jpg' },
-      { id: 'CBD-456', name: 'CBD Sleep Gummies', quantity: 1, price: 49.99, image: '/images/products/cbd-gummies.jpg' },
-      { id: 'CBD-101', name: 'CBD Calm Capsules', quantity: 1, price: 24.99, image: '/images/products/cbd-capsules.jpg' },
-    ],
-    tracking: 'USP87654321009',
-    address: {
-      name: 'John Doe',
-      line1: '123 Main St',
-      line2: 'Apt 4B',
-      city: 'Portland',
-      state: 'OR',
-      postal: '97201',
-      country: 'United States'
-    },
-    payment: {
-      method: 'Visa ending in 4242',
-      subtotal: 154.97,
-      shipping: 0,
-      tax: 0,
-      total: 154.97
-    },
-    timeline: [
-      { date: 'March 5, 2025 - 2:30 PM', status: 'Delivered', message: 'Package delivered' },
-      { date: 'March 3, 2025 - 8:45 AM', status: 'Shipped', message: 'Package in transit' },
-      { date: 'March 1, 2025 - 3:15 PM', status: 'Processing', message: 'Preparing for shipment' },
-      { date: 'February 28, 2025 - 10:22 AM', status: 'Order Placed', message: 'Order confirmed' },
-    ]
-  },
-];
+// Generate static params for build
+export function generateStaticParams() {
+  // Define the order IDs that will be pre-rendered
+  return [
+    { orderId: 'ORD-12345' },
+    { orderId: 'ORD-12344' }
+  ];
+}
 
-// Status icon mapping
-const StatusIcon = ({ status }: { status: string }) => {
-  switch (status) {
-    case 'Processing':
-      return <Package className="h-5 w-5 text-blue-500" />;
-    case 'Shipped':
-      return <Truck className="h-5 w-5 text-orange-500" />;
-    case 'Delivered':
-      return <CheckCircle className="h-5 w-5 text-green-500" />;
-    case 'Order Placed':
-      return <FileText className="h-5 w-5 text-purple-500" />;
-    default:
-      return <Package className="h-5 w-5 text-gray-500" />;
+// Mock order data - in a real app this would be fetched from API
+const orderDetails = {
+  id: 'ORD-12345',
+  date: 'April 28, 2025',
+  status: 'Delivered',
+  total: 89.97,
+  subtotal: 79.97,
+  shipping: 10.00,
+  tax: 0.00,
+  items: [
+    {
+      id: 'PROD-1',
+      name: 'CBD Oil Tincture',
+      image: '/images/products/placeholder.jpg',
+      price: 49.99,
+      quantity: 1
+    },
+    {
+      id: 'PROD-2',
+      name: 'CBD Gummies',
+      image: '/images/products/placeholder.jpg',
+      price: 29.98,
+      quantity: 1
+    }
+  ],
+  shipping_address: {
+    name: 'Jane Doe',
+    address: '123 Main St',
+    city: 'Portland',
+    state: 'OR',
+    zip: '97201',
+    country: 'USA'
+  },
+  tracking: {
+    number: 'TRK12345678',
+    carrier: 'USPS',
+    estimated_delivery: 'April 30, 2025',
+    status: 'Delivered'
   }
 };
 
-export default function OrderDetailPage() {
-  const { orderId } = useParams();
+export default function OrderDetailsPage({ params }: { params: { orderId: string } }) {
+  const orderId = params.orderId;
   
-  // Find the order by ID
-  const order = mockOrders.find(o => o.id === orderId);
-  
-  // If order doesn't exist, show 404
-  if (!order) {
-    notFound();
-  }
+  // In a real app, you would fetch the order based on the ID
   
   return (
-    <div>
-      <div className="flex items-center mb-6 gap-4">
-        <Button variant="ghost" size="icon" asChild>
-          <Link href="/account/orders">
-            <ArrowLeft className="h-5 w-5" />
+    <div className="container mx-auto px-4 py-12">
+      <div className="max-w-5xl mx-auto">
+        <div className="flex items-center gap-2 mb-6">
+          <Link 
+            href="/account/orders"
+            className="flex items-center text-sm text-gray-500 hover:text-gray-800"
+          >
+            <ArrowLeft className="h-4 w-4 mr-1" />
+            Back to Orders
           </Link>
-        </Button>
-        <h2 className="text-xl font-semibold">Order {order.id}</h2>
-        <span className={cn(
-          "text-xs py-1 px-2 rounded-full ml-auto",
-          order.status === 'Delivered' ? "bg-green-100 text-green-800" : 
-          order.status === 'Processing' ? "bg-blue-100 text-blue-800" :
-          order.status === 'Shipped' ? "bg-orange-100 text-orange-800" :
-          "bg-red-100 text-red-800"
-        )}>
-          {order.status}
-        </span>
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Order Details and Items */}
-        <div className="md:col-span-2 space-y-6">
-          {/* Order Items */}
-          <Card>
-            <CardContent className="pt-6">
-              <h3 className="font-medium mb-4">Items</h3>
-              
-              <div className="space-y-4">
-                {order.items.map(item => (
-                  <motion.div 
-                    key={item.id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="flex items-center gap-4"
+          <span className="text-gray-500">/</span>
+          <span className="text-sm text-gray-700">{orderId}</span>
+        </div>
+        
+        <h1 className="text-3xl font-bold mb-6">Order Details</h1>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Account Navigation */}
+          <div className="md:col-span-1">
+            <Card>
+              <CardHeader>
+                <CardTitle>Account Menu</CardTitle>
+                <CardDescription>Manage your account</CardDescription>
+              </CardHeader>
+              <CardContent className="p-0">
+                <nav className="flex flex-col">
+                  <Link 
+                    href="/account" 
+                    className="px-4 py-3 border-b border-gray-100 flex items-center gap-2 hover:bg-gray-50"
                   >
-                    <div className="w-16 h-16 bg-gray-100 rounded overflow-hidden flex-shrink-0">
-                      {/* In a real app, add real images */}
-                      <div className="w-full h-full flex items-center justify-center text-gray-400">
-                        <Package className="h-8 w-8" />
-                      </div>
-                    </div>
-                    
-                    <div className="flex-1">
-                      <p className="font-medium">{item.name}</p>
-                      <p className="text-sm text-gray-500">Quantity: {item.quantity}</p>
-                    </div>
-                    
-                    <div className="font-medium">
-                      ${item.price.toFixed(2)}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-              
-              <Separator className="my-4" />
-              
-              {/* Order Summary */}
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Subtotal</span>
-                  <span>${order.payment.subtotal.toFixed(2)}</span>
+                    <UserCircle className="h-5 w-5" />
+                    Account Overview
+                  </Link>
+                  <Link 
+                    href="/account/orders" 
+                    className="px-4 py-3 border-b border-gray-100 text-primary font-medium flex items-center gap-2 hover:bg-gray-50"
+                  >
+                    <ShoppingBag className="h-5 w-5" />
+                    Orders
+                  </Link>
+                  <Link 
+                    href="/account/settings" 
+                    className="px-4 py-3 border-b border-gray-100 flex items-center gap-2 hover:bg-gray-50"
+                  >
+                    <Settings className="h-5 w-5" />
+                    Settings
+                  </Link>
+                  <button
+                    className="px-4 py-3 text-left flex items-center gap-2 hover:bg-gray-50 text-red-600"
+                  >
+                    <LogOut className="h-5 w-5" />
+                    Sign Out
+                  </button>
+                </nav>
+              </CardContent>
+            </Card>
+          </div>
+          
+          {/* Order Details Content */}
+          <div className="md:col-span-2 space-y-6">
+            {/* Order Summary */}
+            <Card>
+              <CardHeader>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <CardTitle className="flex items-center">
+                      {orderDetails.id}
+                      <span className={`ml-2 text-xs px-2 py-1 rounded-full ${
+                        orderDetails.status === 'Delivered' ? 'bg-green-100 text-green-800' : 
+                        orderDetails.status === 'Processing' ? 'bg-blue-100 text-blue-800' : 
+                        'bg-orange-100 text-orange-800'
+                      }`}>
+                        {orderDetails.status}
+                      </span>
+                    </CardTitle>
+                    <CardDescription>Ordered on {orderDetails.date}</CardDescription>
+                  </div>
+                  <Button variant="outline" size="sm">
+                    Need Help?
+                  </Button>
                 </div>
-                
-                <div className="flex justify-between">
-                  <span className="text-gray-500">Shipping</span>
-                  <span>{order.payment.shipping === 0 ? 'Free' : `$${order.payment.shipping.toFixed(2)}`}</span>
-                </div>
-                
-                {order.payment.tax > 0 && (
-                  <div className="flex justify-between">
-                    <span className="text-gray-500">Tax</span>
-                    <span>${order.payment.tax.toFixed(2)}</span>
+              </CardHeader>
+              <CardContent>
+                {orderDetails.tracking && (
+                  <div className="bg-green-50 p-4 rounded-md mb-4 flex items-start">
+                    {orderDetails.tracking.status === 'Delivered' ? (
+                      <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 mr-2 flex-shrink-0" />
+                    ) : (
+                      <Truck className="h-5 w-5 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                    )}
+                    <div>
+                      <p className="font-medium text-green-800">
+                        {orderDetails.tracking.status === 'Delivered' ? 'Delivered' : 'Estimated Delivery'}
+                      </p>
+                      <p className="text-sm text-green-700">
+                        {orderDetails.tracking.status === 'Delivered' 
+                          ? `Your order was delivered on ${orderDetails.tracking.estimated_delivery}` 
+                          : `Expected delivery by ${orderDetails.tracking.estimated_delivery}`}
+                      </p>
+                      <p className="text-xs text-green-600 mt-1">
+                        Tracking: {orderDetails.tracking.carrier} - {orderDetails.tracking.number}
+                      </p>
+                    </div>
                   </div>
                 )}
                 
-                <Separator className="my-2" />
-                
-                <div className="flex justify-between font-medium">
-                  <span>Total</span>
-                  <span>${order.payment.total.toFixed(2)}</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          
-          {/* Order Timeline */}
-          <Card>
-            <CardContent className="pt-6">
-              <h3 className="font-medium mb-4">Order Timeline</h3>
-              
-              <div className="space-y-4">
-                {order.timeline.map((event, index) => (
-                  <div key={index} className="flex gap-4">
-                    <div className="relative">
-                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-50 border">
-                        <StatusIcon status={event.status} />
+                {/* Order Items */}
+                <div className="space-y-4">
+                  <h3 className="font-medium">Items in this order</h3>
+                  
+                  {orderDetails.items.map((item) => (
+                    <div key={item.id} className="flex gap-4 py-3 border-b">
+                      <div className="w-16 h-16 bg-gray-100 rounded-md overflow-hidden relative flex-shrink-0">
+                        <Image 
+                          src={item.image}
+                          alt={item.name}
+                          fill
+                          className="object-cover"
+                        />
                       </div>
-                      
-                      {index < order.timeline.length - 1 && (
-                        <div className="absolute top-8 left-4 bottom-0 w-0.5 bg-gray-200"></div>
-                      )}
+                      <div className="flex-1">
+                        <div className="flex justify-between">
+                          <h4 className="font-medium">{item.name}</h4>
+                          <p className="font-medium">${item.price.toFixed(2)}</p>
+                        </div>
+                        <p className="text-sm text-gray-500">Quantity: {item.quantity}</p>
+                      </div>
                     </div>
-                    
-                    <div className="pb-6">
-                      <p className="font-medium">{event.status}</p>
-                      <p className="text-sm text-gray-500">{event.message}</p>
-                      <p className="text-xs text-gray-400 mt-1">{event.date}</p>
+                  ))}
+                </div>
+                
+                {/* Order Summary */}
+                <div className="mt-6 pt-4 border-t">
+                  <h3 className="font-medium mb-2">Order Summary</h3>
+                  <div className="space-y-1 text-sm">
+                    <div className="flex justify-between">
+                      <span>Subtotal</span>
+                      <span>${orderDetails.subtotal.toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Shipping</span>
+                      <span>${orderDetails.shipping.toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Tax</span>
+                      <span>${orderDetails.tax.toFixed(2)}</span>
+                    </div>
+                    <Separator className="my-2" />
+                    <div className="flex justify-between font-medium text-base">
+                      <span>Total</span>
+                      <span>${orderDetails.total.toFixed(2)}</span>
                     </div>
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-        
-        {/* Sidebar with Shipping and Payment Info */}
-        <div className="space-y-6">
-          {/* Tracking Information */}
-          {order.tracking && (
-            <Card>
-              <CardContent className="pt-6">
-                <h3 className="font-medium mb-2">Tracking Information</h3>
-                <p className="text-sm mb-3">{order.tracking}</p>
-                <Button variant="outline" className="w-full" asChild>
-                  <Link href={`#`}>
-                    <Truck className="h-4 w-4 mr-2" /> Track Order
+                </div>
+              </CardContent>
+              <CardFooter className="flex justify-between">
+                <Button variant="outline" asChild>
+                  <Link href="/account/orders">
+                    Back to Orders
                   </Link>
                 </Button>
+                <Button asChild>
+                  <Link href="/shop">
+                    Shop Again
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
+            
+            {/* Shipping Information */}
+            <Card>
+              <CardHeader>
+                <CardTitle>Shipping Information</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-sm">
+                  <p className="font-medium">{orderDetails.shipping_address.name}</p>
+                  <p>{orderDetails.shipping_address.address}</p>
+                  <p>{orderDetails.shipping_address.city}, {orderDetails.shipping_address.state} {orderDetails.shipping_address.zip}</p>
+                  <p>{orderDetails.shipping_address.country}</p>
+                </div>
               </CardContent>
             </Card>
-          )}
-          
-          {/* Shipping Address */}
-          <Card>
-            <CardContent className="pt-6">
-              <h3 className="font-medium mb-2">Shipping Address</h3>
-              <div className="text-sm">
-                <p>{order.address.name}</p>
-                <p>{order.address.line1}</p>
-                {order.address.line2 && <p>{order.address.line2}</p>}
-                <p>{order.address.city}, {order.address.state} {order.address.postal}</p>
-                <p>{order.address.country}</p>
-              </div>
-            </CardContent>
-          </Card>
-          
-          {/* Payment Information */}
-          <Card>
-            <CardContent className="pt-6">
-              <h3 className="font-medium mb-2">Payment Information</h3>
-              <p className="text-sm">{order.payment.method}</p>
-              <p className="text-sm text-gray-500">Order Date: {order.date}</p>
-            </CardContent>
-          </Card>
-          
-          {/* Actions */}
-          <Card>
-            <CardContent className="pt-6">
-              <h3 className="font-medium mb-4">Order Actions</h3>
-              <div className="space-y-2">
-                <Button variant="outline" className="w-full flex items-center gap-2">
-                  <Download className="h-4 w-4" /> Download Invoice
-                </Button>
-                <Button variant="outline" className="w-full flex items-center gap-2">
-                  <FileText className="h-4 w-4" /> Request Return
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          </div>
         </div>
       </div>
     </div>

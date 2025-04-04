@@ -500,4 +500,9 @@ export async function getNewProducts() {
 
 export async function getProductById(id: string): Promise<Product | undefined> {
   return products.find(product => product.id === id)
+}
+
+export async function getAllProducts(): Promise<Product[]> {
+  // Return a copy of all products
+  return [...products];
 } 

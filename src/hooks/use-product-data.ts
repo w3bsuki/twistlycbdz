@@ -30,6 +30,15 @@ interface UseProductDataParams {
   featured?: boolean;
 }
 
+// API response type
+interface ProductsResponse {
+  products: Product[];
+  hasMore: boolean;
+  total: number;
+  page: number;
+  limit: number;
+}
+
 // Hook return type
 interface UseProductDataResult {
   products: Product[];
@@ -54,7 +63,7 @@ const fetchProducts = async (
   filters: ProductFilter,
   sortOption: ProductSortOption,
   featured: boolean
-): Promise<{ products: Product[]; hasMore: boolean }> => {
+): Promise<ProductsResponse> => {
   const params = new URLSearchParams({
     page: page.toString(),
     limit: limit.toString(),
@@ -67,11 +76,21 @@ const fetchProducts = async (
     ...(featured && { featured: 'true' }),
   });
 
-  const response = await fetch(`/api/products?${params}`);
-  if (!response.ok) {
-    throw new Error(`Error fetching products: ${response.statusText}`);
+  try {
+    console.log(`Fetching products with params: ${params.toString()}`);
+    const response = await fetch(`/api/products?${params}`);
+    
+    if (!response.ok) {
+      throw new Error(`Error fetching products: ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    console.log('Product API response:', data);
+    return data;
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    throw error;
   }
-  return response.json();
 };
 
 /**

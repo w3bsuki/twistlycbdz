@@ -12,15 +12,60 @@ export const metadata: Metadata = {
   description: 'Browse our product examples and see the ProductDetail component in action.',
 };
 
+// Mock products for static examples
+const exampleProducts = [
+  {
+    id: "example-1",
+    name: "CBD Oil Tincture",
+    description: "Our premium CBD oil tincture is perfect for daily wellness support.",
+    image: "/images/products/placeholder.jpg",
+    price: 49.99,
+    discountPrice: 39.99,
+    rating: 4.5,
+    reviewCount: 127,
+    discount: 20,
+    new: true,
+    category: "wellness"
+  },
+  {
+    id: "example-2",
+    name: "CBD Gummies",
+    description: "Delicious CBD gummies for a tasty way to get your daily dose.",
+    image: "/images/products/placeholder.jpg",
+    price: 39.99,
+    rating: 4.7,
+    reviewCount: 93,
+    new: true,
+    category: "edibles"
+  },
+  {
+    id: "example-3",
+    name: "CBD Muscle Balm",
+    description: "Soothing topical balm for post-workout recovery and muscle comfort.",
+    image: "/images/products/placeholder.jpg",
+    price: 44.99,
+    discountPrice: 39.99,
+    rating: 4.8,
+    reviewCount: 72,
+    discount: 10,
+    category: "topicals"
+  },
+  {
+    id: "example-4",
+    name: "CBD Pet Drops",
+    description: "Specially formulated CBD drops for your furry friends' well-being.",
+    image: "/images/products/placeholder.jpg",
+    price: 54.99,
+    rating: 4.6,
+    reviewCount: 58,
+    category: "pets"
+  }
+];
+
 export default function ProductExamplesPage() {
-  // Get products from different categories for variety
-  const healthProducts = getProductsByCategory('health').slice(0, 3);
-  const beautyProducts = getProductsByCategory('beauty').slice(0, 3);
-  const sportProducts = getProductsByCategory('sport').slice(0, 3);
-  const hybridProducts = getProductsByCategory('hybrid').slice(0, 3);
-  
-  // Combine and ensure uniqueness
-  const allProducts = [...healthProducts, ...beautyProducts, ...sportProducts, ...hybridProducts];
+  // Use static example products instead of async calls
+  const allProducts = exampleProducts;
+  const featuredProduct = allProducts[0];
   
   return (
     <main className="container mx-auto px-4 py-8">
@@ -32,7 +77,7 @@ export default function ProductExamplesPage() {
         
         <div className="flex flex-wrap gap-4 mb-8">
           <Button asChild variant="outline">
-            <Link href="/shop/examples/product-example">View Example Product</Link>
+            <Link href={`/shop/${featuredProduct.id}`}>View Featured Product</Link>
           </Button>
           <Button asChild variant="outline">
             <Link href="/shop">Back to Shop</Link>
@@ -40,7 +85,7 @@ export default function ProductExamplesPage() {
         </div>
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         {allProducts.map((product) => (
           <Card key={product.id} className="overflow-hidden flex flex-col h-full group">
             <div className="relative h-48 bg-gray-100 flex items-center justify-center p-4">
@@ -63,11 +108,9 @@ export default function ProductExamplesPage() {
                   NEW
                 </span>
               )}
-              
-              <QuickViewModal product={product} />
             </div>
             
-            <CardContent className="flex-grow py-4">
+            <CardContent className="flex-1 p-4">
               <h3 className="font-medium text-lg mb-1 line-clamp-1">{product.name}</h3>
               <p className="text-gray-500 text-sm mb-2 line-clamp-2">{product.description}</p>
               
@@ -97,10 +140,10 @@ export default function ProductExamplesPage() {
             <CardFooter className="pt-0 pb-4">
               <div className="w-full grid grid-cols-2 gap-2">
                 <Button asChild variant="outline" size="sm">
-                  <Link href={`/shop/${product.id}`}>View Details</Link>
+                  <Link href={`/shop/example-product`}>View Details</Link>
                 </Button>
-                <Button asChild variant="default" size="sm">
-                  <Link href={`/shop/examples/product-example`}>View Example</Link>
+                <Button variant="default" size="sm">
+                  Quick View
                 </Button>
               </div>
             </CardFooter>

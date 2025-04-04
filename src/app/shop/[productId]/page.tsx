@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { getProductById, getProductsByCategory, getBestSellerProducts } from '@/lib/products';
+import { getProductById, getProductsByCategory, getBestSellerProducts, getAllProducts } from '@/lib/products';
 import { ProductDetail } from '@/components/features/products/ProductDetail';
 import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
@@ -8,6 +8,14 @@ interface ProductPageProps {
   params: {
     productId: string;
   }
+}
+
+// Add generateStaticParams to define static product pages at build time
+export async function generateStaticParams() {
+  const products = await getAllProducts();
+  return products.map((product) => ({
+    productId: product.id,
+  }));
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
