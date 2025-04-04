@@ -15,7 +15,7 @@
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint",
     "format": "prettier --write \"**/*.{js,ts,tsx,md}\"",
-    "postinstall": "prisma generate",
+    "postinstall": "node -e \"try { require('prisma') && console.log('Prisma found, generating...') && require('child_process').execSync('prisma generate') } catch (e) { console.log('Prisma not installed, skipping generate step') }\"",
     "clean": "powershell -Command \"if (Test-Path -Path '.next') { Remove-Item -Recurse -Force '.next' }\"",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
@@ -23,6 +23,7 @@
     "test:e2e:report": "playwright show-report"
   },
   "dependencies": {
+    "@prisma/client": "^5.11.0",
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-alert-dialog": "^1.1.6",
     "@radix-ui/react-aspect-ratio": "^1.1.2",
@@ -91,6 +92,7 @@
     "eslint": "^9.23.0",
     "eslint-config-next": "15.2.3",
     "postcss": "^8.4.35",
+    "prisma": "^5.11.0",
     "tailwindcss": "^4.0.0",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.4.2"
